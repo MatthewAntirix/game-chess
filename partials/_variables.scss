@@ -1,0 +1,101 @@
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Grid settings
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Playground settings
+    // $playground-size:        Responsive by functions.js  //=> Chess grid
+    $playground-border:         2px solid #000;
+    $playground-margin:         0px;
+    $playground-padding:        10px;
+    $playground-position:       absolute;
+    $playground-x-align:        50%;  
+    $playground-y-align:        50%;  
+    $playgrount-transform:      translate(-50%, -50%);
+    $playground-bg-color:       gray;
+    $playground-box-sizing:     content-box;
+
+
+    // Tiles settings
+        // $tile-size:              Responsive by functions.js  //=> Chess grid
+        $tile-display:              inline-block;
+        $tile-odd-color:            #fff;
+        $tile-even-color:           #000;
+    
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Panels settings
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Panels basic settings
+    $panels-width:                  200px;
+    $panels-position:               absolute;
+    // $panels-left:                Responsive by functions.js  //=> Panels
+    $panels-border:                 2px solid #000;
+
+
+    // Side panels align
+        $side-panel-margin-x-align:     50%;
+        $side-panel-margin-y-align:     -60px;
+        $side-panel-transform-x-align:  translateX(-100%);
+        $side-panel-transform-x0-align: translateX(-50%);
+        $side-panel-transform-xy-align: translate(-50%, -100%);
+    
+
+    // Players settings
+        $players-height:                80%;
+        $players-margin-x-align:        $side-panel-margin-x-align;
+        $players-margin-y-align:        $side-panel-margin-y-align;
+        $players-y-align:               0;
+
+        // Player1 settings
+            $player1-transform-x-align:     $side-panel-transform-x-align;
+            
+        // Player2 settings
+            // not used
+
+
+    // Game name settings
+        $game-name-height:              60px;
+        $game-name-margin-x-align:      $side-panel-margin-x-align;
+        $game-name-margin-y-align:      50%;
+        $game-name-transform-xy-align:  $side-panel-transform-xy-align;
+
+        $game-name-border:              none;
+        $game-name-bg-color:            transparent;
+            $game-name-h1-size:             50px;
+            $game-name-h1-font:             'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            $game-name-h1-align:            center;
+            
+
+    // Log settings
+        $log-height:                    35%;
+        $log-margin-x-align:            $side-panel-margin-x-align;
+        $log-margin-y-align:            $side-panel-margin-y-align;
+
+
+    // Turn action settings
+        $turn-action-height:            40px;
+        $turn-action-margin-x-align:    $side-panel-margin-x-align;
+        $turn-action-margin-y-align:    50%;
+        $turn-action-transform-x-align: $side-panel-transform-x0-align;
+
+
+    // Turn count settings
+        $turn-count-margin-y-align:     $side-panel-margin-y-align;
+        $turn-count-margin-top:         10px;
+
+
+    // Turn tile hover settings
+        $tile-hover-height:             50px;
+        $tile-hover-margin-x-align:     $side-panel-margin-x-align;
+        $tile-hover-margin-y-align:     $side-panel-margin-y-align;
+        $tile-hover-transform-x-align:  $side-panel-transform-x-align;
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+////////////////////////////////////////////////////////////////////////////////////////////////////

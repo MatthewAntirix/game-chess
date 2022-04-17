@@ -1,0 +1,99 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#playground {
+  border: 2px solid #000;
+  margin: 0px;
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: gray;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.odd_tile {
+  display: inline-block;
+  background-color: #fff;
+}
+
+.even_tile {
+  display: inline-block;
+  background-color: #000;
+}
+
+#player1, #player2, #name, #log, #turn_action, #turn_count, #tile_hover {
+  width: 200px;
+  position: absolute;
+  border: 2px solid #000;
+  background-color: brown;
+}
+
+#player1, #player2 {
+  height: 80%;
+  margin-left: 50%;
+  margin-bottom: -60px;
+  bottom: 0;
+}
+
+#player1 {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+#name {
+  width: 300px;
+  height: 60px;
+  margin-left: 50%;
+  margin-top: 50%;
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
+  border: none;
+  background-color: transparent;
+}
+
+#name h1 {
+  font-size: 50px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+}
+
+#log {
+  height: 35%;
+  margin-left: 50%;
+  margin-top: -60px;
+}
+
+#turn_action {
+  width: 400px;
+  height: 40px;
+  margin-left: 50%;
+  margin-top: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+#turn_count {
+  height: 50px;
+  margin-left: 50%;
+  margin-top: -60px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  margin-top: 0px;
+}
+
+#tile_hover {
+  height: 50px;
+  margin-left: 50%;
+  margin-top: -60px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+/*# sourceMappingURL=style.css.map */

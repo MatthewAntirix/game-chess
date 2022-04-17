@@ -1,0 +1,122 @@
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Grid settings
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Playground settings
+    @mixin playground {
+        // width:                   Responsive by functions.js  //=> Chess grid
+        // height:                  Responsive by functions.js  //=> Chess grid
+        border:                     $playground-border;
+        margin:                     $playground-margin;
+        padding:                    $playground-padding;
+        position:                   $playground-position;
+        left:                       $playground-x-align;
+        top:                        $playground-y-align;
+        transform:                  $playgrount-transform;
+        background-color:           $playground-bg-color;
+        box-sizing:                 $playground-box-sizing;
+        }
+
+
+    // Tiles settings
+        @mixin tile {
+            // width:                   Responsive by functions.js  //=> Chess grid
+            // height:                  Responsive by functions.js  //=> Chess grid
+            display:                    $tile-display;
+            }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Panels settings
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Panels basic settings
+    @mixin panels_basic {
+        width:                          $panels-width;
+        position:                       $panels-position;
+        // left:                        Responsive by functions.js  //=> Panels
+        border:                         $panels-border;
+        background-color:               brown;
+        }
+
+
+    // Players settings
+        @mixin players {
+            height:                     $players-height;
+            margin-left:                $players-margin-x-align;
+            margin-bottom:              $players-margin-y-align;
+            bottom:                     $players-y-align;
+            }
+
+
+        // Player1 settings
+            @mixin player1 {
+                transform:                  $player1-transform-x-align;
+                }
+
+        // Player2 settings
+            @mixin player2 {
+                // not used
+                }
+
+
+    // Game name settings
+        @mixin game_name {
+            width:                      $panels-width * 1.5;
+            height:                     $game-name-height;
+            margin-left:                $game-name-margin-x-align;
+            margin-top:                 $game-name-margin-y-align;
+            transform:                  $game-name-transform-xy-align;
+
+            border:                     $game-name-border;
+            background-color:           $game-name-bg-color;
+                
+                h1 {
+                    font-size:                  $game-name-h1-size;
+                    font-family:                $game-name-h1-font;
+                    text-align:                 $game-name-h1-align;
+                    }
+            }
+
+
+    // Log settings
+        @mixin log {
+            height:                     $log-height;
+            margin-left:                $log-margin-x-align;
+            margin-top:                 $log-margin-y-align;
+            }
+
+
+    // Turn action settings
+        @mixin turn_action {
+            width:                      $panels-width * 2;
+            height:                     $turn-action-height;
+            margin-left:                $turn-action-margin-x-align;
+            margin-top:                 $turn-action-margin-y-align;
+            transform:                  $turn-action-transform-x-align;
+            }
+
+
+    // Turn count settings
+        @mixin turn_count {
+            @include tile_hover();
+            margin-top:                 ($turn-count-margin-top + $turn-count-margin-y-align) + $tile-hover-height;
+            }
+
+
+    // Turn tile hover settings
+        @mixin tile_hover {
+            height:                     $tile-hover-height;
+            margin-left:                $tile-hover-margin-x-align;
+            margin-top:                 $tile-hover-margin-y-align;
+            transform:                  $tile-hover-transform-x-align;
+            }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,93 @@
+
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/functions";
+
+
+// Reset
+* {
+    margin:                     0px;
+    padding:                    0px;
+    box-sizing:                 border-box;
+    }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Grid settings
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Playground settings
+    #playground {
+        @include playground;
+        }
+
+
+    // Tiles settings
+        .odd_tile {
+            @include tile;
+            background-color:           $tile-odd-color;
+            }
+
+        .even_tile {
+            @include tile;
+            background-color:           $tile-even-color;
+            }  
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Panels settings
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Panels basic settings
+    #player1, #player2, #name, #log, #turn_action, #turn_count, #tile_hover {
+        @include panels_basic;
+        }
+
+    // Players settings
+        #player1, #player2 {
+            @include players 
+            }
+
+        // Player1 settings
+            #player1 {
+                @include player1 
+                }
+
+        // Player2 settings
+            #player2 {
+                @include player2 
+                }
+
+    // Game name settings
+        #name {
+            @include game_name 
+            }
+
+    // Log settings
+        #log {
+            @include log 
+            }
+
+    // Turn action settings
+        #turn_action {
+            @include turn_action 
+            }
+
+    // Turn count settings
+        #turn_count {
+            @include turn_count 
+            }
+
+    // Turn tile hover settings
+        #tile_hover {
+            @include tile_hover 
+            }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+////////////////////////////////////////////////////////////////////////////////////////////////////
