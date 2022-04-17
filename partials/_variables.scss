@@ -35,7 +35,26 @@
     // $panels-left:                Responsive by functions.js  //=> Panels
     $panels-border:                 2px solid #000;
 
+        $panels-bg-image:               url(./images/player_background.jpg);
+        $panels-bg-repeat:              no-repeat;
+        $panels-bg-size:                100% 150%;
+        $panels-bg-position:            0px -30px;
 
+
+    //headers and paragraphs in panels
+        $content-margin-top:            1px;
+        $content-players-margin-top:    5px;
+        $content-turn-action-margin-top:7px;
+        $content-align:                 center;     
+        $content-font:                  cursive;
+        $content-h1:                    50px;       // Name
+        $content-h2:                    30px;       // Players
+        $content-h3:                    20px;       // Others
+        $content-p:                     20px;
+        $content-stroke:                1.5px black;
+        $content-color:                 #fff;
+
+        
     // Side panels align
         $side-panel-margin-x-align:     50%;
         $side-panel-margin-y-align:     -60px;
@@ -46,15 +65,22 @@
 
     // Players settings
         $players-height:                80%;
+        $players-padding-top:           10px;
         $players-margin-x-align:        $side-panel-margin-x-align;
         $players-margin-y-align:        $side-panel-margin-y-align;
         $players-y-align:               0;
 
+            $players-bg-size:               300% 100%;
+            $players-bg-position:           0px 0px;
+
+
         // Player1 settings
             $player1-transform-x-align:     $side-panel-transform-x-align;
             
+            
         // Player2 settings
-            // not used
+            $player2-bg-size:               300% 150%;
+            $player2-bg-position:           0px -50px;
 
 
     // Game name settings
@@ -65,10 +91,12 @@
         $game-name-margin-left:         -$playground-padding;
 
         $game-name-border:              none;
-        $game-name-bg-color:            transparent;
-            $game-name-h1-size:             50px;
-            $game-name-h1-font:             'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            $game-name-h1-align:            center;
+        $game-name-stroke:              2.5px black;
+
+            $game-name-bg-image:               none;
+            $game-name-bg-repeat:              no-repeat;
+            $game-name-bg-size:                100% 100%;
+            $game-name-bg-position:            0px 0px;
             
 
     // Log settings
@@ -79,9 +107,12 @@
 
     // Turn action settings
         $turn-action-width:             100%;
-        $turn-action-height:            40px;
+        $turn-action-height:            50px;
         $turn-action-margin-y-align:    50%;
         $turn-action-margin-left:       -$playground-padding;
+
+            $turn-action-bg-size:           100% 300%;
+            $turn-action-bg-position:       0px 0px;
 
 
     // Turn count settings
@@ -90,7 +121,7 @@
 
 
     // Turn tile hover settings
-        $tile-hover-height:             50px;
+        $tile-hover-height:             70px;
         $tile-hover-margin-x-align:     $side-panel-margin-x-align;
         $tile-hover-margin-y-align:     $side-panel-margin-y-align;
         $tile-hover-transform-x-align:  $side-panel-transform-x-align;

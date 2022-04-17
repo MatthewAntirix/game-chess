@@ -5,6 +5,14 @@
           box-sizing: border-box;
 }
 
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 #playground {
   border: 2px solid #000;
   margin: 0px;
@@ -33,7 +41,34 @@
   width: 200px;
   position: absolute;
   border: 2px solid #000;
-  background-color: brown;
+  background-image: url(./images/player_background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  background-position: 0px -30px;
+}
+
+#player1 h1, #player1 h2, #player1 h3, #player1 p, #player2 h1, #player2 h2, #player2 h3, #player2 p, #name h1, #name h2, #name h3, #name p, #log h1, #log h2, #log h3, #log p, #turn_action h1, #turn_action h2, #turn_action h3, #turn_action p, #turn_count h1, #turn_count h2, #turn_count h3, #turn_count p, #tile_hover h1, #tile_hover h2, #tile_hover h3, #tile_hover p {
+  margin-top: 1px;
+  text-align: center;
+  font-family: cursive;
+  -webkit-text-stroke: 1.5px black;
+  color: #fff;
+}
+
+#player1 h1, #player2 h1, #name h1, #log h1, #turn_action h1, #turn_count h1, #tile_hover h1 {
+  font-size: 50px;
+}
+
+#player1 h2, #player2 h2, #name h2, #log h2, #turn_action h2, #turn_count h2, #tile_hover h2 {
+  font-size: 30px;
+}
+
+#player1 h3, #player2 h3, #name h3, #log h3, #turn_action h3, #turn_count h3, #tile_hover h3 {
+  font-size: 20px;
+}
+
+#player1 p, #player2 p, #name p, #log p, #turn_action p, #turn_count p, #tile_hover p {
+  font-size: 20px;
 }
 
 #player1, #player2 {
@@ -41,11 +76,23 @@
   margin-left: 50%;
   margin-bottom: -60px;
   bottom: 0;
+  padding-top: 10px;
+  background-size: 300% 100%;
+  background-position: 0px 0px;
+}
+
+#player1 p, #player2 p {
+  margin-top: 5px;
 }
 
 #player1 {
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
+}
+
+#player2 {
+  background-size: 300% 150%;
+  background-position: 0px -50px;
 }
 
 #name {
@@ -56,13 +103,11 @@
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   border: none;
-  background-color: transparent;
-}
-
-#name h1 {
-  font-size: 50px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  text-align: center;
+  -webkit-text-stroke: 2.5px black;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: 0px 0px;
 }
 
 #log {
@@ -73,22 +118,28 @@
 
 #turn_action {
   width: 100%;
-  height: 40px;
+  height: 50px;
   margin-top: 50%;
   margin-left: -10px;
+  background-size: 100% 300%;
+  background-position: 0px 0px;
+}
+
+#turn_action h3 {
+  margin-top: 7px;
 }
 
 #turn_count {
-  height: 50px;
+  height: 70px;
   margin-left: 50%;
   margin-top: -60px;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 #tile_hover {
-  height: 50px;
+  height: 70px;
   margin-left: 50%;
   margin-top: -60px;
   -webkit-transform: translateX(-100%);

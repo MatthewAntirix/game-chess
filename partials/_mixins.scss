@@ -39,9 +39,37 @@
         position:                       $panels-position;
         // left:                        Responsive by functions.js  //=> Panels
         border:                         $panels-border;
-        background-color:               brown;
-        }
+        
+            background-image:               $panels-bg-image;
+            background-repeat:              $panels-bg-repeat;
+            background-size:                $panels-bg-size;
+            background-position:            $panels-bg-position;
 
+            h1, h2, h3, p {
+                margin-top:                 $content-margin-top;
+                text-align:                 $content-align;
+                font-family:                $content-font;       
+                -webkit-text-stroke:        $content-stroke;
+                color:                      $content-color;  
+                }
+
+                h1 {
+                    font-size:                  $content-h1;
+                    }
+
+                h2 {
+                    font-size:                  $content-h2;
+                    }
+
+                h3 {
+                    font-size:                  $content-h3;
+                    }
+
+                p {
+                    font-size:                  $content-p;
+                    }
+        }
+    
 
     // Players settings
         @mixin players {
@@ -49,6 +77,14 @@
             margin-left:                $players-margin-x-align;
             margin-bottom:              $players-margin-y-align;
             bottom:                     $players-y-align;
+            padding-top:                $players-padding-top;
+
+                background-size:               $players-bg-size;
+                background-position:           $players-bg-position;
+
+            p {
+                margin-top:                 $content-players-margin-top;
+                }
             }
 
 
@@ -59,7 +95,8 @@
 
         // Player2 settings
             @mixin player2 {
-                // not used
+                background-size:            $player2-bg-size;
+                background-position:        $player2-bg-position;
                 }
 
 
@@ -72,13 +109,12 @@
             transform:                  $game-name-transform-y-align;
 
             border:                     $game-name-border;
-            background-color:           $game-name-bg-color;
-                
-                h1 {
-                    font-size:                  $game-name-h1-size;
-                    font-family:                $game-name-h1-font;
-                    text-align:                 $game-name-h1-align;
-                    }
+            -webkit-text-stroke:        $game-name-stroke;
+
+                background-image:           $game-name-bg-image;
+                background-repeat:          $game-name-bg-repeat;
+                background-size:            $game-name-bg-size;
+                background-position:        $game-name-bg-position;         
             }
 
 
@@ -96,6 +132,13 @@
             height:                     $turn-action-height;
             margin-top:                 $turn-action-margin-y-align;
             margin-left:                $turn-action-margin-left;
+
+            background-size:            $turn-action-bg-size;
+            background-position:        $turn-action-bg-position;
+
+            h3 {
+                margin-top:                 $content-turn-action-margin-top;
+                }
             }
 
 

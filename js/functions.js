@@ -125,31 +125,47 @@ function create_panels () {
         panel_player1.setAttribute(`id`, `player1`)
         document.getElementById(`playground`).appendChild(panel_player1)
 
+            document.getElementById(`player1`).innerHTML = `<h2>Player 1</h2><p>#content</p>`
+
+
     // Create player2 panel
         const panel_player2 = document.createElement(`div`)
         panel_player2.setAttribute(`id`, `player2`)
         document.getElementById(`playground`).appendChild(panel_player2)
+
+            document.getElementById(`player2`).innerHTML = `<h2>Player 2</h2><p>#content</p>`
+
 
     // Create log panel
         const panel_log = document.createElement(`div`)
         panel_log.setAttribute(`id`, `log`)
         document.getElementById(`playground`).appendChild(panel_log)
 
+            document.getElementById(`log`).innerHTML = `<h3>Log</h3><p>#history</p>`
+
+
     // Create turn action panel
         const panel_turn_action = document.createElement(`div`)
         panel_turn_action.setAttribute(`id`, `turn_action`)
         document.getElementById(`playground`).appendChild(panel_turn_action)
 
-    // Create turn action panel
+            document.getElementById(`turn_action`).innerHTML = `<h3>#last action</h3>`
+
+
+    // Create turn count panel
         const panel_turn_count = document.createElement(`div`)
         panel_turn_count.setAttribute(`id`, `turn_count`)
         document.getElementById(`playground`).appendChild(panel_turn_count)
+
+            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>#num</p>`
+
 
     // Create tile hover panel
         const panel_tile_hover = document.createElement(`div`)
         panel_tile_hover.setAttribute(`id`, `tile_hover`)
         document.getElementById(`playground`).appendChild(panel_tile_hover)
 
+            document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>#tile</p>`
 
 
     // Set responsive panels margin align for SCSS
