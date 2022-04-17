@@ -15,8 +15,12 @@
         left:                       $playground-x-align;
         top:                        $playground-y-align;
         transform:                  $playgrount-transform;
-        background-color:           $playground-bg-color;
         box-sizing:                 $playground-box-sizing;
+
+            background-image:           $playground-bg-image;
+            background-repeat:          $playground-bg-repeat;
+            background-size:            $player2-bg-size;
+            background-position:        $playground-bg-position;
         }
 
 

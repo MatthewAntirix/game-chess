@@ -13,8 +13,12 @@
     $playground-x-align:        50%;  
     $playground-y-align:        50%;  
     $playgrount-transform:      translate(-50%, -50%);
-    $playground-bg-color:       gray;
     $playground-box-sizing:     content-box;
+
+        $playground-bg-image:       url(./images/panels_background.jpg);
+        $playground-bg-repeat:      no-repeat;
+        $playground-bg-size:        100% 100%;
+        $playground-bg-position:    0px 0px;
 
 
     // Tiles settings
@@ -35,7 +39,7 @@
     // $panels-left:                Responsive by functions.js  //=> Panels
     $panels-border:                 2px solid #000;
 
-        $panels-bg-image:               url(./images/player_background.jpg);
+        $panels-bg-image:               url(./images/panels_background.jpg);
         $panels-bg-repeat:              no-repeat;
         $panels-bg-size:                100% 150%;
         $panels-bg-position:            0px -30px;

@@ -22,9 +22,12 @@ body {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: gray;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
+  background-image: url(./images/panels_background.jpg);
+  background-repeat: no-repeat;
+  background-size: 300% 150%;
+  background-position: 0px 0px;
 }
 
 .odd_tile {
@@ -41,7 +44,7 @@ body {
   width: 200px;
   position: absolute;
   border: 2px solid #000;
-  background-image: url(./images/player_background.jpg);
+  background-image: url(./images/panels_background.jpg);
   background-repeat: no-repeat;
   background-size: 100% 150%;
   background-position: 0px -30px;
