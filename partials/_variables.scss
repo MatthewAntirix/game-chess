@@ -41,7 +41,7 @@
         $side-panel-margin-y-align:     -60px;
         $side-panel-transform-x-align:  translateX(-100%);
         $side-panel-transform-x0-align: translateX(-50%);
-        $side-panel-transform-xy-align: translate(-50%, -100%);
+        $side-panel-transform-y-align:  translateY(-100%);
     
 
     // Players settings
@@ -58,10 +58,11 @@
 
 
     // Game name settings
+        $game-name-width:               100%;
         $game-name-height:              60px;
-        $game-name-margin-x-align:      $side-panel-margin-x-align;
         $game-name-margin-y-align:      50%;
-        $game-name-transform-xy-align:  $side-panel-transform-xy-align;
+        $game-name-transform-y-align:   $side-panel-transform-y-align;
+        $game-name-margin-left:         -$playground-padding;
 
         $game-name-border:              none;
         $game-name-bg-color:            transparent;
@@ -77,10 +78,10 @@
 
 
     // Turn action settings
+        $turn-action-width:             100%;
         $turn-action-height:            40px;
-        $turn-action-margin-x-align:    $side-panel-margin-x-align;
         $turn-action-margin-y-align:    50%;
-        $turn-action-transform-x-align: $side-panel-transform-x0-align;
+        $turn-action-margin-left:       -$playground-padding;
 
 
     // Turn count settings

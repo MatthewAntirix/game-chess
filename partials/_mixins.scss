@@ -65,11 +65,11 @@
 
     // Game name settings
         @mixin game_name {
-            width:                      $panels-width * 1.5;
+            width:                      $game-name-width;
             height:                     $game-name-height;
-            margin-left:                $game-name-margin-x-align;
             margin-top:                 $game-name-margin-y-align;
-            transform:                  $game-name-transform-xy-align;
+            margin-left:                $game-name-margin-left;
+            transform:                  $game-name-transform-y-align;
 
             border:                     $game-name-border;
             background-color:           $game-name-bg-color;
@@ -92,11 +92,10 @@
 
     // Turn action settings
         @mixin turn_action {
-            width:                      $panels-width * 2;
+            width:                      $turn-action-width;
             height:                     $turn-action-height;
-            margin-left:                $turn-action-margin-x-align;
             margin-top:                 $turn-action-margin-y-align;
-            transform:                  $turn-action-transform-x-align;
+            margin-left:                $turn-action-margin-left;
             }
 
 
