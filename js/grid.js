@@ -8,7 +8,7 @@
 ///////////////////////////// Main Settings /////////////////////////////
 
 // Grid size //
-const rows = 8
+const rows = 3
 const columns = rows
 const tiles = rows * columns
 
@@ -119,25 +119,48 @@ const tiles = rows * columns
                 
             // Color corrector //
 
-                // Odd row - last tile //
-                if (new_row == columns) {
-                    color = i
+                // If count of rows == odd num
+                if(rows % 2 != 0) {
 
-                // Even row - last tile //
-                } else if (new_row == (columns*2)) {
-                    color = i + 1
-                    new_row = 0
+                    // Odd row - last tile //
+                    if (new_row == columns) {
+                        color = i
 
-                // Others tiles //
+                    // Even row - last tile //
+                    } else if (new_row == (columns*2)) {
+                        color = i
+                        new_row = 0
+
+                    // Others tiles //
+                    } else {
+                        color = i
+                    } 
+
+
+                // If count of rows == even num
                 } else {
-                    color = i + Math.floor(i/columns)
-                } 
 
+                                // Color corrector //
 
+                    // Odd row - last tile //
+                    if (new_row == columns) {
+                        color = i
+
+                    // Even row - last tile //
+                    } else if (new_row == (columns*2)) {
+                        color = i + 1
+                        new_row = 0
+
+                    // Others tiles //
+                    } else {
+                        color = i + Math.floor(i/columns)
+                    } 
+                } // END color corrector
                 
+
+
                 // Set tile color and create tile //
                 
-            
                 tile_setup()
 
 
