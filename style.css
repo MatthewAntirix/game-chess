@@ -26,7 +26,7 @@ body {
           box-sizing: content-box;
   background-image: url(./images/panels_background.jpg);
   background-repeat: no-repeat;
-  background-size: 300% 150%;
+  background-size: 100% 150%;
   background-position: 0px 0px;
 }
 
@@ -80,7 +80,7 @@ body {
   margin-bottom: -60px;
   bottom: 0;
   padding-top: 10px;
-  background-size: 300% 100%;
+  background-size: 100% 120%;
   background-position: 0px 0px;
 }
 
@@ -94,8 +94,8 @@ body {
 }
 
 #player2 {
-  background-size: 300% 150%;
-  background-position: 0px -50px;
+  background-size: 100% 150%;
+  background-position: 0px -100px;
 }
 
 #name {
