@@ -6,8 +6,8 @@
 
 // Playground settings
     @mixin playground {
-        // width:                   Responsive by functions.js  //=> Chess grid
-        // height:                  Responsive by functions.js  //=> Chess grid
+        // width:                   Responsive by grid.js  //=> Chess grid
+        // height:                  Responsive by grid.js  //=> Chess grid
         border:                     $playground-border;
         margin:                     $playground-margin;
         padding:                    $playground-padding;
@@ -26,8 +26,8 @@
 
     // Tiles settings
         @mixin tile {
-            // width:                   Responsive by functions.js  //=> Chess grid
-            // height:                  Responsive by functions.js  //=> Chess grid
+            // width:                   Responsive by grid.js  //=> Chess grid
+            // height:                  Responsive by grid.js  //=> Chess grid
             display:                    $tile-display;
             }
 
@@ -41,7 +41,7 @@
     @mixin panels_basic {
         width:                          $panels-width;
         position:                       $panels-position;
-        // left:                        Responsive by functions.js  //=> Panels
+        // left:                        Responsive by panels.js  //=> Panels
         border:                         $panels-border;
         
             background-image:               $panels-bg-image;

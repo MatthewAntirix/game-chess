@@ -35,12 +35,12 @@
     // Tiles settings
         .odd_tile {
             @include tile;
-            background-color:           $tile-odd-color;
+            // background-color:           Set by grid.js //=> Color settings
             }
 
         .even_tile {
             @include tile;
-            background-color:           $tile-even-color;
+            // background-color:           Set by grid.js //=> Color settings
             }  
 
 

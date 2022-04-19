@@ -5,7 +5,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Playground settings
-    // $playground-size:        Responsive by functions.js  //=> Chess grid
+    // $playground-size:        Responsive by grid.js  //=> Chess grid
     $playground-border:         2px solid #000;
     $playground-margin:         0px;
     $playground-padding:        10px;
@@ -22,10 +22,10 @@
 
 
     // Tiles settings
-        // $tile-size:              Responsive by functions.js  //=> Chess grid
+        // $tile-size:              Responsive by grid.js  //=> Chess grid
         $tile-display:              inline-block;
-        $tile-odd-color:            #fff;
-        $tile-even-color:           #000;
+        // $tile-odd-color:         Set by grid.js //=> Color settings
+        // $tile-even-color:        Set by grid.js //=> Color settings
     
 
 
@@ -36,7 +36,7 @@
 // Panels basic settings
     $panels-width:                  200px;
     $panels-position:               absolute;
-    // $panels-left:                Responsive by functions.js  //=> Panels
+    // $panels-left:                Responsive by panels.js  //=> Panels
     $panels-border:                 2px solid #000;
 
         $panels-bg-image:               url(./images/panels_background.jpg);

@@ -4,14 +4,25 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+///////////////////////////// Main Settings /////////////////////////////
+
 // Grid size //
 const rows = 8
 const columns = rows
 const tiles = rows * columns
 
-    // Color corrector //
-    let new_row = 0
-    let color = 1
+
+    // Colors settings //
+    const odd_tile_color = "#fff"   
+    const even_tile_color = "#000"
+    const tile_hover_color = "#79efed"
+
+
+        // Color corrector //
+        let new_row = 0
+        let color = 1
+
 
     // Tile creating speed //
     const tile_speed = 25
@@ -28,10 +39,12 @@ const tiles = rows * columns
 
 
 
+///////////////////////////// ID settings /////////////////////////////
+
     // Tiles ID settings //
         let rows_array = []
         let columns_array = []
-        let tiles_array = []
+        let tiles_array = []                        /////// not used
     
             let tile_row_id = 0
             let tile_column_id = 0
@@ -48,7 +61,7 @@ const tiles = rows * columns
             } 
 
 
-            
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Creating chess tiles
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,34 +108,49 @@ const tiles = rows * columns
 
                 function tile_setup() {
 
+                    // Set row ID //
+                        tile_row_id = Math.ceil(i / rows)
+
+                    // Set column ID //
+                        tile_column_id = (i % rows)
+
+                            if(tile_column_id == 0) {
+                                tile_column_id = columns
+                            }
+
+                            
+                            
+
                     if (color % 2 != 0) {
 
                         // Color settings //
                             new_tile.classList.add(`odd_tile`)
-                            new_tile.setAttribute('id',`tile_${i}`)
+                            new_tile.setAttribute('id',`tile_${tile_row_id}_${tile_column_id}`)
                             new_tile.innerHTML = `<img class="img" src="./images/void.png"></img>`
                             color_toggle = false
 
                         // Add tile //
                             document.getElementById(`playground`).appendChild(new_tile)
+                            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).style.setProperty(`background-color`, odd_tile_color)
 
                         // Add listener //
-                            set_listener(i)
+                            set_listener(tile_row_id, tile_column_id, color)
 
 
                     } else {
 
                         // Color settings //
                             new_tile.classList.add(`even_tile`)
-                            new_tile.setAttribute('id',`tile_${i}`)
+                            new_tile.setAttribute('id',`tile_${tile_row_id}_${tile_column_id}`)
                             new_tile.innerHTML = `<img class="img" src="./images/void.png"></img>`
                             color_toggle = true
 
                         // Add tile //
                             document.getElementById(`playground`).appendChild(new_tile)
+                            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).style.setProperty(`background-color`, even_tile_color)
                         
                         // Add listener //
-                            set_listener(i)
+                            set_listener(tile_row_id, tile_column_id, color)
                     }
 
 
@@ -131,9 +159,9 @@ const tiles = rows * columns
 
                 
                 // Set responsive tile size for SCSS
-                    document.getElementById(`tile_${i}`).style.setProperty("width", `${tile_size}px`)
-                    document.getElementById(`tile_${i}`).style.setProperty("height", `${tile_size}px`)
-
+                    document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).style.setProperty("width", `${tile_size}px`)
+                    document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).style.setProperty("height", `${tile_size}px`)
+                    
 
             // END creating speed for tiles //
             }, tile_speed * i);
@@ -150,9 +178,26 @@ const tiles = rows * columns
     // Listener setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function set_listener(i){
+    function set_listener(tile_row_id, tile_column_id, color){
 
-        document.getElementById(`tile_${i}`).addEventListener('click',function (){
-            console.log(`active tile id = ${i}`)
-        })
-    }
+        document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
+
+            let selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                selected_tile.style.setProperty(`background-color`, tile_hover_color)
+
+        }) // END mouseover listener
+            
+
+        document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
+
+            let unselected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+
+                if(color % 2 != 0) {
+                    unselected_tile.style.setProperty(`background-color`, odd_tile_color)
+                } else {
+                    unselected_tile.style.setProperty(`background-color`, even_tile_color)
+                }
+
+        }) // END mouseout listener
+
+    } // END function set_listener

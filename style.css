@@ -32,12 +32,10 @@ body {
 
 .odd_tile {
   display: inline-block;
-  background-color: #fff;
 }
 
 .even_tile {
   display: inline-block;
-  background-color: #000;
 }
 
 #player1, #player2, #name, #log, #turn_action, #turn_count, #tile_hover {
