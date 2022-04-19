@@ -8,7 +8,7 @@
 ///////////////////////////// Main Settings /////////////////////////////
 
 // Grid size //
-const rows = 3
+const rows = 8
 const columns = rows
 const tiles = rows * columns
 
@@ -247,6 +247,11 @@ const tiles = rows * columns
 
                 let clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                     clicked_tile.style.setProperty(`background-color`, tile_click_color)
+
+                // testing units
+                    // unit_pawn(tile_row_id, tile_column_id)
+                    // unit_rook(tile_row_id, tile_column_id)
+                    unit_queen(tile_row_id, tile_column_id)
 
             }) // END mouse-click listener
 
