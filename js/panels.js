@@ -1,110 +1,5 @@
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Chess grid
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// Grid size //
-const rows = 8
-const columns = rows
-const tiles = rows * columns
-
-    // Color corrector //
-    let new_row = 0
-    let color = 1
-
-    // Tile creating speed //
-    const tile_speed = 25
-
-    // Create grid //
-    create_grid(tiles, columns)
-
-    // Set responsive playground size for SCSS
-        const playground_width = 400                    // max 600px
-        const playground_height = playground_width
-        const tile_size = playground_width / columns
-
-        document.getElementById('playground').style.setProperty("width", `${playground_width}px`)
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Creating chess tiles
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    function create_grid(tiles, columns) {
-        let new_tile
-
-        for (let i = 1; i <= tiles; i++) {
-
-            // Set creating speed for tiles //
-            setTimeout(function () {
-
-                new_tile = document.createElement(`div`)
-                new_row++
-
-
-                
-            // Color corrector //
-
-                // Odd row - last tile //
-                if (new_row == columns) {
-                    color = i
-
-                // Even row - last tile //
-                } else if (new_row == (columns*2)) {
-                    color = i + 1
-                    new_row = 0
-
-                // Others tiles //
-                } else {
-                    color = i + Math.floor(i/columns)
-                } 
-
-
-                
-                // Set tile color and create tile //
-                
-            
-                tile_color()
-
-
-                // Color settings //
-
-                function tile_color() {
-                    if (color % 2 != 0) {
-                        new_tile.classList.add(`odd_tile`)
-                        new_tile.setAttribute('id',`tile_${i}`)
-                        new_tile.innerHTML = `<img class="img" src="./images/void.png"></img>`
-                        color_toggle = false
-
-                    } else {
-                        new_tile.classList.add(`even_tile`)
-                        new_tile.setAttribute('id',`tile_${i}`)
-                        new_tile.innerHTML = `<img class="img" src="./images/void.png"></img>`
-                        color_toggle = true
-                    }
-                } // END function tile_color
-
-                    
-
-                // Add tile //
-                document.getElementById(`playground`).appendChild(new_tile)
-
-
-                // Set responsive tile size for SCSS
-                    document.getElementById(`tile_${i}`).style.setProperty("width", `${tile_size}px`)
-                    document.getElementById(`tile_${i}`).style.setProperty("height", `${tile_size}px`)
-
-                    
-            // END creating speed for tiles //
-            }, tile_speed * i);
-
-        } // END for
-   
-    } // END function create_grid
-
-    
+create_panels()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Panels
@@ -190,3 +85,6 @@ function create_panels () {
 } // END function create_panels
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+////////////////////////////////////////////////////////////////////////////////////////////////////
