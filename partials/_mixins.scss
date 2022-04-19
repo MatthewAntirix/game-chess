@@ -52,7 +52,8 @@
             h1, h2, h3, p {
                 margin-top:                 $content-margin-top;
                 text-align:                 $content-align;
-                font-family:                $content-font;       
+                font-family:                $content-font;     
+                font-weight:                $content-font-weight;  
                 -webkit-text-stroke:        $content-stroke;
                 color:                      $content-color;  
                 }
@@ -159,6 +160,11 @@
             margin-left:                $tile-hover-margin-x-align;
             margin-top:                 $tile-hover-margin-y-align;
             transform:                  $tile-hover-transform-x-align;
+
+            p {
+                color:                      $tile-hover-color;
+            }
+
             }
 
 

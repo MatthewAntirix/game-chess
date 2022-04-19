@@ -52,6 +52,7 @@ body {
   margin-top: 1px;
   text-align: center;
   font-family: cursive;
+  font-weight: 1000;
   -webkit-text-stroke: 1.5px black;
   color: #fff;
 }
@@ -69,7 +70,7 @@ body {
 }
 
 #player1 p, #player2 p, #name p, #log p, #turn_action p, #turn_count p, #tile_hover p {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 #player1, #player2 {
@@ -139,11 +140,19 @@ body {
   margin-top: 20px;
 }
 
+#turn_count p {
+  color: #ffff00;
+}
+
 #tile_hover {
   height: 70px;
   margin-left: 50%;
   margin-top: -60px;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
+}
+
+#tile_hover p {
+  color: #ffff00;
 }
 /*# sourceMappingURL=style.css.map */

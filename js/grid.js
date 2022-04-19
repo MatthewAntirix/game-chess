@@ -14,9 +14,10 @@ const tiles = rows * columns
 
 
     // Colors settings //
-    const odd_tile_color = "#fff"   
+    const odd_tile_color = "#fff"
     const even_tile_color = "#000"
     const tile_hover_color = "#79efed"
+    const tile_click_color = "#2b7a79"
 
 
         // Color corrector //
@@ -46,19 +47,56 @@ const tiles = rows * columns
         let columns_array = []
         let tiles_array = []                        /////// not used
     
-            let tile_row_id = 0
-            let tile_column_id = 0
+            let row_name = []
+            let column_name = []
+            let column_name_array_loop1 = 0         // Define base column name from array A-Z
+            let column_name_array_loop2 = 0 - 1     // Define column name out of array A-Z          // -1 for starting on letter "A"
+
+                let tile_row_id = 0
+                let tile_column_id = 0
+
+
     
-    
-        // create rows array
+        // Create rows array
             for(let row = 1; row <= rows; row++) {
                 rows_array.push(row)
             }
+
+            // Set row name for hover tile
+                row_name = rows_array.reverse()
+            
     
-        // create columns array
+
+        // Create columns array
             for (let column = 1; column <= columns; column++) {
                 columns_array.push(column)
             } 
+
+            // Set column name for hover tile
+                const column_name_array = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"] 
+
+
+                for (let i = 0; i < columns; i++) {
+
+                    // Set base column name from array A-Z
+                    if(column_name_array_loop1 < column_name_array.length && i < column_name_array.length) {
+                        column_name.push(column_name_array[columns_array[column_name_array_loop1]-1])
+                        column_name_array_loop1++
+
+                    // Set new additional column name out of array A-Z 
+                    } else if (column_name_array_loop1 == column_name_array.length && i >= column_name_array.length) {
+                        column_name_array_loop2++
+                        column_name_array_loop1 = 0
+                        column_name.push(`${column_name_array[columns_array[column_name_array_loop2]-1]}${column_name_array[columns_array[column_name_array_loop1]-1]}`)
+                        column_name_array_loop1++
+                        
+                    // Set next additional column name out of array A-Z 
+                    } else {
+                        column_name.push(`${column_name_array[columns_array[column_name_array_loop2]-1]}${column_name_array[columns_array[column_name_array_loop1]-1]}`)
+                        column_name_array_loop1++
+                    }
+                    
+                } // END for
 
 
 
@@ -180,24 +218,42 @@ const tiles = rows * columns
 
     function set_listener(tile_row_id, tile_column_id, color){
 
-        document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
+        // Mouse-click listener
 
-            let selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
-                selected_tile.style.setProperty(`background-color`, tile_hover_color)
+            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
 
-        }) // END mouseover listener
-            
+                let clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                    clicked_tile.style.setProperty(`background-color`, tile_click_color)
 
-        document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
+            }) // END mouse-click listener
 
-            let unselected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
-                if(color % 2 != 0) {
-                    unselected_tile.style.setProperty(`background-color`, odd_tile_color)
-                } else {
-                    unselected_tile.style.setProperty(`background-color`, even_tile_color)
-                }
 
-        }) // END mouseout listener
+        // Mouse-over listener
+
+            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
+
+                let selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                    selected_tile.style.setProperty(`background-color`, tile_hover_color)
+
+                    document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>${column_name[tile_column_id-1]}${row_name[tile_row_id-1]}</p>`
+
+            }) // END mouse-over listener
+                
+
+
+        // Mouse-out listener
+
+            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
+
+                let unselected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+
+                    if(color % 2 != 0) {
+                        unselected_tile.style.setProperty(`background-color`, odd_tile_color)
+                    } else {
+                        unselected_tile.style.setProperty(`background-color`, even_tile_color)
+                    }
+
+            }) // END mouse-out listener
 
     } // END function set_listener

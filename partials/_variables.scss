@@ -51,10 +51,11 @@
         $content-turn-action-margin-top:7px;
         $content-align:                 center;     
         $content-font:                  cursive;
+        $content-font-weight:           1000;
         $content-h1:                    50px;       // Name
         $content-h2:                    30px;       // Players
         $content-h3:                    20px;       // Others
-        $content-p:                     20px;
+        $content-p:                     25px;
         $content-stroke:                1.5px black;
         $content-color:                 #fff;
 
@@ -129,6 +130,7 @@
         $tile-hover-margin-x-align:     $side-panel-margin-x-align;
         $tile-hover-margin-y-align:     $side-panel-margin-y-align;
         $tile-hover-transform-x-align:  $side-panel-transform-x-align;
+        $tile-hover-color:              #ffff00;
 
 
 

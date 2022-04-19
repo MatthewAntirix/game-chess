@@ -60,7 +60,7 @@ function create_panels () {
         panel_tile_hover.setAttribute(`id`, `tile_hover`)
         document.getElementById(`playground`).appendChild(panel_tile_hover)
 
-            document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>#tile</p>`
+            document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p></p>`
 
 
     // Set responsive panels margin align for SCSS
