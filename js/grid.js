@@ -164,7 +164,7 @@ const tiles = rows * columns
                         // Color settings //
                             new_tile.classList.add(`odd_tile`)
                             new_tile.setAttribute('id',`tile_${tile_row_id}_${tile_column_id}`)
-                            new_tile.innerHTML = `<img class="img" src="./images/void.png"></img>`
+                            new_tile.innerHTML = `<img src="./images/void.png"></img>`
                             color_toggle = false
 
                         // Add tile //
@@ -180,7 +180,7 @@ const tiles = rows * columns
                         // Color settings //
                             new_tile.classList.add(`even_tile`)
                             new_tile.setAttribute('id',`tile_${tile_row_id}_${tile_column_id}`)
-                            new_tile.innerHTML = `<img class="img" src="./images/void.png"></img>`
+                            new_tile.innerHTML = `<img src="./images/void.png"></img>`
                             color_toggle = true
 
                         // Add tile //
