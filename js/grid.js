@@ -15,7 +15,7 @@ const tiles = rows * columns
 
     // Colors settings //
     const odd_tile_color = "#fff"
-    const even_tile_color = "#000"
+    const even_tile_color = "#555"
 
     const tile_hover_color = "#79efed"
         const unit_select_color = "#0000ff"

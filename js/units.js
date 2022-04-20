@@ -54,7 +54,7 @@ class unit {
         if(unit_name == `king` || unit_name == `queen` || unit_name == `rook` || unit_name == `pawn`) {
             for(let i = 1; i <= move_row; i++) {
 
-                
+
 
             // Movement up
 
@@ -322,7 +322,41 @@ class unit {
 
 ///////////////////////////////////////////
 
-// testing unit
+// testing units
+
 function create_test(){
-document.getElementById(`tile_4_4`).innerHTML = `<img src="./images/test.png"></img>`
+document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+document.getElementById(`tile_1_2`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
+document.getElementById(`tile_1_3`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
+document.getElementById(`tile_1_4`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+document.getElementById(`tile_1_5`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+document.getElementById(`tile_1_6`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
+document.getElementById(`tile_1_7`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
+document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+    document.getElementById(`tile_2_1`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_2`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_3`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_4`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_5`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_6`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_7`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+    document.getElementById(`tile_2_8`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+
+document.getElementById(`tile_8_1`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
+document.getElementById(`tile_8_2`).innerHTML = `<img src="./images/units/white_knight.png"></img>`
+document.getElementById(`tile_8_3`).innerHTML = `<img src="./images/units/white_bishop.png"></img>`
+document.getElementById(`tile_8_4`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+document.getElementById(`tile_8_5`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+document.getElementById(`tile_8_6`).innerHTML = `<img src="./images/units/white_bishop.png"></img>`
+document.getElementById(`tile_8_7`).innerHTML = `<img src="./images/units/white_knight.png"></img>`
+document.getElementById(`tile_8_8`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
+    document.getElementById(`tile_7_1`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_2`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_3`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_4`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_5`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_6`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_7`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+    document.getElementById(`tile_7_8`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+
 }
