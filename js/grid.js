@@ -29,7 +29,7 @@ const tiles = rows * columns
     const tile_speed = 25
 
     // Create grid //
-    create_grid(tiles, columns)
+    create_grid(tiles)
 
     // Set responsive playground size for SCSS
         const playground_width = 400                    // max 600px
@@ -45,15 +45,33 @@ const tiles = rows * columns
     // Tiles ID settings //
         let rows_array = []
         let columns_array = []
-        let tiles_array = []                        /////// not used
-    
-            let row_name = []
-            let column_name = []
-            let column_name_array_loop1 = 0         // Define base column name from array A-Z
-            let column_name_array_loop2 = 0 - 1     // Define column name out of array A-Z          // -1 for starting on letter "A"
 
-                let tile_row_id = 0
-                let tile_column_id = 0
+            let reset_array = []     
+            let reset_id = 0                   
+    
+                let row_name = []
+                let column_name = []
+                let column_name_array_loop1 = 0         // Define base column name from array A-Z
+                let column_name_array_loop2 = 0 - 1     // Define column name out of array A-Z          // -1 for starting on letter "A"
+
+                    let tile_row_id = 0
+                    let tile_column_id = 0     
+
+
+            // Rows and columns id settings
+                function set_grid_id(i) {
+
+                    // Set row ID //
+                        tile_row_id = Math.ceil(i / rows)
+
+                    // Set column ID //
+                        tile_column_id = (i % rows)
+
+                            if(tile_column_id == 0) {
+                                tile_column_id = columns
+                                            }
+
+                } // END function set_grid_id
 
 
     
@@ -104,7 +122,7 @@ const tiles = rows * columns
     // Creating chess tiles
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function create_grid(tiles, columns) {
+    function create_grid(tiles) {
         let new_tile
 
         for (let i = 1; i <= tiles; i++) {
@@ -113,55 +131,12 @@ const tiles = rows * columns
             setTimeout(function () {
 
                 new_tile = document.createElement(`div`)
-                new_row++
-
-
+               
+                // Color corrector
+                color_corrector(i)
                 
-            // Color corrector //
-
-                // If count of rows == odd num
-                if(rows % 2 != 0) {
-
-                    // Odd row - last tile //
-                    if (new_row == columns) {
-                        color = i
-
-                    // Even row - last tile //
-                    } else if (new_row == (columns*2)) {
-                        color = i
-                        new_row = 0
-
-                    // Others tiles //
-                    } else {
-                        color = i
-                    } 
-
-
-                // If count of rows == even num
-                } else {
-
-                                // Color corrector //
-
-                    // Odd row - last tile //
-                    if (new_row == columns) {
-                        color = i
-
-                    // Even row - last tile //
-                    } else if (new_row == (columns*2)) {
-                        color = i + 1
-                        new_row = 0
-
-                    // Others tiles //
-                    } else {
-                        color = i + Math.floor(i/columns)
-                    } 
-                } // END color corrector
-                
-
-
                 // Set tile color and create tile //
-                
-                tile_setup()
+                tile_setup(i)
 
 
 
@@ -169,18 +144,10 @@ const tiles = rows * columns
 
                 function tile_setup() {
 
-                    // Set row ID //
-                        tile_row_id = Math.ceil(i / rows)
+                    set_grid_id(i)
 
-                    // Set column ID //
-                        tile_column_id = (i % rows)
-
-                            if(tile_column_id == 0) {
-                                tile_column_id = columns
-                            }
-
-                            
-                            
+                        
+                    // Creating tiles //    
 
                     if (color % 2 != 0) {
 
@@ -236,6 +203,54 @@ const tiles = rows * columns
     
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Color corrector & color reset
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function color_corrector (i) {
+        new_row++
+
+            // If count of rows == odd num
+            if(rows % 2 != 0) {
+
+                // Odd row - last tile //
+                if (new_row == columns) {
+                    color = i
+
+                // Even row - last tile //
+                } else if (new_row == (columns*2)) {
+                    color = i
+                    new_row = 0
+
+                // Others tiles //
+                } else {
+                    color = i
+                } 
+
+
+            // If count of rows == even num
+            } else {
+
+                // Odd row - last tile //
+                if (new_row == columns) {
+                    color = i
+
+                // Even row - last tile //
+                } else if (new_row == (columns*2)) {
+                    color = i + 1
+                    new_row = 0
+
+                // Others tiles //
+                } else {
+                    color = i + Math.floor(i/columns)
+                } 
+
+            } // END color corrector
+
+    } // END function color_corrector
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
     // Listener setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -274,14 +289,65 @@ const tiles = rows * columns
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
 
-                let unselected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                reset_array = columns_array
 
-                    if(color % 2 != 0) {
-                        unselected_tile.style.setProperty(`background-color`, odd_tile_color)
-                    } else {
-                        unselected_tile.style.setProperty(`background-color`, even_tile_color)
-                    }
+                    for (let new_row = 1; new_row <= rows; new_row++) {
 
+                        for (let new_column = 1; new_column <= columns; new_column++) {
+                            reset_id++
+
+
+                        // Reset color corrector
+
+                            // If count of rows == odd num
+                            if(rows % 2 != 0) {
+
+                                if (reset_id > tiles) {
+                                    reset_id = 1
+                                }
+
+                                color = reset_id
+
+
+                            // If count of rows == even num
+                            } else {
+
+                                // Odd row - last tile //
+                                if (reset_id == columns) {
+                                    color = reset_id
+
+                                // Even row - last tile //
+                                } else if (reset_id == (columns*2)) {
+                                    color = reset_id + 1
+                                    reset_id = 0
+
+                                // Others tiles //
+                                } else {
+                                    color = reset_id + Math.floor(reset_id/columns)
+                                } 
+
+                            } // END reset color corrector
+                            
+
+                            let unselected_tile = document.getElementById(`tile_${reset_array[new_row-1]}_${reset_array[new_column-1]}`)
+                
+                            if(color % 2 != 0) {
+                                unselected_tile.style.setProperty(`background-color`, odd_tile_color)
+
+                            } else {
+                                unselected_tile.style.setProperty(`background-color`, even_tile_color)
+
+                            }
+                 
+                        }// END for column_row
+
+                    } // END for new_row
+   
             }) // END mouse-out listener
 
     } // END function set_listener
+
+
+
+
+
