@@ -16,8 +16,11 @@ const tiles = rows * columns
     // Colors settings //
     const odd_tile_color = "#fff"
     const even_tile_color = "#000"
+
     const tile_hover_color = "#79efed"
-    const tile_click_color = "#2b7a79"
+        const unit_select_color = "#0000ff"
+        const unit_movement_color = "#2b7a79"
+        const unit_attack_color = "#2b7a79"
 
 
         // Color corrector //
@@ -261,12 +264,15 @@ const tiles = rows * columns
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
 
                 let clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
-                    clicked_tile.style.setProperty(`background-color`, tile_click_color)
+                    clicked_tile.style.setProperty(`background-color`, unit_select_color)
 
                 // testing units
                     // unit_pawn(tile_row_id, tile_column_id)
+                    unit_knight(tile_row_id, tile_column_id)
+                    // unit_bishop(tile_row_id, tile_column_id)
                     // unit_rook(tile_row_id, tile_column_id)
-                    unit_queen(tile_row_id, tile_column_id)
+                    // unit_queen(tile_row_id, tile_column_id)
+                    // unit_king(tile_row_id, tile_column_id)
 
             }) // END mouse-click listener
 
