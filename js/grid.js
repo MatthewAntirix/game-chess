@@ -20,7 +20,7 @@ const tiles = rows * columns
     const tile_hover_color = "#79efed"
         const unit_select_color = "#0000ff"
         const unit_movement_color = "#2b7a79"
-        const unit_attack_color = "#2b7a79"
+        const unit_attack_color = "#ff0000"
 
 
         // Color corrector //
@@ -268,9 +268,9 @@ const tiles = rows * columns
 
                 // testing units
                     // unit_pawn(tile_row_id, tile_column_id)
-                    unit_knight(tile_row_id, tile_column_id)
+                    // unit_knight(tile_row_id, tile_column_id)
                     // unit_bishop(tile_row_id, tile_column_id)
-                    // unit_rook(tile_row_id, tile_column_id)
+                    unit_rook(tile_row_id, tile_column_id)
                     // unit_queen(tile_row_id, tile_column_id)
                     // unit_king(tile_row_id, tile_column_id)
 
