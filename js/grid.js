@@ -46,6 +46,7 @@ const tiles = rows * columns
 ///////////////////////////// ID settings /////////////////////////////
 
     // Tiles ID settings //
+        let selected_tile
         let rows_array = []
         let columns_array = []
 
@@ -263,14 +264,20 @@ const tiles = rows * columns
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
 
+
+                // test void ?
+
                 let clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                     clicked_tile.style.setProperty(`background-color`, unit_select_color)
+
+                    unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+                    
 
                 // testing units
                     // unit_pawn(tile_row_id, tile_column_id)
                     // unit_knight(tile_row_id, tile_column_id)
                     // unit_bishop(tile_row_id, tile_column_id)
-                    unit_rook(tile_row_id, tile_column_id)
+                    // unit_rook(tile_row_id, tile_column_id)
                     // unit_queen(tile_row_id, tile_column_id)
                     // unit_king(tile_row_id, tile_column_id)
 
@@ -282,7 +289,7 @@ const tiles = rows * columns
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
 
-                let selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                    selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                     selected_tile.style.setProperty(`background-color`, tile_hover_color)
 
                     document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>${column_name[tile_column_id-1]}${row_name[tile_row_id-1]}</p>`
@@ -354,6 +361,10 @@ const tiles = rows * columns
     } // END function set_listener
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
