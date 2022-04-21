@@ -275,7 +275,7 @@ const tiles = rows * columns
 
                 // testing units
                     // unit_pawn(tile_row_id, tile_column_id)
-                    // unit_knight(tile_row_id, tile_column_id)
+                    // unit_knight(clicked_tile.innerHTML, tile_row_id, tile_column_id)
                     // unit_bishop(tile_row_id, tile_column_id)
                     // unit_rook(tile_row_id, tile_column_id)
                     // unit_queen(tile_row_id, tile_column_id)
