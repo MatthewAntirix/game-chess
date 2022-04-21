@@ -31,6 +31,11 @@ class unit {
 
 
     // Define all movements variables
+        let selected_unit
+        let clicked_tile
+        let target_tile
+        let moved_unit
+
         let move_row, move_column
             let move_up, move_down
             let move_left, move_left_up, move_left_down

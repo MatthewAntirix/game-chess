@@ -17,10 +17,10 @@ const tiles = rows * columns
     const odd_tile_color = "#fff"
     const even_tile_color = "#555"
 
-    const tile_hover_color = "#79efed"
-        const unit_select_color = "#0000ff"
-        const unit_movement_color = "#2b7a79"
-        const unit_attack_color = "#ff0000"
+    // const tile_hover_color = "#79efed"
+        const unit_select_color = "rgb(0, 0, 255)"
+        const unit_movement_color = "rgb(0, 255, 0)"
+        const unit_attack_color = "rgb(255, 0, 0)"
 
 
         // Color corrector //
@@ -264,99 +264,115 @@ const tiles = rows * columns
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
 
-
-                // test void ?
-
-                let clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                if(!selected_unit) {
+                    clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                     clicked_tile.style.setProperty(`background-color`, unit_select_color)
+                    selected_unit = (clicked_tile.innerHTML)
 
                     unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
                     
+                
+                } else if (selected_unit) {
+                    target_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
-                // testing units
-                    // unit_pawn(tile_row_id, tile_column_id)
-                    // unit_knight(clicked_tile.innerHTML, tile_row_id, tile_column_id)
-                    // unit_bishop(tile_row_id, tile_column_id)
-                    // unit_rook(tile_row_id, tile_column_id)
-                    // unit_queen(tile_row_id, tile_column_id)
-                    // unit_king(tile_row_id, tile_column_id)
+                        if (target_tile.style.backgroundColor.includes(unit_select_color)) {
+                            selected_unit = 0 
+                        }
+
+                        else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)) {
+
+                        clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
+
+                        moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                        moved_unit.innerHTML = selected_unit
+                        selected_unit = 0
+                    
+                        }
+
+                } else {
+                    console.log(`else?`)
+
+                    
+                }
 
             }) // END mouse-click listener
 
 
 
-        // Mouse-over listener
 
-            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
 
-                    selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
-                    selected_tile.style.setProperty(`background-color`, tile_hover_color)
+        // // Mouse-over listener
 
-                    document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>${column_name[tile_column_id-1]}${row_name[tile_row_id-1]}</p>`
+        //     document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
 
-            }) // END mouse-over listener
+        //             selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+        //             selected_tile.style.setProperty(`background-color`, tile_hover_color)
+
+        //             document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>${column_name[tile_column_id-1]}${row_name[tile_row_id-1]}</p>`
+
+        //     }) // END mouse-over listener
                 
 
 
-        // Mouse-out listener
+    //     // Mouse-out listener
 
-            document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
+    //         document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
 
-                reset_array = columns_array
+    //             reset_array = columns_array
 
-                    for (let new_row = 1; new_row <= rows; new_row++) {
+    //                 for (let new_row = 1; new_row <= rows; new_row++) {
 
-                        for (let new_column = 1; new_column <= columns; new_column++) {
-                            reset_id++
-
-
-                        // Reset color corrector
-
-                            // If count of rows == odd num
-                            if(rows % 2 != 0) {
-
-                                if (reset_id > tiles) {
-                                    reset_id = 1
-                                }
-
-                                color = reset_id
+    //                     for (let new_column = 1; new_column <= columns; new_column++) {
+    //                         reset_id++
 
 
-                            // If count of rows == even num
-                            } else {
+    //                     // Reset color corrector
 
-                                // Odd row - last tile //
-                                if (reset_id == columns) {
-                                    color = reset_id
+    //                         // If count of rows == odd num
+    //                         if(rows % 2 != 0) {
 
-                                // Even row - last tile //
-                                } else if (reset_id == (columns*2)) {
-                                    color = reset_id + 1
-                                    reset_id = 0
+    //                             if (reset_id > tiles) {
+    //                                 reset_id = 1
+    //                             }
 
-                                // Others tiles //
-                                } else {
-                                    color = reset_id + Math.floor(reset_id/columns)
-                                } 
+    //                             color = reset_id
 
-                            } // END reset color corrector
+
+    //                         // If count of rows == even num
+    //                         } else {
+
+    //                             // Odd row - last tile //
+    //                             if (reset_id == columns) {
+    //                                 color = reset_id
+
+    //                             // Even row - last tile //
+    //                             } else if (reset_id == (columns*2)) {
+    //                                 color = reset_id + 1
+    //                                 reset_id = 0
+
+    //                             // Others tiles //
+    //                             } else {
+    //                                 color = reset_id + Math.floor(reset_id/columns)
+    //                             } 
+
+    //                         } // END reset color corrector
                             
 
-                            let unselected_tile = document.getElementById(`tile_${reset_array[new_row-1]}_${reset_array[new_column-1]}`)
+    //                         let unselected_tile = document.getElementById(`tile_${reset_array[new_row-1]}_${reset_array[new_column-1]}`)
                 
-                            if(color % 2 != 0) {
-                                unselected_tile.style.setProperty(`background-color`, odd_tile_color)
+    //                         if(color % 2 != 0) {
+    //                             unselected_tile.style.setProperty(`background-color`, odd_tile_color)
 
-                            } else {
-                                unselected_tile.style.setProperty(`background-color`, even_tile_color)
+    //                         } else {
+    //                             unselected_tile.style.setProperty(`background-color`, even_tile_color)
 
-                            }
+    //                         }
                  
-                        }// END for column_row
+    //                     }// END for column_row
 
-                    } // END for new_row
+    //                 } // END for new_row
    
-            }) // END mouse-out listener
+    //         }) // END mouse-out listener
 
     } // END function set_listener
 
