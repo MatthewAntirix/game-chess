@@ -55,24 +55,146 @@ class unit {
 
     function select_unit(name_inner, tile_row_id, tile_column_id, unit_name, move_row, move_column) {
 
-    // Column movement / attack
-        if(unit_name == `king` || unit_name == `queen` || unit_name == `rook` || unit_name == `pawn`) {
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        if(unit_name == `pawn`) {
+        // Player_1 pawn movement / attack
+
+
+            // Up movement / attack
+            for(let i = 1; i <= move_row; i++) {
+                move_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id}`)
+                    
+                // Player_1 - Pawn attack / movement corrector 
+                if(tile_row_id - i >= 1 && unit_name == `pawn` && name_inner.includes('white')) {
+                    
+                    if(tile_column_id - i >= 1) {
+                        attack_left_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id - i}`)
+                        if (name_inner.includes(player_1) && !attack_left_up.innerHTML.includes(player_1) && !attack_left_up.innerHTML.includes('void') || 
+                            name_inner.includes(player_2) && !attack_left_up.innerHTML.includes(player_2) && !attack_left_up.innerHTML.includes('void')) {
+                            attack_left_up.style.setProperty(`background-color`, unit_attack_color)
+                        }
+                    }
+
+                    if (tile_column_id + i <= columns) {
+                        attack_right_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id + i}`)
+                        if (name_inner.includes(player_1) && !attack_right_up.innerHTML.includes(player_1) && !attack_right_up.innerHTML.includes('void') || 
+                            name_inner.includes(player_2) && !attack_right_up.innerHTML.includes(player_2) && !attack_right_up.innerHTML.includes('void')) {
+                            attack_right_up.style.setProperty(`background-color`, unit_attack_color)
+                        }
+                    } 
+                    
+                    if((!attack_left_up.innerHTML.includes("black")) && !attack_right_up.innerHTML.includes("black") && move_up.innerHTML.includes("void")) {
+                   
+                        if (!name_inner.includes('black_pawn') && tile_row_id - i >= 1) {
+
+                            // Player_1 - Pawn first movement corrector
+                            if(name_inner.includes('white') && unit_name == `pawn` && tile_row_id == (rows-1)) {
+                                if(tile_row_id - i >= 1 && name_inner.includes('white')) {                             
+                                    move_up = document.getElementById(`tile_${tile_row_id - (2*i)}_${tile_column_id}`)
+                                    
+                                    if (move_up.innerHTML.includes("void")) {
+                                        move_up.style.setProperty(`background-color`, unit_movement_color)
+                                            move_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id}`)
+                                            move_up.style.setProperty(`background-color`, unit_movement_color)
+                                    } else {
+                                        move_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id}`)
+
+                                        if (move_up.innerHTML.includes("void")) {
+                                            move_up.style.setProperty(`background-color`, unit_movement_color)
+                                        }
+                                    }
+                                } // END Player_1 - Pawn first movement corrector
+                            }
+
+                            else {
+                                move_up.style.setProperty(`background-color`, unit_movement_color)
+                            }
+                        }
+                    }
+                } // END Player_1 - Pawn attack / movement corrector 
+
+            } // END for
+
+
+
+            // Player_2 pawn movement / attack
+
+
+                // Down movement / attack
+                for(let i = 1; i <= move_row; i++) {
+                    move_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id}`)
+                    
+                    // Player_2 - Pawn attack / movement corrector 
+                    if(tile_row_id + i <= rows && unit_name == `pawn` && name_inner.includes('black')) {
+                        
+                        if(tile_column_id - i >= 1) {
+                            attack_left_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`)
+                            if (name_inner.includes(player_1) && !attack_left_down.innerHTML.includes(player_1) && !attack_left_down.innerHTML.includes('void') || 
+                                name_inner.includes(player_2) && !attack_left_down.innerHTML.includes(player_2) && !attack_left_down.innerHTML.includes('void')) {
+                                attack_left_down.style.setProperty(`background-color`, unit_attack_color)
+                            }
+                        }
+    
+                        if (tile_column_id + i <= columns) {
+                            attack_right_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id + i}`)
+                            if (name_inner.includes(player_1) && !attack_right_down.innerHTML.includes(player_1) && !attack_right_down.innerHTML.includes('void') || 
+                                name_inner.includes(player_2) && !attack_right_down.innerHTML.includes(player_2) && !attack_right_down.innerHTML.includes('void')) {
+                                attack_right_down.style.setProperty(`background-color`, unit_attack_color)
+                            }
+                        } 
+                        
+                        if((!attack_left_down.innerHTML.includes("white")) && !attack_right_down.innerHTML.includes("white") && move_down.innerHTML.includes("void")) {
+                        
+                            if (!name_inner.includes('white_pawn') && tile_row_id + i <= rows) {
+    
+                                // Player_2 - Pawn first movement corrector
+                                if(name_inner.includes('black') && unit_name == `pawn` && tile_row_id == 2) {
+                                    if(tile_row_id + i <= rows && name_inner.includes('black')) {                             
+                                        move_down = document.getElementById(`tile_${tile_row_id + (2*i)}_${tile_column_id}`)
+                                        
+                                        if (move_down.innerHTML.includes("void")) {
+                                            move_down.style.setProperty(`background-color`, unit_movement_color)
+                                                move_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id}`)
+                                                move_down.style.setProperty(`background-color`, unit_movement_color)
+                                        } else {
+                                            move_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id}`)
+    
+                                            if (move_down.innerHTML.includes("void")) {
+                                                move_down.style.setProperty(`background-color`, unit_movement_color)
+                                            }
+                                        }
+                                    } // END Player_2 - Pawn first movement corrector
+                                }
+    
+                                else {
+                                    move_down.style.setProperty(`background-color`, unit_movement_color)
+                                }
+                            }
+                        }
+                    } // END Player_2 - Pawn attack / movement corrector 
+                    
+                } // END for
+
+        } // END pawn movement / attack
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        if(unit_name == `king` || unit_name == `queen` || unit_name == `rook`) {
 
 
         // Up movement / attack
-            for(let i = 1; i <= move_row; i++) {
+            for(let i = 1; i <= move_row; i++) {  
 
-                // Player 1 - Pawn first movement corrector
-                if(name_inner.includes('white') && unit_name == `pawn` && tile_row_id == (rows-1)) {
-                    if(tile_row_id - i >= 1 && name_inner.includes('white')) {
-                        move_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id}`).style.setProperty(`background-color`, unit_movement_color)
-                        move_up = document.getElementById(`tile_${tile_row_id - (2*i)}_${tile_column_id}`).style.setProperty(`background-color`, unit_movement_color)
-                    } // END Player 1 - Pawn first movement corrector
-
-
-
-                } else if (!name_inner.includes('black_pawn') && tile_row_id - i >= 1) {
-                    move_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id}`)
+                if(tile_row_id - i >= 1) {
+                    move_up = document.getElementById(`tile_${tile_row_id -i}_${tile_column_id}`)
 
                     if (move_up.innerHTML.includes("void")) {
                         move_up.style.setProperty(`background-color`, unit_movement_color)
@@ -82,26 +204,18 @@ class unit {
                         if (name_inner.includes(player_1) && !move_up.innerHTML.includes(player_1) || 
                             name_inner.includes(player_2) && !move_up.innerHTML.includes(player_2)) {
 
-                                attack_up = move_up
-                                attack_up.style.setProperty(`background-color`, unit_attack_color)
+                            attack_up = move_up
+                            attack_up.style.setProperty(`background-color`, unit_attack_color)
                         }
                     }
                 }
             } //  END Up movement / attack
 
 
-
         // Down movement / attack
-            for(let i = 1; i <= move_row; i++) {
+            for(let i = 1; i <= move_row; i++) {  
 
-                // Player 2 - Pawn first movement corrector
-                if(name_inner.includes('black') && unit_name == `pawn` && tile_row_id == 2) {
-                    if(tile_row_id + i <= rows && name_inner.includes('black')) {
-                        move_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id}`).style.setProperty(`background-color`, unit_movement_color)
-                        move_down = document.getElementById(`tile_${tile_row_id + (2*i)}_${tile_column_id}`).style.setProperty(`background-color`, unit_movement_color)
-                    } // END Player 2 - Pawn first movement corrector
-
-                } else if (!name_inner.includes('white_pawn') && tile_row_id + i <= rows) {
+                if(tile_row_id + i <= rows) {
                     move_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id}`)
 
                     if (move_down.innerHTML.includes("void")) {
@@ -120,40 +234,6 @@ class unit {
             } //  END Down movement / attack
 
 
-
-            // // Attack
-
-
-
-
-
-            //     // Player 2 - Pawn attack corrector
-            //     if(tile_row_id + i <= rows && unit_name == `pawn` && name_inner.includes('black')) {
-            //         if(tile_column_id - i >= 1) {
-            //             attack_left_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`).style.setProperty(`background-color`, unit_attack_color)
-            //         }
-            //         if (tile_column_id + i <= columns) {
-            //             attack_right_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id + i}`).style.setProperty(`background-color`, unit_attack_color)
-            //         }
-            //     } // END Player 2 - Pawn attack corrector
-
-                
-
-            //     // Others units
-            //     if (unit_name != `pawn`) {
-            //         if(tile_row_id - i >= 1) {
-            //             attack_up = move_up
-            //             attack_up.style.setProperty(`background-color`, unit_attack_color)
-            //         }
-
-            //         if(tile_row_id + i <= rows) {
-            //             attack_down = move_down
-            //             attack_down.style.setProperty(`background-color`, unit_attack_color)
-            //         }
-            //     } // END others units
-
-            // } // END for
-            
         } // END column movement / attack
             
 
@@ -549,20 +629,6 @@ class unit {
                 for (let i = 1; i <= columns; i++) {
                     document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
                 }
-
-
-                // testing units
-                document.getElementById(`tile_3_${(Math.floor(columns/2))-0}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
-                document.getElementById(`tile_6_${(Math.floor(columns/2))-0}`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
-
-                document.getElementById(`tile_3_${(Math.floor(columns/2))-1}`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
-                document.getElementById(`tile_6_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
-
-                document.getElementById(`tile_4_${(Math.floor(columns/2))+2}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
-                document.getElementById(`tile_5_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
-
-                document.getElementById(`tile_4_${(Math.floor(columns/2))-1}`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
-                document.getElementById(`tile_5_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
 
         } // END function set_chess_units
 
