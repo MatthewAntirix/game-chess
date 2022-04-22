@@ -43,6 +43,11 @@ const tiles = rows * columns
 
 
 
+///////////////////////////// Panels settings /////////////////////////////
+
+        let turn = 1
+
+
 ///////////////////////////// ID settings /////////////////////////////
 
     // Tiles ID settings //
@@ -60,6 +65,9 @@ const tiles = rows * columns
 
                     let tile_row_id = 0
                     let tile_column_id = 0     
+
+                    let tile_row_id_log = 0             // for save previous id value
+                    let tile_column_id_log = 0             // for save previous id value
 
 
             // Rows and columns id settings
@@ -257,27 +265,40 @@ const tiles = rows * columns
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Listener setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    function set_listener(tile_row_id, tile_column_id, color){
+let a = 0
+let b = 0
+    function set_listener(tile_row_id, tile_column_id){
 
         // Mouse-click listener
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
+
+                // Update tile hover data
+                document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>${column_name[tile_column_id-1]}${row_name[tile_row_id-1]}</p>`
+                // END update tile hover data
 
 
                 if(!selected_unit) {
                     clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)            
                     player_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
 
-                    if(!active_player) {
-                        active_player = player_1
-                    }
+
+                    // Set turn count data
+                    if(turn == 1) {
+                        document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
+                    } // END set turn count data
 
                     if(clicked_tile.innerHTML.includes(active_player)) {
                         clicked_tile.style.setProperty(`background-color`, unit_select_color)
                         selected_unit = (clicked_tile.innerHTML)
 
                         unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+
+                        // Set log data default position
+                        if(tile_row_id_log == 0 && tile_column_id_log == 0) {
+                            tile_row_id_log = tile_row_id
+                            tile_column_id_log = tile_column_id
+                        } // END set log data default position
                     }
                     
 
@@ -299,34 +320,27 @@ const tiles = rows * columns
 
                         reset_color_tile()
                         active_player_toggle = !active_player_toggle
+
+                        // Update turn count data
+                        if(active_player == player_2) {
+                            turn++
+                            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
+                        } // END update turn count data
+
+
+                        // Update log data
+                        document.getElementById(`turn_action`).innerHTML = `<h3>
+                            ${active_player.toUpperCase()} ${unit_name_log} 
+                            [ ${column_name[tile_column_id_log-1]}${row_name[tile_row_id_log-1]} 
+                            -> ${column_name[tile_column_id-1]}${row_name[tile_row_id-1]} ]
+                            </h3>`
+
+                        tile_row_id_log = 0
+                        tile_column_id_log = 0
+                        // END update log data
                     }
                 }
             }) // END mouse-click listener
-
-
-
-
-
-        // // Mouse-over listener
-
-        //     document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseover',function (){
-
-        //             selected_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
-        //             selected_tile.style.setProperty(`background-color`, tile_hover_color)
-
-        //             document.getElementById(`tile_hover`).innerHTML = `<h3>Tile</h3><p>${column_name[tile_column_id-1]}${row_name[tile_row_id-1]}</p>`
-
-        //     }) // END mouse-over listener
-                
-
-
-        // Mouse-out listener
-
-            // document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
-
-                
-   
-            // }) // END mouse-out listener
 
     } // END function set_listener
 

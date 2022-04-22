@@ -52,7 +52,7 @@ function create_panels () {
         panel_turn_count.setAttribute(`id`, `turn_count`)
         document.getElementById(`playground`).appendChild(panel_turn_count)
 
-            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>#num</p>`
+            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>0</p>`
 
 
     // Create tile hover panel

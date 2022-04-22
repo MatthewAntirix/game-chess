@@ -16,6 +16,7 @@ class unit {
 // Create units
     const max_movement = rows
         let unit_name
+        let unit_name_log
         
         const pawn = new unit(`Pawn`, 1)
         const knight = new unit(`Knight`, 0)
@@ -505,7 +506,7 @@ class unit {
 
                     if (move_knight_5.innerHTML.includes("void")) {
                         move_knight_5.style.setProperty(`background-color`, unit_movement_color)
-                        console.log(`log2`)
+
                     } else if (name_inner.includes(player_1) && !move_knight_5.innerHTML.includes(player_1) || 
                                name_inner.includes(player_2) && !move_knight_5.innerHTML.includes(player_2)) {
                                 
@@ -679,31 +680,43 @@ class unit {
                 // Pawn tile
                 if(name.includes("pawn")) {
                     unit_pawn(name, tile_row_id, tile_column_id)
+                        unit_name_log = `PAWN`
+                        return unit_name_log
                 }
 
                 // Knight tile
                 if(name.includes("knight")) {
                     unit_knight(name, tile_row_id, tile_column_id)
+                        unit_name_log = `KNIGHT`
+                        return unit_name_log
                 }
 
                 // Rook tile
                 if(name.includes("rook")) {
                     unit_rook(name, tile_row_id, tile_column_id)
+                        unit_name_log = `ROOK`
+                        return unit_name_log
                 }
 
                 // Bishop tile
                 if(name.includes("bishop")) {
                     unit_bishop(name, tile_row_id, tile_column_id)
+                        unit_name_log = `BISHOP`
+                        return unit_name_log
                 }
 
                 // Queen tile
                 if(name.includes("queen")) {
                     unit_queen(name, tile_row_id, tile_column_id)
+                        unit_name_log = `QUEEN`
+                        return unit_name_log
                 }
 
                 // King tile
                 if(name.includes("king")) {
                     unit_king(name, tile_row_id, tile_column_id)
+                        unit_name_log = `KING`
+                        return unit_name_log
                 }
             
         }
