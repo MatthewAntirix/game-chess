@@ -21,6 +21,7 @@
 
 
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Grid settings
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +53,7 @@
                 background-color: red;
                 }  
 
-            img {
+            #playground img {
                 position: relative;
                 left: 50%;
                 top: 50%;
@@ -118,3 +119,20 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        // panel tests
+
+        #player1 div,#player2 div  {
+            display: inline-block;
+        }
+
+        #player1 img, #player2 img  {
+            width: 50px;
+            height: 50px;
+
+            position: static;
+            left: 0%;
+            top: 0%;
+            transform: translate(0%, 0%);
+
+
+        }

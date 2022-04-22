@@ -66,8 +66,16 @@ const tiles = rows * columns
                     let tile_row_id = 0
                     let tile_column_id = 0     
 
+                    let log_array = []
                     let tile_row_id_log = 0             // for save previous id value
                     let tile_column_id_log = 0             // for save previous id value
+                    let new_log_line, log_line
+
+                    let scan_array = []
+                    let scan_tile
+                    let scan_pawn, scan_knight, scan_rook, scan_bishop, scan_queen, scan_king
+                        let scan_white_pawn, scan_white_knight, scan_white_rook, scan_white_bishop, scan_white_queen, scan_white_king
+                        let scan_black_pawn, scan_black_knight, scan_black_rook, scan_black_bishop, scan_black_queen, scan_black_king
 
 
             // Rows and columns id settings
@@ -265,8 +273,8 @@ const tiles = rows * columns
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Listener setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-let a = 0
-let b = 0
+
+
     function set_listener(tile_row_id, tile_column_id){
 
         // Mouse-click listener
@@ -294,11 +302,18 @@ let b = 0
 
                         unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
 
-                        // Set log data default position
+                        // Set last turn data default position
                         if(tile_row_id_log == 0 && tile_column_id_log == 0) {
                             tile_row_id_log = tile_row_id
                             tile_column_id_log = tile_column_id
-                        } // END set log data default position
+                        } // END set last turn data default position
+
+
+                        // Set players panels content
+                        unit_scan()
+                        if(turn == 1) {
+                            scan_log()
+                        } // END set players panels content
                     }
                     
 
@@ -328,16 +343,33 @@ let b = 0
                         } // END update turn count data
 
 
-                        // Update log data
-                        document.getElementById(`turn_action`).innerHTML = `<h3>
+                        // Update last turn data
+                        log_line = document.getElementById(`turn_action`).innerHTML = `<h3>
                             ${active_player.toUpperCase()} ${unit_name_log} 
                             [ ${column_name[tile_column_id_log-1]}${row_name[tile_row_id_log-1]} 
                             -> ${column_name[tile_column_id-1]}${row_name[tile_row_id-1]} ]
                             </h3>`
 
+                        log_array.push(log_line)
+
                         tile_row_id_log = 0
                         tile_column_id_log = 0
-                        // END update log data
+                        // END update last turn data
+
+
+                            // Update log data
+                            for (let i = 0; i < log_array.length; i++) {
+                                new_log_line = document.createElement(`span`)
+                                new_log_line.innerHTML = log_array[i]
+                            }
+                                document.getElementById(`log`).appendChild(new_log_line)
+                            // END update log data
+
+
+                            // Update players panels content
+                            unit_scan()
+                            scan_log()
+                            // END update players panels content         
                     }
                 }
             }) // END mouse-click listener
@@ -411,5 +443,110 @@ let b = 0
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
+// Scan
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function unit_scan () {
+    scan_white_pawn = 0, scan_white_knight = 0, scan_white_rook = 0, scan_white_bishop = 0, scan_white_queen = 0, scan_white_king = 0
+    scan_black_pawn = 0, scan_black_knight = 0, scan_black_rook = 0, scan_black_bishop = 0, scan_black_queen = 0, scan_black_king = 0
+
+    for (let new_row = 1; new_row <= rows; new_row++) {
+
+        for (let new_column = 1; new_column <= columns; new_column++) {
+            scan_tile = document.getElementById(`tile_${new_row}_${new_column}`).innerHTML
+            scan_array.push(scan_tile)
+        } // END for
+    } // END for
+
+
+    for (let i = 0; i < tiles; i++) {
+
+        // White player
+            if(scan_array[i].includes(`${player_1}_pawn`)) {
+                scan_white_pawn++
+            }
+            if(scan_array[i].includes(`${player_1}_knight`)) {
+                scan_white_knight++
+            }
+            if(scan_array[i].includes(`${player_1}_rook`)) {
+                scan_white_rook++
+            }
+            if(scan_array[i].includes(`${player_1}_bishop`)) {
+                scan_white_bishop++
+            }
+            if(scan_array[i].includes(`${player_1}_queen`)) {
+                scan_white_queen++
+            }
+            if(scan_array[i].includes(`${player_1}_king`)) {
+                scan_white_king++
+            }
+
+
+        // Black player
+            if(scan_array[i].includes(`${player_2}_pawn`)) {
+                scan_black_pawn++
+            }
+            if(scan_array[i].includes(`${player_2}_knight`)) {
+                scan_black_knight++
+            }
+            if(scan_array[i].includes(`${player_2}_rook`)) {
+                scan_black_rook++
+            }
+            if(scan_array[i].includes(`${player_2}_bishop`)) {
+                scan_black_bishop++
+            }
+            if(scan_array[i].includes(`${player_2}_queen`)) {
+                scan_black_queen++
+            }
+            if(scan_array[i].includes(`${player_2}_king`)) {
+                scan_black_king++
+            }
+
+    } // END for
+
+    scan_array = []
+
+} // END function unit_scan
+
+
+
+function scan_log () {
+    
+    for(let i = 1; i <= 2; i++) {
+        let player
+        
+        if(i == 1) {
+            player = player_1
+            scan_king = scan_white_king, scan_queen = scan_white_queen, scan_bishop = scan_white_bishop, scan_rook = scan_white_rook, scan_knight = scan_white_knight, scan_pawn = scan_white_pawn
+        } else {
+            player = player_2
+            scan_king = scan_black_king, scan_queen = scan_black_queen, scan_bishop = scan_black_bishop, scan_rook = scan_black_rook, scan_knight = scan_black_knight, scan_pawn = scan_black_pawn
+        }
+
+
+        document.getElementById(`player${i}`).innerHTML = 
+            `<h2>${player}</h2>
+            <p>
+            <div><img src="./images/units/${player}_king.png"></img> <br> ${scan_king} </div>
+            <div><img src="./images/units/${player}_queen.png"></img> <br> ${scan_queen} </div>
+            </p>
+
+            <p>
+            <div><img src="./images/units/${player}_rook.png"></img> <br> ${scan_rook} </div>
+            <div><img src="./images/units/${player}_bishop.png"></img> <br> ${scan_bishop} </div>
+            </p>
+
+            <p>
+            <div><img src="./images/units/${player}_knight.png"></img> <br> ${scan_knight} </div>
+            <div><img src="./images/units/${player}_pawn.png"></img> <br> ${scan_pawn} </div>
+            </p>`
+
+    } // END for
+
+} // END function scan_log
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////

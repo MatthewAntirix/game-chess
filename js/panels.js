@@ -20,15 +20,15 @@ function create_panels () {
         panel_player1.setAttribute(`id`, `player1`)
         document.getElementById(`playground`).appendChild(panel_player1)
 
-            document.getElementById(`player1`).innerHTML = `<h2>Player 1</h2><p>#content</p>`
-
+            document.getElementById(`player1`).innerHTML = `<h2>Player 1</h2>`
+        
 
     // Create player2 panel
         const panel_player2 = document.createElement(`div`)
         panel_player2.setAttribute(`id`, `player2`)
         document.getElementById(`playground`).appendChild(panel_player2)
 
-            document.getElementById(`player2`).innerHTML = `<h2>Player 2</h2><p>#content</p>`
+            document.getElementById(`player2`).innerHTML = `<h2>Player 2</h2><p></p>`
 
 
     // Create log panel
@@ -36,7 +36,7 @@ function create_panels () {
         panel_log.setAttribute(`id`, `log`)
         document.getElementById(`playground`).appendChild(panel_log)
 
-            document.getElementById(`log`).innerHTML = `<h3>Log</h3><p>#history</p>`
+            document.getElementById(`log`).innerHTML = `<h3>Log</h3>`
 
 
     // Create turn action panel
@@ -44,7 +44,7 @@ function create_panels () {
         panel_turn_action.setAttribute(`id`, `turn_action`)
         document.getElementById(`playground`).appendChild(panel_turn_action)
 
-            document.getElementById(`turn_action`).innerHTML = `<h3>#last action</h3>`
+            document.getElementById(`turn_action`).innerHTML = `<h3></h3>`
 
 
     // Create turn count panel
@@ -85,6 +85,7 @@ function create_panels () {
 } // END function create_panels
 
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
