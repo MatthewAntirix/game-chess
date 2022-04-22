@@ -264,37 +264,43 @@ const tiles = rows * columns
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
 
-                if(!selected_unit) {
-                    clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
-                    clicked_tile.style.setProperty(`background-color`, unit_select_color)
-                    selected_unit = (clicked_tile.innerHTML)
 
-                    unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+                if(!selected_unit) {
+                    clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)            
+                    player_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+
+                    if(!active_player) {
+                        active_player = player_1
+                    }
+
+                    if(clicked_tile.innerHTML.includes(active_player)) {
+                        clicked_tile.style.setProperty(`background-color`, unit_select_color)
+                        selected_unit = (clicked_tile.innerHTML)
+
+                        unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+                    }
                     
-                
+
                 } else if (selected_unit) {
                     target_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
-                        if (target_tile.style.backgroundColor.includes(unit_select_color)) {
-                            selected_unit = 0 
-                        }
+                    if (target_tile.style.backgroundColor.includes(unit_select_color)) {
+                        selected_unit = 0 
+                        reset_color_tile()
 
-                        else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)) {
+
+                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)) {
 
                         clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
 
                         moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                         moved_unit.innerHTML = selected_unit
                         selected_unit = 0
-                    
-                        }
 
-                } else {
-                    console.log(`else?`)
-
-                    
+                        reset_color_tile()
+                        active_player_toggle = !active_player_toggle
+                    }
                 }
-
             }) // END mouse-click listener
 
 
@@ -314,73 +320,82 @@ const tiles = rows * columns
                 
 
 
-    //     // Mouse-out listener
+        // Mouse-out listener
 
-    //         document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
+            // document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('mouseout',function (){
 
-    //             reset_array = columns_array
-
-    //                 for (let new_row = 1; new_row <= rows; new_row++) {
-
-    //                     for (let new_column = 1; new_column <= columns; new_column++) {
-    //                         reset_id++
-
-
-    //                     // Reset color corrector
-
-    //                         // If count of rows == odd num
-    //                         if(rows % 2 != 0) {
-
-    //                             if (reset_id > tiles) {
-    //                                 reset_id = 1
-    //                             }
-
-    //                             color = reset_id
-
-
-    //                         // If count of rows == even num
-    //                         } else {
-
-    //                             // Odd row - last tile //
-    //                             if (reset_id == columns) {
-    //                                 color = reset_id
-
-    //                             // Even row - last tile //
-    //                             } else if (reset_id == (columns*2)) {
-    //                                 color = reset_id + 1
-    //                                 reset_id = 0
-
-    //                             // Others tiles //
-    //                             } else {
-    //                                 color = reset_id + Math.floor(reset_id/columns)
-    //                             } 
-
-    //                         } // END reset color corrector
-                            
-
-    //                         let unselected_tile = document.getElementById(`tile_${reset_array[new_row-1]}_${reset_array[new_column-1]}`)
                 
-    //                         if(color % 2 != 0) {
-    //                             unselected_tile.style.setProperty(`background-color`, odd_tile_color)
-
-    //                         } else {
-    //                             unselected_tile.style.setProperty(`background-color`, even_tile_color)
-
-    //                         }
-                 
-    //                     }// END for column_row
-
-    //                 } // END for new_row
    
-    //         }) // END mouse-out listener
+            // }) // END mouse-out listener
 
     } // END function set_listener
 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+// Functions for correcting grid
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    function reset_color_tile () {
+    
+        reset_array = columns_array
+
+        for (let new_row = 1; new_row <= rows; new_row++) {
+
+            for (let new_column = 1; new_column <= columns; new_column++) {
+                reset_id++
 
 
+            // Reset color corrector
+
+                // If count of rows == odd num
+                if(rows % 2 != 0) {
+
+                    if (reset_id > tiles) {
+                        reset_id = 1
+                    }
+
+                    color = reset_id
+
+
+                // If count of rows == even num
+                } else {
+
+                    // Odd row - last tile //
+                    if (reset_id == columns) {
+                        color = reset_id
+
+                    // Even row - last tile //
+                    } else if (reset_id == (columns*2)) {
+                        color = reset_id + 1
+                        reset_id = 0
+
+                    // Others tiles //
+                    } else {
+                        color = reset_id + Math.floor(reset_id/columns)
+                    } 
+
+                } // END reset color corrector
+                
+
+                let unselected_tile = document.getElementById(`tile_${reset_array[new_row-1]}_${reset_array[new_column-1]}`)
+
+                if(color % 2 != 0) {
+                    unselected_tile.style.setProperty(`background-color`, odd_tile_color)
+
+                } else {
+                    unselected_tile.style.setProperty(`background-color`, even_tile_color)
+
+                }
+
+            }// END for column_row
+
+        } // END for new_row
+
+    } // END function reset_color_tile
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+////////////////////////////////////////////////////////////////////////////////////////////////////

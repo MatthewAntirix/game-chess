@@ -29,6 +29,9 @@ class unit {
         const player_1 = "white"
         const player_2 = "black"
 
+            let active_player
+            let active_player_toggle = true
+
 
     // Define all movements variables
         let selected_unit
@@ -75,6 +78,11 @@ class unit {
                     
                 // Player_1 - Pawn attack / movement corrector 
                 if(tile_row_id - i >= 1 && unit_name == `pawn` && name_inner.includes('white')) {
+
+                    // Void corrector for first and last column
+                        attack_left_up = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                        attack_right_up = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                    // END void corrector
                     
                     if(tile_column_id - i >= 1) {
                         attack_left_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id - i}`)
@@ -91,10 +99,10 @@ class unit {
                             attack_right_up.style.setProperty(`background-color`, unit_attack_color)
                         }
                     } 
-                    
+
                     if((!attack_left_up.innerHTML.includes("black")) && !attack_right_up.innerHTML.includes("black") && move_up.innerHTML.includes("void")) {
                    
-                        if (!name_inner.includes('black_pawn') && tile_row_id - i >= 1) {
+                        if (!name_inner.includes('black') && tile_row_id - i >= 1) {
 
                             // Player_1 - Pawn first movement corrector
                             if(name_inner.includes('white') && unit_name == `pawn` && tile_row_id == (rows-1)) {
@@ -135,6 +143,11 @@ class unit {
                     
                     // Player_2 - Pawn attack / movement corrector 
                     if(tile_row_id + i <= rows && unit_name == `pawn` && name_inner.includes('black')) {
+
+                            // Void corrector for first and last column
+                                attack_left_down = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                                attack_right_down = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                            // END void corrector
                         
                         if(tile_column_id - i >= 1) {
                             attack_left_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`)
@@ -154,7 +167,7 @@ class unit {
                         
                         if((!attack_left_down.innerHTML.includes("white")) && !attack_right_down.innerHTML.includes("white") && move_down.innerHTML.includes("void")) {
                         
-                            if (!name_inner.includes('white_pawn') && tile_row_id + i <= rows) {
+                            if (!name_inner.includes('white') && tile_row_id + i <= rows) {
     
                                 // Player_2 - Pawn first movement corrector
                                 if(name_inner.includes('black') && unit_name == `pawn` && tile_row_id == 2) {
@@ -643,24 +656,24 @@ class unit {
         // Chess units identify and setup unit movements / attack
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        function unit_identify (name, tile_row_id, tile_column_id) {
+        function player_identify (name, tile_row_id, tile_column_id) {
 
-        // Color identify
-
-            if(name.includes("white")) {
-                console.log('white!')
-
-            } else if (name.includes("black")) {
-                console.log('black')
+            if(active_player_toggle === true) {
+                active_player = player_1
+            } else if (active_player_toggle === false) {
+                active_player = player_2
             }
 
+        } // END function player_identify
 
+
+
+        function unit_identify (name, tile_row_id, tile_column_id) {
 
         // Tile identify
 
             // Empty tile
             if(name.includes("void")) {
-                console.log('void!')
                 }
 
                 // Pawn tile
@@ -694,3 +707,7 @@ class unit {
                 }
             
         }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
