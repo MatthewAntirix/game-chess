@@ -48,7 +48,7 @@
     //headers and paragraphs in panels
         $content-margin-top:            1px;
         $content-players-margin-top:    5px;
-        $content-turn-action-margin-top:7px;
+        $content-turn-action-margin-top:5px;
         $content-align:                 center;     
         $content-font:                  cursive;
         $content-font-weight:           1000;
@@ -78,14 +78,26 @@
             $players-bg-size:               100% 120%;
             $players-bg-position:           0px 0px;
 
+            // Inner div
+                $players-position:              relative;
+                $players-left:                  50%;
+                $players-transform-x-align:     translateX(-100%);
+                $players-display:               inline-block;
+                $players-padding:               5px 10px;
+                $players-text-align:            center;
+                $players-text-font-size:        20px;
+                $players-text-font-weight:      1000;
+
 
         // Player1 settings
             $player1-transform-x-align:     $side-panel-transform-x-align;
+            $player1-text-color:            #000;
             
             
         // Player2 settings
             $player2-bg-size:               100% 150%;
             $player2-bg-position:           0px -100px;
+            $player2-text-color:            #fff;
 
 
     // Game name settings
@@ -108,6 +120,11 @@
         $log-height:                    35%;
         $log-margin-x-align:            $side-panel-margin-x-align;
         $log-margin-y-align:            $side-panel-margin-y-align;
+        $log-text-font-size:            10px;
+        $log-text-color:                #000;
+        $log-text-stroke:               0px #000;
+        $log-tex-align:                left;
+        $log-padding-left:              10px;
 
 
     // Turn action settings
@@ -115,6 +132,7 @@
         $turn-action-height:            50px;
         $turn-action-margin-y-align:    50%;
         $turn-action-margin-left:       -$playground-padding;
+        $turn-action-color:             #ffff00;
 
             $turn-action-bg-size:           100% 300%;
             $turn-action-bg-position:       0px 0px;

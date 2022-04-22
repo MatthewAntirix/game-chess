@@ -21,7 +21,7 @@ function create_panels () {
         document.getElementById(`playground`).appendChild(panel_player1)
 
             document.getElementById(`player1`).innerHTML = `<h2>Player 1</h2>`
-        
+
 
     // Create player2 panel
         const panel_player2 = document.createElement(`div`)
@@ -44,7 +44,7 @@ function create_panels () {
         panel_turn_action.setAttribute(`id`, `turn_action`)
         document.getElementById(`playground`).appendChild(panel_turn_action)
 
-            document.getElementById(`turn_action`).innerHTML = `<h3></h3>`
+            document.getElementById(`turn_action`).innerHTML = `<p></p>`
 
 
     // Create turn count panel

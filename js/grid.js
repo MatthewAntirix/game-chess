@@ -336,19 +336,14 @@ const tiles = rows * columns
                         reset_color_tile()
                         active_player_toggle = !active_player_toggle
 
-                        // Update turn count data
-                        if(active_player == player_2) {
-                            turn++
-                            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
-                        } // END update turn count data
-
 
                         // Update last turn data
-                        log_line = document.getElementById(`turn_action`).innerHTML = `<h3>
+                        log_line = document.getElementById(`turn_action`).innerHTML = `<p>
+                            ${turn}. 
                             ${active_player.toUpperCase()} ${unit_name_log} 
                             [ ${column_name[tile_column_id_log-1]}${row_name[tile_row_id_log-1]} 
                             -> ${column_name[tile_column_id-1]}${row_name[tile_row_id-1]} ]
-                            </h3>`
+                            </p>`
 
                         log_array.push(log_line)
 
@@ -370,6 +365,13 @@ const tiles = rows * columns
                             unit_scan()
                             scan_log()
                             // END update players panels content         
+
+
+                        // Update turn count data
+                        if(active_player == player_2) {
+                            turn++
+                            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
+                        } // END update turn count data
                     }
                 }
             }) // END mouse-click listener
