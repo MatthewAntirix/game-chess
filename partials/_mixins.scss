@@ -21,6 +21,51 @@
             background-repeat:          $playground-bg-repeat;
             background-size:            $player2-bg-size;
             background-position:        $playground-bg-position;
+
+             // Img
+            img {
+                width:                      $playground-img-size;
+                height:                     $playground-img-size;
+                position:                   $playground-img-position;
+                left:                       $playground-img-left;
+                top:                        $playground-img-top;
+                transform:                  $playground-img-transform;
+                }
+
+            // Name bars
+            #upper_bar, #lower_bar, #left_bar, #right_bar {
+                position:                   $name-bar-position;
+                color:                      $name-bar-color;
+                font-size:                  $name-bar-font-size;
+                }
+
+                // Position corrector
+                #upper_bar {
+                    margin-top:                 -$playground-padding;
+                    }
+                #lower_bar {
+                    bottom:                     0;
+                    }
+                #right_bar {
+                    right:                      0;
+                    }
+
+
+                    // Name bars inner divs settings
+                    #upper_bar div, #lower_bar div {
+                        display:                    $name-bar-columns-display;
+                        width:                      $name-bar-size;
+                        height:                     $name-bar-size-auto;
+                        text-align:                 $name-bar-text-align;
+                        }
+
+                    #left_bar div, #right_bar div {
+                        display:                    $name-bar-rows-display;
+                        align-items:                $name-bar-text-valign;
+                        height:                     $name-bar-size;
+                        width:                      $name-bar-size-auto;
+                        margin-left:                -$playground-padding + ($playground-padding / 4);
+                        }
         }
 
 
@@ -99,6 +144,16 @@
                 -webkit-text-stroke:        $content-stroke;
             }
 
+            img {
+                width:                      $players-img-size;
+                height:                     $players-img-size;
+    
+                position:                   $players-img-position;
+                left:                       $players-img-left;
+                top:                        $players-img-top;
+                transform:                  $players-img-transform;
+            }
+
             p {
                 margin-top:                 $content-players-margin-top;
                 }
@@ -150,7 +205,29 @@
                 color:                      $log-text-color;
                 -webkit-text-stroke:        $log-text-stroke;
                 }
+
+            #log_area {
+                overflow-y:                 $log-area-overflow-y;
+                width:                      $log-area-width;
+                height:                     $log-area-height;
             }
+
+            #log_area::-webkit-scrollbar {
+                width:                      $log-area-webkit-scrollbar-width;     
+                }
+            
+            #log_area::-webkit-scrollbar-track {
+                background:                 $log-area-webkit-scrollbar-track-bg;
+                border-radius:              $log-area-webkit-scrollbar-track-border-radius;    
+                }
+            
+            #log_area::-webkit-scrollbar-thumb {
+                background-color:           $log-area-webkit-scrollbar-thumb-bg-color;
+                border-radius:              $log-area-webkit-scrollbar-thumb-border-radius;   
+                border:                     $log-area-webkit-scrollbar-thumb-border;
+                }
+            }
+
 
 
     // Turn action settings

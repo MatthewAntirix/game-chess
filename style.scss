@@ -44,24 +44,16 @@
             // background-color:           Set by grid.js //=> Color settings
             }  
 
+            
 
 
-    // units testing // king, queen, rook, bischop, knight, pawn
+    // units temporary testing // king, queen, rook, bischop, knight, pawn      ////////////////////////////////////////////////////////////////////////////
             button {
                 width: 50px;
                 height: 50px;
                 background-color: red;
                 }  
 
-            #playground img {
-                position: relative;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-
-                width: 90%;
-                height: 90%;
-            }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,17 +110,3 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-        #player1 img, #player2 img  {
-            width: 50px;
-            height: 50px;
-
-            position: static;
-            left: 0%;
-            top: 0%;
-            transform: translate(0%, 0%);
-
-
-        }

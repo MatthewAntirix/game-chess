@@ -8,7 +8,7 @@
     // $playground-size:        Responsive by grid.js  //=> Chess grid
     $playground-border:         2px solid #000;
     $playground-margin:         0px;
-    $playground-padding:        10px;
+    $playground-padding:        15px;
     $playground-position:       absolute;
     $playground-x-align:        50%;  
     $playground-y-align:        50%;  
@@ -18,7 +18,7 @@
         $playground-bg-image:       url(./images/panels_background.jpg);
         $playground-bg-repeat:      no-repeat;
         $playground-bg-size:        100% 100%;
-        $playground-bg-position:    0px 0px;
+        $playground-bg-position:    0px 0px;  
 
 
     // Tiles settings
@@ -26,7 +26,27 @@
         $tile-display:              inline-block;
         // $tile-odd-color:         Set by grid.js //=> Color settings
         // $tile-even-color:        Set by grid.js //=> Color settings
-    
+
+
+    // Img
+        $playground-img-size:           90%;
+        $playground-img-position:       relative;
+        $playground-img-left:           50%;
+        $playground-img-top:            50%;
+        $playground-img-transform:      translate(-50%, -50%);
+
+    // Name bars
+        $name-bar-position:             absolute;
+        $name-bar-color:                #fff;
+        $name-bar-font-size:            12px;
+
+            $name-bar-columns-display:      inline-block;
+            $name-bar-rows-display:         flex;
+            $name-bar-size:                 50px;
+            $name-bar-size-auto:            auto;
+            $name-bar-text-align:           center;
+            $name-bar-text-valign:          center;
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +59,7 @@
     // $panels-left:                Responsive by panels.js  //=> Panels
     $panels-border:                 2px solid #000;
 
-        $panels-bg-image:               url(./images/panels_background.jpg);
+        $panels-bg-image:               linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg);
         $panels-bg-repeat:              no-repeat;
         $panels-bg-size:                100% 150%;
         $panels-bg-position:            0px -30px;
@@ -77,6 +97,13 @@
 
             $players-bg-size:               100% 120%;
             $players-bg-position:           0px 0px;
+
+            // Img
+                $players-img-size:              50px;
+                $players-img-position:          static;
+                $players-img-left:              0%;
+                $players-img-top:               0%;
+                $players-img-transform:         translate(0%, 0%);
 
             // Inner div
                 $players-position:              relative;
@@ -123,8 +150,20 @@
         $log-text-font-size:            10px;
         $log-text-color:                #000;
         $log-text-stroke:               0px #000;
-        $log-tex-align:                left;
+        $log-tex-align:                 left;
         $log-padding-left:              10px;
+
+        // Log_area settings
+            $log-area-overflow-y:                               scroll;
+            $log-area-width:                                    100%;
+            $log-area-height:                                   75%;
+            $log-area-webkit-scrollbar-width:                   12px;
+            $log-area-webkit-scrollbar-track-bg:                gray;
+            $log-area-webkit-scrollbar-track-border-radius:     20px;
+            $log-area-webkit-scrollbar-thumb-bg-color:          #fff;
+            $log-area-webkit-scrollbar-thumb-border-radius:     20px;
+            $log-area-webkit-scrollbar-thumb-border:            3px solid #000; 
+
 
 
     // Turn action settings

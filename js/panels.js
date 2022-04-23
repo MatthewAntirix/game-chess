@@ -39,6 +39,13 @@ function create_panels () {
             document.getElementById(`log`).innerHTML = `<h3>Log</h3>`
 
 
+            const panel_log_area = document.createElement(`div`)
+            panel_log_area.setAttribute(`id`, `log_area`)
+            document.getElementById(`log`).appendChild(panel_log_area)
+
+            document.getElementById(`log_area`).innerHTML = `<p></p>`
+
+
     // Create turn action panel
         const panel_turn_action = document.createElement(`div`)
         panel_turn_action.setAttribute(`id`, `turn_action`)

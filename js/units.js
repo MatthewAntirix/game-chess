@@ -649,6 +649,8 @@ class unit {
                     document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
                 }
 
+                create_name_bars()                 //////// change this position after init /// now only for testing
+
         } // END function set_chess_units
 
 

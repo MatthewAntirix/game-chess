@@ -18,9 +18,9 @@ const tiles = rows * columns
     const even_tile_color = "#555"
 
     // const tile_hover_color = "#79efed"
-        const unit_select_color = "rgb(0, 0, 255)"
-        const unit_movement_color = "rgb(0, 255, 0)"
-        const unit_attack_color = "rgb(255, 0, 0)"
+        const unit_select_color = "rgb(0, 0, 255)"          // only RGB format
+        const unit_movement_color = "rgb(0, 255, 0)"        // only RGB format
+        const unit_attack_color = "rgb(255, 0, 0)"          // only RGB format
 
 
         // Color corrector //
@@ -68,7 +68,7 @@ const tiles = rows * columns
 
                     let log_array = []
                     let tile_row_id_log = 0             // for save previous id value
-                    let tile_column_id_log = 0             // for save previous id value
+                    let tile_column_id_log = 0          // for save previous id value
                     let new_log_line, log_line
 
                     let scan_array = []
@@ -357,7 +357,7 @@ const tiles = rows * columns
                                 new_log_line = document.createElement(`span`)
                                 new_log_line.innerHTML = log_array[i]
                             }
-                                document.getElementById(`log`).appendChild(new_log_line)
+                                document.getElementById(`log_area`).prepend(new_log_line)
                             // END update log data
 
 
@@ -441,6 +441,72 @@ const tiles = rows * columns
         } // END for new_row
 
     } // END function reset_color_tile
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function create_name_bars () {
+
+    // Columns name bars
+
+        // Upper bar
+        let columns_name_bar_upper = document.createElement(`div`)
+        columns_name_bar_upper.setAttribute('id',`upper_bar`)
+        document.getElementById(`playground`).prepend(columns_name_bar_upper)
+    
+        // Lower bar
+        let columns_name_bar_lower = document.createElement(`div`)
+        columns_name_bar_lower.setAttribute('id',`lower_bar`)
+        document.getElementById(`playground`).append(columns_name_bar_lower)
+    
+        // Set values
+        for (let i = 0; i < columns; i++) {
+            let column_name_bar
+    
+                // Upper bar
+                column_name_bar = document.createElement(`div`)
+                column_name_bar.innerHTML = column_name_array[i]
+                document.getElementById(`upper_bar`).append(column_name_bar)
+    
+                // Lower bar
+                column_name_bar = document.createElement(`div`)
+                column_name_bar.innerHTML = column_name_array[i]
+                document.getElementById(`lower_bar`).append(column_name_bar)  
+
+        } // END for
+    
+    
+
+    // Rows name bars
+    
+        // Left bar
+        let rows_name_bar_left = document.createElement(`div`)
+        rows_name_bar_left.setAttribute('id',`left_bar`)
+        document.getElementById(`playground`).prepend(rows_name_bar_left)
+    
+        // Right bar
+        let rows_name_bar_right = document.createElement(`div`)
+        rows_name_bar_right.setAttribute('id',`right_bar`)
+        document.getElementById(`playground`).prepend(rows_name_bar_right)
+    
+        // Set values
+        for (let i = 0; i < rows; i++) {
+            let row_name_bar
+    
+                // Left bar
+                row_name_bar = document.createElement(`div`)
+                row_name_bar.innerHTML = rows_array[i]
+                document.getElementById(`left_bar`).append(row_name_bar)
+    
+                // Right bar
+                row_name_bar = document.createElement(`div`)
+                row_name_bar.innerHTML = rows_array[i]
+                document.getElementById(`right_bar`).append(row_name_bar)
+                
+        } // END for
+                        
+    } // END function create_name_bars
 
 
 
