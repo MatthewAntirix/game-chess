@@ -60,7 +60,6 @@ body {
 
 #playground #upper_bar div, #playground #lower_bar div {
   display: inline-block;
-  width: 50px;
   height: auto;
   text-align: center;
 }
@@ -72,7 +71,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 50px;
   width: auto;
   margin-left: -11.25px;
 }
@@ -263,5 +261,36 @@ button {
 
 #tile_hover p {
   color: #ffff00;
+}
+
+#unit_promote {
+  display: none;
+  width: 200px;
+  margin-left: 50%;
+  margin-top: -60px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px 5px;
+  border: 2px solid #000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0.5))), url(./images/panels_background.jpg);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(./images/panels_background.jpg);
+  z-index: 1000;
+}
+
+#unit_promote img {
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  left: 0;
+  top: 0;
+  -webkit-transform: translate(0%, 0%);
+          transform: translate(0%, 0%);
+  padding: 5px;
+  border: 2px solid #000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2))), url(./images/panels_background.jpg);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(./images/panels_background.jpg);
 }
 /*# sourceMappingURL=style.css.map */

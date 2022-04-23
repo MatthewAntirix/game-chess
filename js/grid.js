@@ -361,6 +361,11 @@ const tiles = rows * columns
                             // END update log data
 
 
+                            // Check pawns promotion
+                            promote_scan()
+                            // END check pawns promotion
+
+
                             // Update players panels content
                             unit_scan()
                             scan_log()
@@ -466,17 +471,25 @@ const tiles = rows * columns
     
                 // Upper bar
                 column_name_bar = document.createElement(`div`)
+                column_name_bar.setAttribute('id',`upper_column_name_${i+1}`)
                 column_name_bar.innerHTML = column_name_array[i]
                 document.getElementById(`upper_bar`).append(column_name_bar)
+
+                    // SCSS responsive 
+                    document.getElementById(`upper_column_name_${i+1}`).style.setProperty("width", `${tile_size}px`)
     
                 // Lower bar
                 column_name_bar = document.createElement(`div`)
+                column_name_bar.setAttribute('id',`lower_column_name_${i+1}`)
                 column_name_bar.innerHTML = column_name_array[i]
-                document.getElementById(`lower_bar`).append(column_name_bar)  
+                document.getElementById(`lower_bar`).append(column_name_bar) 
+                
+                    // SCSS responsive 
+                    document.getElementById(`lower_column_name_${i+1}`).style.setProperty("width", `${tile_size}px`)
 
         } // END for
     
-    
+        
 
     // Rows name bars
     
@@ -496,15 +509,25 @@ const tiles = rows * columns
     
                 // Left bar
                 row_name_bar = document.createElement(`div`)
+                row_name_bar.setAttribute('id',`left_row_name_${i+1}`)
                 row_name_bar.innerHTML = rows_array[i]
                 document.getElementById(`left_bar`).append(row_name_bar)
+
+                    // SCSS responsive 
+                    document.getElementById(`left_row_name_${i+1}`).style.setProperty("height", `${tile_size}px`)
     
                 // Right bar
                 row_name_bar = document.createElement(`div`)
+                row_name_bar.setAttribute('id',`right_row_name_${i+1}`)
                 row_name_bar.innerHTML = rows_array[i]
                 document.getElementById(`right_bar`).append(row_name_bar)
-                
+
+                    // SCSS responsive 
+                    document.getElementById(`right_row_name_${i+1}`).style.setProperty("height", `${tile_size}px`)
+
+         
         } // END for
+        
                         
     } // END function create_name_bars
 
@@ -616,5 +639,5 @@ function scan_log () {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+// 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

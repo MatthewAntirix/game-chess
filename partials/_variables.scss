@@ -42,7 +42,7 @@
 
             $name-bar-columns-display:      inline-block;
             $name-bar-rows-display:         flex;
-            $name-bar-size:                 50px;
+            // $name-bar-size:              Responsive by grid.js  //=> Chess grid // in function create_name_bars
             $name-bar-size-auto:            auto;
             $name-bar-text-align:           center;
             $name-bar-text-valign:          center;
@@ -189,6 +189,31 @@
         $tile-hover-transform-x-align:  $side-panel-transform-x-align;
         $tile-hover-color:              #ffff00;
 
+
+    // Promote panel
+        $promote-panel-margin-x-align:  $side-panel-margin-x-align;
+        $promote-panel-margin-y-align:  $side-panel-margin-y-align;
+        $promote-panel-transform-x-align:$side-panel-transform-x-align;
+        $promote-panel-display:         none;
+        $promote-panel-width:           $panels-width;
+        $promote-panel-position:        absolute;
+        $promote-panel-text-align:      center;
+        $promote-panel-font-size:       15px;
+        $promote-panel-padding:         5px 5px;
+        $promote-panel-border:          2px solid #000;
+        $promote-panel-z-index:         1000;
+
+        // img
+            $promote-panel-img-margin:      5px;
+            $promote-panel-img-width:       50px;
+            $promote-panel-img-height:      50px;
+            $promote-panel-img-left:        0;
+            $promote-panel-img-top:         0;
+            $promote-panel-img-transform:   translate(0%, 0%);
+            $promote-panel-img-padding:     5px;
+            $promote-panel-img-border:      2px solid #000;
+            $promote-panel-img-image:       linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url(./images/panels_background.jpg);
+            
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

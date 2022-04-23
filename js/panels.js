@@ -1,5 +1,28 @@
 
+unit_promote()
 create_panels()
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Promotion panel
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function unit_promote () {
+    const unit_promote_panel = document.createElement(`div`)
+    unit_promote_panel.setAttribute(`id`, `unit_promote`)
+    document.getElementById(`playground`).appendChild(unit_promote_panel)
+    document.getElementById(`unit_promote`).innerHTML = 
+    `<h1>Unit promote</h1>
+    <div>
+    <img onclick="select_knight_promote()" id="knight" src="./images/units/white_knight.png"></img>
+    <img onclick="select_rook_promote()" id="rook" src="./images/units/white_rook.png"></img>
+    <img onclick="select_bishop_promote()" id="bishop" src="./images/units/white_bishop.png"></img>
+    <img onclick="select_queen_promote()" id="queen" src="./images/units/white_queen.png"></img>
+    </div>`
+
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Panels
@@ -82,6 +105,7 @@ function create_panels () {
             document.getElementById('log').style.setProperty("left", `${panels_side_margin_align_x}px`)
             document.getElementById('turn_count').style.setProperty("left", `-${panels_side_margin_align_x}px`)
             document.getElementById('tile_hover').style.setProperty("left", `-${panels_side_margin_align_x}px`)
+            document.getElementById('unit_promote').style.setProperty("left", `-${panels_side_margin_align_x}px`)
 
         // Y align
             document.getElementById('name').style.setProperty("top", `-${panels_side_margin_align_y}px`)

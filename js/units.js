@@ -721,8 +721,98 @@ class unit {
                         return unit_name_log
                 }
             
-        }
+        } // END function unit_identify
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+// Units promotion
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let player_color
+let select_unit_promote = 0
+
+function color_unite_promote_update () {
+    document.getElementById(`unit_promote`).innerHTML = 
+    `<h1>Unit promote</h1>
+    <div>
+    <img onclick="select_knight_promote()" id="knight" src="./images/units/${player_color}_knight.png"></img>
+    <img onclick="select_rook_promote()" id="rook" src="./images/units/${player_color}_rook.png"></img>
+    <img onclick="select_bishop_promote()" id="bishop" src="./images/units/${player_color}_bishop.png"></img>
+    <img onclick="select_queen_promote()" id="queen" src="./images/units/${player_color}_queen.png"></img>
+    </div>`
+} // END color_unite_promote_update
+
+
+
+function promote_scan () {
+
+    for (let i = 1; i < columns; i++) {
+        let first_row = document.getElementById(`tile_1_${i}`).innerHTML
+        let last_row = document.getElementById(`tile_8_${i}`).innerHTML
+
+        if (first_row.includes(`white_pawn`) || last_row.includes(`black_pawn`)) {
+            document.getElementById(`unit_promote`).style.setProperty("display", `block`)
+
+            if(first_row.includes(`white_pawn`)) {
+                player_color = player_1
+                color_unite_promote_update()
+
+                if(select_unit_promote != 0) {
+                    document.getElementById(`tile_1_${i}`).innerHTML = `<img src="./images/units/${player_color}_${select_unit_promote}.png"></img>`
+                    document.getElementById(`unit_promote`).style.setProperty("display", `none`)
+                    select_unit_promote = 0
+                }
+
+            } else if (last_row.includes(`black_pawn`)) {
+                player_color = player_2
+                color_unite_promote_update()
+
+                if(select_unit_promote != 0) {
+                    document.getElementById(`tile_${rows}_${i}`).innerHTML = `<img src="./images/units/${player_color}_${select_unit_promote}.png"></img>`
+                    document.getElementById(`unit_promote`).style.setProperty("display", `none`)
+                    select_unit_promote = 0
+                }
+            }
+        }
+
+        // Update players panels content
+        unit_scan()
+        scan_log()
+        // END update players panels content      
+
+    } // END for
+
+} // END function promote_scan
+
+
+
+        // Knight promote
+        function select_knight_promote() {
+            select_unit_promote = `knight`
+            promote_scan()
+        } // END Knight promote
+
+        // Rook promote
+        function select_rook_promote() {
+            select_unit_promote = `rook`
+            promote_scan()
+        } // END Rook promote
+
+        // Bishop promote
+        function select_bishop_promote() {
+            select_unit_promote = `bishop`
+            promote_scan()
+        } // END Bishop promote
+
+        // Queen promote
+        function select_queen_promote() {
+            select_unit_promote = `queen`
+            promote_scan()
+        } // END Queen promote
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

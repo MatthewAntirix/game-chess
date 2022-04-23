@@ -54,7 +54,7 @@
                     // Name bars inner divs settings
                     #upper_bar div, #lower_bar div {
                         display:                    $name-bar-columns-display;
-                        width:                      $name-bar-size;
+                        // width:                   Responsive by grid.js  //=> Chess grid // in function create_name_bars
                         height:                     $name-bar-size-auto;
                         text-align:                 $name-bar-text-align;
                         }
@@ -62,7 +62,7 @@
                     #left_bar div, #right_bar div {
                         display:                    $name-bar-rows-display;
                         align-items:                $name-bar-text-valign;
-                        height:                     $name-bar-size;
+                        // height:                  Responsive by grid.js  //=> Chess grid // in function create_name_bars
                         width:                      $name-bar-size-auto;
                         margin-left:                -$playground-padding + ($playground-padding / 4);
                         }
@@ -265,6 +265,35 @@
                 color:                      $tile-hover-color;
             }
 
+            }
+
+
+    // Promote panel
+        @mixin unit_promote {
+            display:                    $promote-panel-display;
+            width:                      $promote-panel-width;
+            margin-left:                $promote-panel-margin-x-align;
+            margin-top:                 $promote-panel-margin-y-align;
+            transform:                  $promote-panel-transform-x-align;
+            position:                   $promote-panel-position;
+            text-align:                 $promote-panel-text-align;
+            font-size:                  $promote-panel-font-size;
+            padding:                    $promote-panel-padding;
+            border:                     $promote-panel-border;
+            background-image:           $panels-bg-image;
+            z-index:                    $promote-panel-z-index;
+                
+            img {
+                margin:                     $promote-panel-img-margin;
+                width:                      $promote-panel-img-width;
+                height:                     $promote-panel-img-height;
+                left:                       $promote-panel-img-left;
+                top:                        $promote-panel-img-top;
+                transform:                  $promote-panel-img-transform;
+                padding:                    $promote-panel-img-padding;
+                border:                     $promote-panel-img-border;
+                background-image:           $promote-panel-img-image;
+                }
             }
 
 
