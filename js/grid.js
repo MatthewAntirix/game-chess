@@ -331,10 +331,9 @@ const tiles = rows * columns
 
                         moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                         moved_unit.innerHTML = selected_unit
-                        selected_unit = 0
 
                         reset_color_tile()
-                        active_player_toggle = !active_player_toggle
+                        
 
 
                         // Update last turn data
@@ -377,6 +376,13 @@ const tiles = rows * columns
                             turn++
                             document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
                         } // END update turn count data
+
+
+                        // Next player
+                        if (promotion_display_on == false) {
+                            active_player_toggle = !active_player_toggle
+                            selected_unit = 0
+                        }
                     }
                 }
             }) // END mouse-click listener
