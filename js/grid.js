@@ -18,9 +18,12 @@ const tiles = rows * columns
     const even_tile_color = "#555"
 
     // const tile_hover_color = "#79efed"
-        const unit_select_color = "rgb(0, 0, 255)"          // only RGB format
-        const unit_movement_color = "rgb(0, 255, 0)"        // only RGB format
-        const unit_attack_color = "rgb(255, 0, 0)"          // only RGB format
+        const unit_select_color = "rgb(0, 0, 255)"              // only RGB format
+        const unit_movement_color = "rgb(0, 255, 0)"            // only RGB format
+        const unit_attack_color = "rgb(255, 0, 0)"              // only RGB format
+        const unit_checkmate_color = "rgb(255, 0, 255)"         // only RGB format
+        const unit_checkmate_attack_color = "rgb(0, 255, 255)"  // only RGB format
+        const unit_void_color = "rgb(255, 255, 0)"              // only RGB format
 
 
         // Color corrector //
