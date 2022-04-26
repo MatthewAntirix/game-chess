@@ -65,12 +65,12 @@ class unit {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Movements setup
+    // All units setups
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     function select_unit(name_inner, tile_row_id, tile_column_id, unit_name, move_row, move_column) {
 
-    // Checkmate scan
+    // All checkmate scans
 
         // King's position
         checkmate (name_inner, tile_row_id,    tile_column_id,    unit_name)  
@@ -116,7 +116,8 @@ class unit {
             }
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Movements / attack setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -184,6 +185,8 @@ class unit {
 
             } // END for
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
             // Player_2 pawn movement / attack
@@ -254,6 +257,7 @@ class unit {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -287,6 +291,7 @@ class unit {
             } //  END Up movement / attack
 
 
+
         // Down movement / attack
             for(let i = 1; i <= move_row; i++) {  
 
@@ -318,6 +323,7 @@ class unit {
             
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -354,6 +360,7 @@ class unit {
             } //  END Left movement / attack
 
 
+
         // Right movement / attack
             for(let i = 1; i <= move_column; i++) {  
 
@@ -385,6 +392,7 @@ class unit {
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -481,6 +489,7 @@ class unit {
             } //  END Diagonal right-up movement / attack
 
 
+
         // Diagonal left-down movement / attack
             for(let i = 1; i <= move_column; i++) {  
 
@@ -512,6 +521,7 @@ class unit {
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -666,7 +676,7 @@ class unit {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Units setup
+    // Units attribute setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Pawn
@@ -741,18 +751,13 @@ class unit {
             //         document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
             //     }
 
+
+
+
             document.getElementById(`tile_4_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-
-
-
-
             document.getElementById(`tile_5_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-
             document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/white_king.png"></img>`
             document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-
-
-
 
 
 
@@ -833,7 +838,7 @@ class unit {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Units promotion
+// Units promotion setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function color_unite_promote_update () {
@@ -947,12 +952,15 @@ function promote_scan () {
 
 let checkmate_scan
 let checkmate_unit
+
 let diagonal_scan
 let diagonal_max
+
 let checkmate_color
 let own_color
-let scan_status
+
 let king_position
+
 
 
 function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
@@ -1202,6 +1210,7 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
         }
 
 
+        
         // Knight checkmate scan
          function knight_checkmate (checkmate_scan, checkmate_color, king_position) {
             if (checkmate_scan.includes(`knight`) && checkmate_scan.includes(checkmate_color)) {
@@ -1338,7 +1347,7 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
-    
+
 } // END function checkmate
 
 

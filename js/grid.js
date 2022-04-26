@@ -17,7 +17,6 @@ const tiles = rows * columns
     const odd_tile_color = "#fff"
     const even_tile_color = "#555"
 
-    // Const tile_hover_color = "#79efed"
         const unit_select_color = "rgb(0, 0, 255)"              // only RGB format
         const unit_movement_color = "rgb(0, 255, 0)"            // only RGB format
         const unit_attack_color = "rgb(255, 0, 0)"              // only RGB format
