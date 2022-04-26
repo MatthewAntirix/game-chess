@@ -743,14 +743,12 @@ class unit {
 
             document.getElementById(`tile_4_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
 
-            document.getElementById(`tile_3_3`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
-            document.getElementById(`tile_3_5`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+
 
 
             document.getElementById(`tile_5_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
 
-            document.getElementById(`tile_6_3`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
-            document.getElementById(`tile_6_5`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+
 
 
 
@@ -961,7 +959,7 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
         own_color = player_1
         checkmate_color = player_2                  // black enemy unit
     } else if (name_inner.includes(`black`)) {
-        own_color - player_2
+        own_color = player_2
         checkmate_color = player_1                  // white enemy unit
     }
 
@@ -1150,39 +1148,55 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Upper rows
-         // Row - 1, Column - 2
-         checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id - 2}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row - 1, Column - 2
+        if (tile_row_id - 1 >= 1 && tile_column_id - 2 >= 1) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id - 2}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
-         // Row - 2, Column - 1
-         checkmate_scan = document.getElementById(`tile_${tile_row_id - 2}_${tile_column_id - 1}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row - 2, Column - 1
+        if (tile_row_id - 2 >= 1 && tile_column_id - 1 >= 1) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id - 2}_${tile_column_id - 1}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
-         // Row - 1, Column + 2
-         checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id + 2}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row - 1, Column + 2
+        if (tile_row_id - 1 >= 1 && tile_column_id + 2 <= columns) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id + 2}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
-         // Row - 2, Column + 1
-         checkmate_scan = document.getElementById(`tile_${tile_row_id - 2}_${tile_column_id + 1}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row - 2, Column + 1
+        if (tile_row_id - 2 >= 1 && tile_column_id + 1 <= columns) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id - 2}_${tile_column_id + 1}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
 
     // Lower rows
         // Row + 1, Column + 2
-         checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id + 2}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        if (tile_row_id + 1 <= rows && tile_column_id + 2 <= columns) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id + 2}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
-         // Row + 2, Column + 1
-         checkmate_scan = document.getElementById(`tile_${tile_row_id + 2}_${tile_column_id + 1}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row + 2, Column + 1
+        if (tile_row_id + 2 <= rows && tile_column_id + 1 <= columns) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id + 2}_${tile_column_id + 1}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
-         // Row + 1, Column - 2
-         checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id - 2}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row + 1, Column - 2
+        if (tile_row_id + 1 <= rows && tile_column_id - 2 >= 1) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id - 2}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
-         // Row + 2, Column - 1
-         checkmate_scan = document.getElementById(`tile_${tile_row_id + 2}_${tile_column_id - 1}`).innerHTML
-         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        // Row + 2, Column - 1
+        if (tile_row_id + 2 <= rows && tile_column_id - 1 >= 1) {
+            checkmate_scan = document.getElementById(`tile_${tile_row_id + 2}_${tile_column_id - 1}`).innerHTML
+            knight_checkmate (checkmate_scan, checkmate_color, king_position)
+        }
 
 
         // Knight checkmate scan
@@ -1194,14 +1208,53 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
 
 
 
+///////// Pawn ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    checkmate_scan = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).innerHTML
+
+        // Pawn checkmate for white king
+        if (own_color == player_1) {
+            console.log(own_color)
+
+            // Left pawn
+            if (tile_row_id - 1 >= 1 && tile_column_id - 1 >= 1) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id - 1}`).innerHTML
+                pawn_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Right pawn
+            if (tile_row_id - 1 >= 1 && tile_column_id + 1 <= columns) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id + 1}`).innerHTML
+                pawn_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
 
 
+        // Pawn checkmate for black king
+        } else if (own_color == player_2) {
+            console.log(own_color)
+
+            // Left pawn
+            if (tile_row_id + 1 <= rows && tile_column_id - 1 >= 1) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id - 1}`).innerHTML
+                pawn_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Right pawn
+            if (tile_row_id + 1 <= rows && tile_column_id + 1 <= columns) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id + 1}`).innerHTML
+                pawn_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+        }
+            
 
 
-
-
+        // Pawn checkmate scan
+        function pawn_checkmate (checkmate_scan, checkmate_color, king_position) {
+            if (checkmate_scan.includes(`${checkmate_color}_pawn`)) {
+                king_position.style.setProperty(`background-color`, unit_ban_movement_color)
+            }
+        } // END function pawn_checkmate
 
 
 
