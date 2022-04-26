@@ -73,51 +73,47 @@ class unit {
     // Checkmate scan
 
         // King's position
-        checkmate (name_inner, tile_row_id,    tile_column_id,    unit_name, "checkmate_scan")  
+        checkmate (name_inner, tile_row_id,    tile_column_id,    unit_name)  
 
             // Left-up
             if (tile_row_id -1 >= 1 && tile_column_id - 1 >= 1) {
-            checkmate (name_inner, tile_row_id -1, tile_column_id -1, unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id -1, tile_column_id -1, unit_name)  
             }
 
             // Up
             if (tile_row_id -1 >= 1) {
-            checkmate (name_inner, tile_row_id -1, tile_column_id,    unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id -1, tile_column_id,    unit_name)  
             }
 
             // Right-up
             if (tile_row_id -1 >= 1 && tile_column_id + 1 <= columns) {
-            checkmate (name_inner, tile_row_id -1, tile_column_id +1, unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id -1, tile_column_id +1, unit_name)  
             }
 
             // Left
             if (tile_column_id - 1 >= 1) {
-            checkmate (name_inner, tile_row_id,    tile_column_id -1, unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id,    tile_column_id -1, unit_name)  
             }
 
             // Right
             if (tile_column_id + 1 <= columns) {
-            checkmate (name_inner, tile_row_id,    tile_column_id +1, unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id,    tile_column_id +1, unit_name)  
             }
 
             // Left-down
             if (tile_row_id +1 <= rows && tile_column_id - 1 >= 1) {
-            checkmate (name_inner, tile_row_id +1, tile_column_id -1, unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id +1, tile_column_id -1, unit_name)  
             }
 
             // Down
             if (tile_row_id +1 <= rows) {
-            checkmate (name_inner, tile_row_id +1, tile_column_id,    unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id +1, tile_column_id,    unit_name)  
             }
 
             // Right-down
             if (tile_row_id +1 <= rows && tile_column_id + 1 <= columns) {
-            checkmate (name_inner, tile_row_id +1, tile_column_id +1, unit_name, "checkmate_scan")  
+            checkmate (name_inner, tile_row_id +1, tile_column_id +1, unit_name)  
             }
-
-
-        // // Main checkmate scan
-        // checkmate (name_inner, tile_row_id, tile_column_id, unit_name)
 
 
 
@@ -745,28 +741,19 @@ class unit {
             //         document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
             //     }
 
-            document.getElementById(`tile_4_7`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-            document.getElementById(`tile_5_5`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-            document.getElementById(`tile_3_1`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
-            document.getElementById(`tile_4_1`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
-            document.getElementById(`tile_5_1`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
-            document.getElementById(`tile_5_2`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
+            document.getElementById(`tile_4_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
 
-            document.getElementById(`tile_3_8`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            document.getElementById(`tile_4_8`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
-            document.getElementById(`tile_5_8`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
+            document.getElementById(`tile_3_3`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
+            document.getElementById(`tile_3_5`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
 
-            document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            document.getElementById(`tile_8_8`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
-            document.getElementById(`tile_2_1`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
-            document.getElementById(`tile_7_1`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
 
-            document.getElementById(`tile_1_2`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            document.getElementById(`tile_1_7`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            document.getElementById(`tile_8_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+            document.getElementById(`tile_5_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
 
-            document.getElementById(`tile_4_2`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+            document.getElementById(`tile_6_3`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+            document.getElementById(`tile_6_5`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+
+
+
 
                 create_name_bars()                 //////// change this position after init /// now only for testing
 
@@ -962,16 +949,19 @@ let checkmate_unit
 let diagonal_scan
 let diagonal_max
 let checkmate_color
+let own_color
 let scan_status
 let king_position
 
 
-function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_status) {
+function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
     king_position = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
     if (name_inner.includes(`white`)) {
+        own_color = player_1
         checkmate_color = player_2                  // black enemy unit
     } else if (name_inner.includes(`black`)) {
+        own_color - player_2
         checkmate_color = player_1                  // white enemy unit
     }
 
@@ -992,15 +982,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
 
         // Left row checkmate scan
         for (let i = tile_column_id-1; i >= 1; i--) {
-
-            checkmate_unit = document.getElementById(`tile_${tile_row_id}_${i}`)
             checkmate_scan = document.getElementById(`tile_${tile_row_id}_${i}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
                 // Check ban movements
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                     king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                } else if (!checkmate_scan.includes(`void`)) {
+                } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                     i = 0
                 }
             }
@@ -1010,16 +998,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Right row checkmate scan
         for (let i = tile_column_id+1; i <= columns; i++) {
-
-            checkmate_unit = document.getElementById(`tile_${tile_row_id}_${i}`)
             checkmate_scan = document.getElementById(`tile_${tile_row_id}_${i}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
                 // Check ban movements
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                     king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                } else if (!checkmate_scan.includes(`void`)) {
+                } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                     i = columns
                 }
             }
@@ -1032,16 +1017,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
 
         // Up column checkmate scan
         for (let i = tile_row_id-1; i >= 1; i--) {
-
-            checkmate_unit = document.getElementById(`tile_${i}_${tile_column_id}`)
             checkmate_scan = document.getElementById(`tile_${i}_${tile_column_id}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
                 // Check ban movements
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                     king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                } else if (!checkmate_scan.includes(`void`)) {
+                } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                     i = 0
                 }
             }
@@ -1052,16 +1034,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Down column checkmate scan
         for (let i = tile_row_id+1; i <= rows; i++) {
-
-            checkmate_unit = document.getElementById(`tile_${i}_${tile_column_id}`)
             checkmate_scan = document.getElementById(`tile_${i}_${tile_column_id}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
                 // Check ban movements
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                     king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                } else if (!checkmate_scan.includes(`void`)) {
+                } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                     i = rows
                 }
             }
@@ -1080,15 +1059,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
                 i = diagonal_max
 
             } else {
-                checkmate_unit = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id - i}`)
                 checkmate_scan = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id - i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
                     // Check ban movements
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                         king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                    } else if (!checkmate_scan.includes(`void`)) {
+                    } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                         i = diagonal_max
                     }
                 }
@@ -1106,15 +1083,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
                 i = diagonal_max
 
             } else {
-                checkmate_unit = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id + i}`)
                 checkmate_scan = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id + i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
                     // Check ban movements
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                         king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                    } else if (!checkmate_scan.includes(`void`)) {
+                    } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                         i = diagonal_max
                     }
                 }
@@ -1132,15 +1107,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
                 i = diagonal_max
 
             } else {
-                checkmate_unit = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`)
                 checkmate_scan = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
                     // Check ban movements
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                         king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                    } else if (!checkmate_scan.includes(`void`)) {
+                    } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                         i = diagonal_max
                     }
                 }
@@ -1158,20 +1131,85 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_sta
                 i = diagonal_max
 
             } else {
-                checkmate_unit = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id + i}`)
                 checkmate_scan = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id + i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
                     // Check ban movements
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
-                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
                         king_position.style.setProperty(`background-color`, unit_ban_movement_color)
-                    } else if (!checkmate_scan.includes(`void`)) {
+                    } else if (!checkmate_scan.includes(`void`) && !checkmate_scan.includes(`${own_color}_king`)) {
                         i = diagonal_max
                     }
                 }
             }
         } // END for
+
+
+
+///////// Knight //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Upper rows
+         // Row - 1, Column - 2
+         checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id - 2}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+         // Row - 2, Column - 1
+         checkmate_scan = document.getElementById(`tile_${tile_row_id - 2}_${tile_column_id - 1}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+         // Row - 1, Column + 2
+         checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id + 2}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+         // Row - 2, Column + 1
+         checkmate_scan = document.getElementById(`tile_${tile_row_id - 2}_${tile_column_id + 1}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+
+    // Lower rows
+        // Row + 1, Column + 2
+         checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id + 2}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+         // Row + 2, Column + 1
+         checkmate_scan = document.getElementById(`tile_${tile_row_id + 2}_${tile_column_id + 1}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+         // Row + 1, Column - 2
+         checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id - 2}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+         // Row + 2, Column - 1
+         checkmate_scan = document.getElementById(`tile_${tile_row_id + 2}_${tile_column_id - 1}`).innerHTML
+         knight_checkmate (checkmate_scan, checkmate_color, king_position)
+
+
+        // Knight checkmate scan
+         function knight_checkmate (checkmate_scan, checkmate_color, king_position) {
+            if (checkmate_scan.includes(`knight`) && checkmate_scan.includes(checkmate_color)) {
+                king_position.style.setProperty(`background-color`, unit_ban_movement_color)
+            }
+        } // END function knight_checkmate
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 } // END function checkmate
 
