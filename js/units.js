@@ -748,6 +748,9 @@ class unit {
 
             document.getElementById(`tile_5_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
 
+            document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+            document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+
 
 
 
@@ -1215,7 +1218,6 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
 
         // Pawn checkmate for white king
         if (own_color == player_1) {
-            console.log(own_color)
 
             // Left pawn
             if (tile_row_id - 1 >= 1 && tile_column_id - 1 >= 1) {
@@ -1232,7 +1234,6 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
 
         // Pawn checkmate for black king
         } else if (own_color == player_2) {
-            console.log(own_color)
 
             // Left pawn
             if (tile_row_id + 1 <= rows && tile_column_id - 1 >= 1) {
@@ -1258,12 +1259,86 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
 
 
 
+///////// King ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    checkmate_scan = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).innerHTML
+
+    // King checkmate
+
+        // Equal row
+
+            // Left
+            if (tile_column_id - 1 >= 1) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id}_${tile_column_id - 1}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Right
+            if (tile_column_id + 1 <= columns) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id}_${tile_column_id + 1}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            
+
+        // Upper row
+
+            // Left up
+            if (tile_row_id - 1 >= 1 && tile_column_id - 1 >= 1) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id - 1}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Up
+            if (tile_row_id - 1 >= 1) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Right up
+            if (tile_row_id - 1 >= 1 && tile_column_id + 1 <= columns) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id - 1}_${tile_column_id + 1}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
 
 
 
+        // Lower row
 
+            // Left down
+            if (tile_row_id + 1 <= rows && tile_column_id - 1 >= 1) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id - 1}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Down
+            if (tile_row_id + 1 <= rows) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+            // Right down
+            if (tile_row_id + 1 <= rows && tile_column_id + 1 <= columns) {
+                checkmate_scan = document.getElementById(`tile_${tile_row_id + 1}_${tile_column_id + 1}`).innerHTML
+                king_checkmate (checkmate_scan, checkmate_color, king_position)
+            }
+
+
+
+        // King checkmate scan
+        function king_checkmate (checkmate_scan, checkmate_color, king_position) {
+            if (checkmate_scan.includes(`${checkmate_color}_king`)) {
+                king_position.style.setProperty(`background-color`, unit_ban_movement_color)
+            }
+        } // END function king_checkmate
+
+    
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
+    
 } // END function checkmate
 
 
