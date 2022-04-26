@@ -17,13 +17,14 @@ const tiles = rows * columns
     const odd_tile_color = "#fff"
     const even_tile_color = "#555"
 
-    // const tile_hover_color = "#79efed"
+    // Const tile_hover_color = "#79efed"
         const unit_select_color = "rgb(0, 0, 255)"              // only RGB format
         const unit_movement_color = "rgb(0, 255, 0)"            // only RGB format
         const unit_attack_color = "rgb(255, 0, 0)"              // only RGB format
         const unit_checkmate_color = "rgb(255, 0, 255)"         // only RGB format
         const unit_checkmate_attack_color = "rgb(0, 255, 255)"  // only RGB format
-        const unit_void_color = "rgb(255, 255, 0)"              // only RGB format
+        const unit_ban_movement_color = "rgb(255, 255, 0)"      // only RGB format
+
 
 
         // Color corrector //
@@ -328,7 +329,7 @@ const tiles = rows * columns
                         reset_color_tile()
 
 
-                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)) {
+                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color) || target_tile.style.backgroundColor.includes(unit_checkmate_color)) {
 
                         clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
 

@@ -70,6 +70,55 @@ class unit {
 
     function select_unit(name_inner, tile_row_id, tile_column_id, unit_name, move_row, move_column) {
 
+    // Checkmate scan
+
+        // King's position
+        checkmate (name_inner, tile_row_id,    tile_column_id,    unit_name, "checkmate_scan")  
+
+            // Left-up
+            if (tile_row_id -1 >= 1 && tile_column_id - 1 >= 1) {
+            checkmate (name_inner, tile_row_id -1, tile_column_id -1, unit_name, "checkmate_scan")  
+            }
+
+            // Up
+            if (tile_row_id -1 >= 1) {
+            checkmate (name_inner, tile_row_id -1, tile_column_id,    unit_name, "checkmate_scan")  
+            }
+
+            // Right-up
+            if (tile_row_id -1 >= 1 && tile_column_id + 1 <= columns) {
+            checkmate (name_inner, tile_row_id -1, tile_column_id +1, unit_name, "checkmate_scan")  
+            }
+
+            // Left
+            if (tile_column_id - 1 >= 1) {
+            checkmate (name_inner, tile_row_id,    tile_column_id -1, unit_name, "checkmate_scan")  
+            }
+
+            // Right
+            if (tile_column_id + 1 <= columns) {
+            checkmate (name_inner, tile_row_id,    tile_column_id +1, unit_name, "checkmate_scan")  
+            }
+
+            // Left-down
+            if (tile_row_id +1 <= rows && tile_column_id - 1 >= 1) {
+            checkmate (name_inner, tile_row_id +1, tile_column_id -1, unit_name, "checkmate_scan")  
+            }
+
+            // Down
+            if (tile_row_id +1 <= rows) {
+            checkmate (name_inner, tile_row_id +1, tile_column_id,    unit_name, "checkmate_scan")  
+            }
+
+            // Right-down
+            if (tile_row_id +1 <= rows && tile_column_id + 1 <= columns) {
+            checkmate (name_inner, tile_row_id +1, tile_column_id +1, unit_name, "checkmate_scan")  
+            }
+
+
+        // // Main checkmate scan
+        // checkmate (name_inner, tile_row_id, tile_column_id, unit_name)
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -222,7 +271,9 @@ class unit {
                     move_up = document.getElementById(`tile_${tile_row_id -i}_${tile_column_id}`)
 
                     if (move_up.innerHTML.includes("void")) {
-                        move_up.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_up.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_up.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
@@ -230,7 +281,10 @@ class unit {
                             name_inner.includes(player_2) && !move_up.innerHTML.includes(player_2)) {
 
                             attack_up = move_up
-                            attack_up.style.setProperty(`background-color`, unit_attack_color)
+
+                            if (!attack_up.style.backgroundColor.includes(unit_ban_movement_color) && !attack_up.style.backgroundColor.includes(unit_checkmate_color)) {
+                                attack_up.style.setProperty(`background-color`, unit_attack_color)
+                            }
                         }
                     }
                 }
@@ -244,7 +298,9 @@ class unit {
                     move_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id}`)
 
                     if (move_down.innerHTML.includes("void")) {
-                        move_down.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_down.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_down.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
@@ -252,7 +308,10 @@ class unit {
                             name_inner.includes(player_2) && !move_down.innerHTML.includes(player_2)) {
 
                             attack_down = move_down
-                            attack_down.style.setProperty(`background-color`, unit_attack_color)
+
+                            if (!attack_down.style.backgroundColor.includes(unit_ban_movement_color)) {
+                                attack_down.style.setProperty(`background-color`, unit_attack_color)
+                            }
                         }
                     }
                 }
@@ -279,7 +338,9 @@ class unit {
                     move_left = document.getElementById(`tile_${tile_row_id}_${tile_column_id - i}`)
 
                     if (move_left.innerHTML.includes("void")) {
-                        move_left.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_left.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_left.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
@@ -287,7 +348,10 @@ class unit {
                             name_inner.includes(player_2) && !move_left.innerHTML.includes(player_2)) {
 
                             attack_left = move_left
-                            attack_left.style.setProperty(`background-color`, unit_attack_color)
+
+                            if (!attack_left.style.backgroundColor.includes(unit_ban_movement_color) && !attack_left.style.backgroundColor.includes(unit_checkmate_color)) {
+                                attack_left.style.setProperty(`background-color`, unit_attack_color)
+                            }
                         }
                     }
                 }
@@ -301,7 +365,9 @@ class unit {
                     move_right = document.getElementById(`tile_${tile_row_id}_${tile_column_id + i}`)
 
                     if (move_right.innerHTML.includes("void")) {
-                        move_right.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_right.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_right.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
@@ -309,7 +375,10 @@ class unit {
                             name_inner.includes(player_2) && !move_right.innerHTML.includes(player_2)) {
 
                             attack_right = move_right
-                            attack_right.style.setProperty(`background-color`, unit_attack_color)
+
+                            if (!attack_right.style.backgroundColor.includes(unit_ban_movement_color) && !attack_right.style.backgroundColor.includes(unit_checkmate_color)) {
+                                attack_right.style.setProperty(`background-color`, unit_attack_color)
+                            }
                         }
                     }
                 }
@@ -336,19 +405,24 @@ class unit {
                     move_left_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id - i}`)
 
                     if (move_left_up.innerHTML.includes("void")) {
-                        move_left_up.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_left_up.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_left_up.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
                         if (name_inner.includes(player_1) && !move_left_up.innerHTML.includes(player_1) || 
                             name_inner.includes(player_2) && !move_left_up.innerHTML.includes(player_2)) {
 
-                                attack_left_up = move_left_up
+                            attack_left_up = move_left_up
+
+                            if (!attack_left_up.style.backgroundColor.includes(unit_ban_movement_color) && !attack_left_up.style.backgroundColor.includes(unit_checkmate_color)) {
                                 attack_left_up.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
                     }
-                } //  END Diagonal left-up movement / attack
+                }
+            } //  END Diagonal left-up movement / attack
 
 
 
@@ -359,19 +433,24 @@ class unit {
                     move_right_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id + i}`)
 
                     if (move_right_down.innerHTML.includes("void")) {
-                        move_right_down.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_right_down.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_right_down.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
                         if (name_inner.includes(player_1) && !move_right_down.innerHTML.includes(player_1) || 
                             name_inner.includes(player_2) && !move_right_down.innerHTML.includes(player_2)) {
 
-                                attack_right_down = move_right_down
-                                move_right_down.style.setProperty(`background-color`, unit_attack_color)
+                            attack_right_down = move_right_down
+
+                            if (!attack_right_down.style.backgroundColor.includes(unit_ban_movement_color) && !attack_right_down.style.backgroundColor.includes(unit_checkmate_color)) {
+                                attack_right_down.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
                     }
-                } //  END Diagonal right down movement / attack
+                }
+            } //  END Diagonal right down movement / attack
                 
 
 
@@ -386,7 +465,9 @@ class unit {
                     move_right_up = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id + i}`)
 
                     if (move_right_up.innerHTML.includes("void")) {
-                        move_right_up.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_right_up.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_right_up.style.setProperty(`background-color`, unit_movement_color)
+                        }
 
                     } else {
                         i = move_column
@@ -394,7 +475,10 @@ class unit {
                             name_inner.includes(player_2) && !move_right_up.innerHTML.includes(player_2)) {
                         
                             attack_right_up = move_right_up
-                            attack_right_up.style.setProperty(`background-color`, unit_attack_color)
+
+                            if (!attack_right_up.style.backgroundColor.includes(unit_ban_movement_color) && !attack_right_up.style.backgroundColor.includes(unit_checkmate_color)) {
+                                attack_right_up.style.setProperty(`background-color`, unit_attack_color)
+                            }
                         }
                     }
                 }
@@ -408,7 +492,9 @@ class unit {
                     move_left_down = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`)
 
                     if (move_left_down.innerHTML.includes("void")) {
-                        move_left_down.style.setProperty(`background-color`, unit_movement_color)
+                        if (!move_left_down.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            move_left_down.style.setProperty(`background-color`, unit_movement_color)
+                        }
                     
                     } else {
                         i = move_column
@@ -416,7 +502,10 @@ class unit {
                             name_inner.includes(player_2) && !move_left_down.innerHTML.includes(player_2)) {
 
                             attack_left_down = move_left_down
-                            attack_left_down.style.setProperty(`background-color`, unit_attack_color)
+
+                            if (!attack_left_down.style.backgroundColor.includes(unit_ban_movement_color) && !attack_left_down.style.backgroundColor.includes(unit_checkmate_color)) {
+                                attack_left_down.style.setProperty(`background-color`, unit_attack_color)
+                            }
                         }
                     }
                 } 
@@ -575,7 +664,6 @@ class unit {
 
         } // END knight movement / attack
         
-        checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row, move_column)
 
     } // END function select_unit
 
@@ -874,9 +962,12 @@ let checkmate_unit
 let diagonal_scan
 let diagonal_max
 let checkmate_color
+let scan_status
+let king_position
 
 
-function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row, move_column) {
+function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, scan_status) {
+    king_position = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
     if (name_inner.includes(`white`)) {
         checkmate_color = player_2                  // black enemy unit
@@ -906,9 +997,9 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
             checkmate_scan = document.getElementById(`tile_${tile_row_id}_${i}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) ) {
-                    checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                    i = 0
+                // Check ban movements
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                    king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                 } else if (!checkmate_scan.includes(`void`)) {
                     i = 0
                 }
@@ -924,9 +1015,10 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
             checkmate_scan = document.getElementById(`tile_${tile_row_id}_${i}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                    checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                    i = columns
+                // Check ban movements
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                    // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                 } else if (!checkmate_scan.includes(`void`)) {
                     i = columns
                 }
@@ -945,14 +1037,16 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
             checkmate_scan = document.getElementById(`tile_${i}_${tile_column_id}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                    checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                    i = 0
+                // Check ban movements
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                    // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                 } else if (!checkmate_scan.includes(`void`)) {
                     i = 0
                 }
             }
         } // END for
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -963,9 +1057,10 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
             checkmate_scan = document.getElementById(`tile_${i}_${tile_column_id}`).innerHTML
 
             if (!checkmate_scan.includes(`void`)) {
-                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                    checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                    i = rows
+                // Check ban movements
+                if (checkmate_scan.includes(`rook`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                    // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                    king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                 } else if (!checkmate_scan.includes(`void`)) {
                     i = rows
                 }
@@ -989,16 +1084,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
                 checkmate_scan = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id - i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                        checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                        i = diagonal_max
-                        
+                    // Check ban movements
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                        king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                     } else if (!checkmate_scan.includes(`void`)) {
                         i = diagonal_max
-                        // checkmate_unit.style.setProperty(`background-color`, unit_test_color) // display path
                     }
-                } else {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_void_color) // display path
                 }
             }
         } // END for
@@ -1018,16 +1110,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
                 checkmate_scan = document.getElementById(`tile_${tile_row_id - i}_${tile_column_id + i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                        checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                        i = diagonal_max
-                        
+                    // Check ban movements
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                        king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                     } else if (!checkmate_scan.includes(`void`)) {
                         i = diagonal_max
-                        // checkmate_unit.style.setProperty(`background-color`, unit_test_color) // display path
                     }
-                } else {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_void_color) // display path
                 }
             }
         } // END for
@@ -1047,17 +1136,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
                 checkmate_scan = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id - i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
-
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                        checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                        i = diagonal_max
-                        
+                    // Check ban movements
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                        king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                     } else if (!checkmate_scan.includes(`void`)) {
                         i = diagonal_max
-                        // checkmate_unit.style.setProperty(`background-color`, unit_test_color) // display path
                     }
-                } else {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_void_color) // display path
                 }
             }
         } // END for
@@ -1077,17 +1162,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name, move_row
                 checkmate_scan = document.getElementById(`tile_${tile_row_id + i}_${tile_column_id + i}`).innerHTML
 
                 if (!checkmate_scan.includes(`void`)) {
-
-                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color)) {
-                        checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
-                        i = diagonal_max
-                        
+                    // Check ban movements
+                    if (checkmate_scan.includes(`bishop`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan" || checkmate_scan.includes(`queen`) && checkmate_scan.includes(checkmate_color) && scan_status == "checkmate_scan") {
+                        // checkmate_unit.style.setProperty(`background-color`, unit_checkmate_color)
+                        king_position.style.setProperty(`background-color`, unit_ban_movement_color)
                     } else if (!checkmate_scan.includes(`void`)) {
                         i = diagonal_max
-                        // checkmate_unit.style.setProperty(`background-color`, unit_test_color) // display path
                     }
-                } else {
-                    // checkmate_unit.style.setProperty(`background-color`, unit_void_color) // display path
                 }
             }
         } // END for
