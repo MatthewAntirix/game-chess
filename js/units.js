@@ -726,7 +726,7 @@ class unit {
         // Chess units identify and setup unit movements / attack
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        function player_identify (name, tile_row_id, tile_column_id) {
+        function player_identify () {
 
             if(active_player_toggle === true) {
                 active_player = player_1

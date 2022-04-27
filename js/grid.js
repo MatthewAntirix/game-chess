@@ -295,9 +295,9 @@ let black_king_checkmate_color
 
 
 ////////////    // Select unit
-                if(!selected_unit) {
+                if (!selected_unit) {
                     clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)            
-                    player_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+                    player_identify()
 
 
                     // Checkmate scan color
@@ -338,18 +338,36 @@ let black_king_checkmate_color
                         document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
                     } // END set turn count data
 
-                    if(clicked_tile.innerHTML.includes(active_player)) {
-                        clicked_tile.style.setProperty(`background-color`, unit_select_color)
-                        selected_unit = (clicked_tile.innerHTML)
 
 
-                        // If selected unit == king => schow all ban movements
-                        if (clicked_tile.innerHTML.includes(`king`)) {
-                            unit_scan()
-                        }
+                    // White checkmate !!!
+                    if (white_king_checkmate_color == true && active_player == player_1) {
+                        selected_unit = (checkmate_scan_white_king.innerHTML)
+                        unit_identify(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
+                        unit_scan()
 
+                    // Black checkmate !!!
+                    } else if (black_king_checkmate_color == true && active_player == player_2) {
+                        selected_unit = (checkmate_scan_black_king.innerHTML)
+                        unit_identify(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
+                        unit_scan()
+                        
+                    // No checkmate
+                    } else {
+                        if(clicked_tile.innerHTML.includes(active_player)) {
+                            clicked_tile.style.setProperty(`background-color`, unit_select_color)
+                            selected_unit = (clicked_tile.innerHTML)
 
-                        unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+                            // If selected unit == king => schow all ban movements
+                            if (clicked_tile.innerHTML.includes(`king`)) {
+                                unit_scan()
+                            }
+                        
+                                unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+
+                    } // END checkmate check
+
+                        
 
                         // Set last turn data default position
                         if(tile_row_id_log == 0 && tile_column_id_log == 0) {
@@ -394,11 +412,35 @@ let black_king_checkmate_color
 ////////////    // Unit action
                     } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color) || target_tile.style.backgroundColor.includes(unit_checkmate_color)) {
 
-                        clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
+                        // White checkmate !!!
+                        if (white_king_checkmate_color == true && active_player == player_1) {
+                            checkmate_scan_white_king.innerHTML = `<img src="./images/void.png"></img>`
+                            moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                            moved_unit.innerHTML = selected_unit
 
-                        moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
-                        moved_unit.innerHTML = selected_unit
+                            tile_row_id_log = checkmate_scan_white_king_row_id
+                            tile_column_id_log = checkmate_scan_white_king_column_id
 
+                        // Black checkmate !!!
+                        } else if (black_king_checkmate_color == true && active_player == player_2) {
+                            checkmate_scan_black_king.innerHTML = `<img src="./images/void.png"></img>`
+                            moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                            moved_unit.innerHTML = selected_unit
+
+                            tile_row_id_log = checkmate_scan_black_king_row_id
+                            tile_column_id_log = checkmate_scan_black_king_column_id
+
+                        // No checkmate
+                        } else {
+                            clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
+
+                            moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                            moved_unit.innerHTML = selected_unit
+                        } 
+                    // END checkmate check
+
+
+                        
                         reset_color_tile()
                         
 
