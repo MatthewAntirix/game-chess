@@ -24,6 +24,7 @@ body {
           transform: translate(-50%, -50%);
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
+  display: none;
   background-image: url(./images/panels_background.jpg);
   background-repeat: no-repeat;
   background-size: 100% 150%;
@@ -83,16 +84,11 @@ body {
   display: inline-block;
 }
 
-button {
-  width: 50px;
-  height: 50px;
-  background-color: red;
-}
-
-#player1, #player2, #name, #log, #turn_action, #turn_count, #tile_hover {
+#player1, #player2, #new_game, #name, #log, #turn_action, #turn_count, #tile_hover {
   width: 200px;
   position: absolute;
   border: 2px solid #000;
+  display: none;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0.5))), url(./images/panels_background.jpg);
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(./images/panels_background.jpg);
   background-repeat: no-repeat;
@@ -100,7 +96,7 @@ button {
   background-position: 0px -30px;
 }
 
-#player1 h1, #player1 h2, #player1 h3, #player1 p, #player2 h1, #player2 h2, #player2 h3, #player2 p, #name h1, #name h2, #name h3, #name p, #log h1, #log h2, #log h3, #log p, #turn_action h1, #turn_action h2, #turn_action h3, #turn_action p, #turn_count h1, #turn_count h2, #turn_count h3, #turn_count p, #tile_hover h1, #tile_hover h2, #tile_hover h3, #tile_hover p {
+#player1 h1, #player1 h2, #player1 h3, #player1 p, #player2 h1, #player2 h2, #player2 h3, #player2 p, #new_game h1, #new_game h2, #new_game h3, #new_game p, #name h1, #name h2, #name h3, #name p, #log h1, #log h2, #log h3, #log p, #turn_action h1, #turn_action h2, #turn_action h3, #turn_action p, #turn_count h1, #turn_count h2, #turn_count h3, #turn_count p, #tile_hover h1, #tile_hover h2, #tile_hover h3, #tile_hover p {
   margin-top: 1px;
   text-align: center;
   font-family: cursive;
@@ -109,19 +105,19 @@ button {
   color: #fff;
 }
 
-#player1 h1, #player2 h1, #name h1, #log h1, #turn_action h1, #turn_count h1, #tile_hover h1 {
+#player1 h1, #player2 h1, #new_game h1, #name h1, #log h1, #turn_action h1, #turn_count h1, #tile_hover h1 {
   font-size: 50px;
 }
 
-#player1 h2, #player2 h2, #name h2, #log h2, #turn_action h2, #turn_count h2, #tile_hover h2 {
+#player1 h2, #player2 h2, #new_game h2, #name h2, #log h2, #turn_action h2, #turn_count h2, #tile_hover h2 {
   font-size: 30px;
 }
 
-#player1 h3, #player2 h3, #name h3, #log h3, #turn_action h3, #turn_count h3, #tile_hover h3 {
+#player1 h3, #player2 h3, #new_game h3, #name h3, #log h3, #turn_action h3, #turn_count h3, #tile_hover h3 {
   font-size: 20px;
 }
 
-#player1 p, #player2 p, #name p, #log p, #turn_action p, #turn_count p, #tile_hover p {
+#player1 p, #player2 p, #new_game p, #name p, #log p, #turn_action p, #turn_count p, #tile_hover p {
   font-size: 25px;
 }
 
@@ -172,6 +168,48 @@ button {
   background-size: 100% 150%;
   background-position: 0px -100px;
   color: #fff;
+}
+
+#new_game {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+  display: block;
+}
+
+#new_game button {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 1000;
+}
+
+#new_game p {
+  margin-bottom: 5px;
+  font-size: 13px;
+  text-align: left;
+  color: #000;
+  -webkit-text-stroke: 0 black;
+}
+
+#new_game img {
+  width: 20px;
+  height: 20px;
+  position: static;
+  left: 0;
+  top: 0;
+  -webkit-transform: translate(0%, 0%);
+          transform: translate(0%, 0%);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #name {

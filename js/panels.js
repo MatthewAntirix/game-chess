@@ -1,6 +1,56 @@
 
+new_game()
 unit_promote()
 create_panels()
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// New game panel
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function new_game () {
+    const new_game_panel = document.createElement(`div`)
+    new_game_panel.setAttribute(`id`, `new_game`)
+    document.querySelector(`body`).appendChild(new_game_panel)
+    document.getElementById(`new_game`).innerHTML = 
+    `<h2>NEW GAME</h2>
+
+    <button onclick="game_initialization()"> 2 players </button>
+
+
+    <div>
+
+        <p>
+        <img id="select" src="./images/void.png"></img>
+        Tile selected unit color
+        </p>
+
+        <p>
+        <img id="movement" src="./images/void.png"></img>
+        Tile movement color
+        </p>
+
+        <p>
+        <img id="attack" src="./images/void.png"></img>
+        Tile attack color
+        </p>
+
+        <p>
+        <img id="checkmate" src="./images/void.png"></img>
+        Tile checkmate scan color
+        </p>
+
+    </div>`
+
+}
+
+    // SCSS responsive colors
+    document.getElementById('select').style.setProperty("background-color", `${unit_select_color}`)
+    document.getElementById('movement').style.setProperty("background-color", `${unit_movement_color}`)
+    document.getElementById('attack').style.setProperty("background-color", `${unit_attack_color}`)
+    document.getElementById('checkmate').style.setProperty("background-color", `${unit_ban_movement_color}`)
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +93,7 @@ function create_panels () {
         panel_player1.setAttribute(`id`, `player1`)
         document.getElementById(`playground`).appendChild(panel_player1)
 
-            document.getElementById(`player1`).innerHTML = `<h2>Player 1</h2>`
+            document.getElementById(`player1`).innerHTML = `<h2>WHITE</h2>`
 
 
     // Create player2 panel
@@ -51,7 +101,7 @@ function create_panels () {
         panel_player2.setAttribute(`id`, `player2`)
         document.getElementById(`playground`).appendChild(panel_player2)
 
-            document.getElementById(`player2`).innerHTML = `<h2>Player 2</h2><p></p>`
+            document.getElementById(`player2`).innerHTML = `<h2>BLACK</h2>`
 
 
     // Create log panel

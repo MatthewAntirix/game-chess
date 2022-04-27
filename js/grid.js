@@ -20,8 +20,6 @@ const tiles = rows * columns
         const unit_select_color = "rgb(0, 0, 255)"              // only RGB format
         const unit_movement_color = "rgb(0, 255, 0)"            // only RGB format
         const unit_attack_color = "rgb(255, 0, 0)"              // only RGB format
-        const unit_checkmate_color = "rgb(255, 0, 255)"         // only RGB format
-        const unit_checkmate_attack_color = "rgb(0, 255, 255)"  // only RGB format
         const unit_ban_movement_color = "rgb(255, 255, 0)"      // only RGB format
 
 
@@ -32,7 +30,7 @@ const tiles = rows * columns
 
 
     // Tile creating speed //
-    const tile_speed = 25
+    const tile_speed = 1
 
     // Create grid //
     create_grid(tiles)
@@ -49,7 +47,6 @@ const tiles = rows * columns
 ///////////////////////////// Panels settings /////////////////////////////
 
         let turn = 1
-        let unit_scan_initialization = true
 
 
 ///////////////////////////// ID settings /////////////////////////////
@@ -367,7 +364,7 @@ let black_king_checkmate_color
 
                     } // END checkmate check
 
-                        
+
 
                         // Set last turn data default position
                         if(tile_row_id_log == 0 && tile_column_id_log == 0) {
@@ -375,15 +372,6 @@ let black_king_checkmate_color
                             tile_column_id_log = tile_column_id
                         } // END set last turn data default position
 
-
-                        // Set players panels content
-                        if (unit_scan_initialization == true) {
-                            unit_scan()
-                            if(turn == 1) {
-                                scan_log()
-                            } 
-                            unit_scan_initialization = false
-                        } // END set players panels content
                     }
                     
 
@@ -498,13 +486,27 @@ let black_king_checkmate_color
 
 
                         // END GAME
-                            if (player_2_lose == true) {
-                                console.log(`black lose`)
+                            if (player_1_lose == true) {
+                                document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! Black WIN !!! </p>`
                             }
 
-                            if (player_1_lose == true) {
-                                console.log(`white lose`)
+                            if (player_2_lose == true) {
+                                document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! White WIN !!! </p>`
+                                
                             }
+
+
+                            if (active_player == player_1) {
+                                document.getElementById('player2').style.setProperty("background-image", `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/panels_background.jpg)`)
+                                document.getElementById('player1').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg)`)
+                            }
+        
+                            if (active_player == player_2) {
+                                document.getElementById('player1').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(./images/panels_background.jpg)`)
+                                document.getElementById('player2').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg)`)
+                            }
+                            
+
 
                         // Next player
                         if (promotion_display_on == false) {
@@ -785,10 +787,10 @@ function scan_log () {
         let player
         
         if(i == 1) {
-            player = player_1
+            player = "WHITE"
             scan_king = scan_white_king, scan_queen = scan_white_queen, scan_bishop = scan_white_bishop, scan_rook = scan_white_rook, scan_knight = scan_white_knight, scan_pawn = scan_white_pawn
         } else {
-            player = player_2
+            player = "BLACK"
             scan_king = scan_black_king, scan_queen = scan_black_queen, scan_bishop = scan_black_bishop, scan_rook = scan_black_rook, scan_knight = scan_black_knight, scan_pawn = scan_black_pawn
         }
 

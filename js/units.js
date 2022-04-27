@@ -672,54 +672,69 @@ class unit {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// Game initialization
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function game_initialization() {
+
+    document.getElementById('new_game').style.setProperty("display", `none`)
+    document.getElementById('playground').style.setProperty("display", `block`)
+
+        document.getElementById('name').style.setProperty("display", `block`)
+        document.getElementById('player1').style.setProperty("display", `block`)
+        document.getElementById('player2').style.setProperty("display", `block`)
+        document.getElementById('log').style.setProperty("display", `block`)
+        document.getElementById('log_area').style.setProperty("display", `block`)
+        document.getElementById('turn_action').style.setProperty("display", `block`)
+        document.getElementById('turn_count').style.setProperty("display", `block`)
+        document.getElementById('tile_hover').style.setProperty("display", `block`)
+
+        // Set turn color for player 1
+        document.getElementById('player1').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(./images/panels_background.jpg)`)
+
+        create_name_bars() 
+        set_chess_units()
+
+        unit_scan()
+        scan_log()
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
         // Chess units create setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         function set_chess_units(){
 
-            // // Player 2
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))-3}`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))-2}`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))-1}`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))-0}`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))+2}`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))+3}`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
-            // document.getElementById(`tile_1_${(Math.floor(columns/2))+4}`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
-
-            //     for (let i = 1; i <= columns; i++) {
-            //         document.getElementById(`tile_2_${i}`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
-            //     }
-
-
-            // // Player 1
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-3}`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-2}`).innerHTML = `<img src="./images/units/white_knight.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-1}`).innerHTML = `<img src="./images/units/white_bishop.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-0}`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+2}`).innerHTML = `<img src="./images/units/white_bishop.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+3}`).innerHTML = `<img src="./images/units/white_knight.png"></img>`
-            // document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+4}`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
-
-            //     for (let i = 1; i <= columns; i++) {
-            //         document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
-            //     }
-
-
+            // Player 2
+            document.getElementById(`tile_1_${(Math.floor(columns/2))-3}`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))-2}`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))-1}`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))-0}`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))+2}`).innerHTML = `<img src="./images/units/black_bishop.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))+3}`).innerHTML = `<img src="./images/units/black_knight.png"></img>`
+            document.getElementById(`tile_1_${(Math.floor(columns/2))+4}`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
 
                 for (let i = 1; i <= columns; i++) {
-                    document.getElementById(`tile_1_${i}`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+                    document.getElementById(`tile_2_${i}`).innerHTML = `<img src="./images/units/black_pawn.png"></img>`
                 }
 
-            document.getElementById(`tile_6_3`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-            document.getElementById(`tile_3_3`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
 
+            // Player 1
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-3}`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-2}`).innerHTML = `<img src="./images/units/white_knight.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-1}`).innerHTML = `<img src="./images/units/white_bishop.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))-0}`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+1}`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+2}`).innerHTML = `<img src="./images/units/white_bishop.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+3}`).innerHTML = `<img src="./images/units/white_knight.png"></img>`
+            document.getElementById(`tile_${rows}_${(Math.floor(columns/2))+4}`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
 
-            document.getElementById(`tile_8_8`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-
-
-                create_name_bars()                 //////// change this position after init /// now only for testing
+                for (let i = 1; i <= columns; i++) {
+                    document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
+                }
 
         } // END function set_chess_units
 

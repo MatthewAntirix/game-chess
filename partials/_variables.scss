@@ -14,6 +14,7 @@
     $playground-y-align:        50%;  
     $playgrount-transform:      translate(-50%, -50%);
     $playground-box-sizing:     content-box;
+    $playground-display:        none;
 
         $playground-bg-image:       url(./images/panels_background.jpg);
         $playground-bg-repeat:      no-repeat;
@@ -58,6 +59,7 @@
     $panels-position:               absolute;
     // $panels-left:                Responsive by panels.js  //=> Panels
     $panels-border:                 2px solid #000;
+    $panels-display:                none;
 
         $panels-bg-image:               linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg);
         $panels-bg-repeat:              no-repeat;
@@ -87,6 +89,43 @@
         $side-panel-transform-x0-align: translateX(-50%);
         $side-panel-transform-y-align:  translateY(-100%);
     
+
+    // New game panel
+        $new-game-panel-widht:          250px;
+        $new-game-panel-height:         250px;
+        $new-game-panel-position:       absolute;
+        $new-game-panel-top-align:      50%;
+        $new-game-panel-left-align:     50%;
+        $new-game-panel-transform:      translate(-50%, -50%);
+        $new-game-panel-text-align:     center;
+        $new-game-panel-padding:        10px;
+        $new-game-panel-display:        block;
+
+        // button
+            $new-game-panel-btn-width:      80%;
+            $new-game-panel-btn-height:     50px;
+            $new-game-panel-btn-margin-top: 10px;
+            $new-game-panel-btn-margin-bottom: 10px;
+            $new-game-panel-btn-font-size:  20px;
+            $new-game-panel-btn-font-weight: 1000;
+
+        // p
+            $new-game-panel-p-margin-bottom: 5px;
+            $new-game-panel-p-text-align:   left;
+            $new-game-panel-p-font-size:    13px;
+            $new-game-panel-p-color:        #000;
+            $new-game-panel-p-stroke:       0 black;
+        
+        // img
+            $new-game-panel-img-widht:      20px;
+            $new-game-panel-img-height:     20px;
+            $new-game-panel-img-position:   static;
+            $new-game-panel-img-top-align:  0;
+            $new-game-panel-img-left-align: 0;
+            $new-game-panel-img-transform:  translate(0%, 0%);
+            $new-game-panel-img-margin-left: 10px;
+            $new-game-panel-img-margin-right: 10px;
+
 
     // Players settings
         $players-height:                80%;

@@ -16,6 +16,7 @@
         top:                        $playground-y-align;
         transform:                  $playgrount-transform;
         box-sizing:                 $playground-box-sizing;
+        display:                    $playground-display;
 
             background-image:           $playground-bg-image;
             background-repeat:          $playground-bg-repeat;
@@ -88,6 +89,7 @@
         position:                       $panels-position;
         // left:                        Responsive by panels.js  //=> Panels
         border:                         $panels-border;
+        display:                        $panels-display;
         
             background-image:               $panels-bg-image;
             background-repeat:              $panels-bg-repeat;
@@ -121,6 +123,50 @@
         }
     
 
+
+    // Players settings
+        @mixin new_game {
+            width:                          $new-game-panel-widht;
+            height:                         $new-game-panel-height;
+            position:                       $new-game-panel-position;
+            top:                            $new-game-panel-top-align;
+            left:                           $new-game-panel-left-align;
+            transform:                      $new-game-panel-transform;
+            text-align:                     $new-game-panel-text-align;
+            padding:                        $new-game-panel-padding;
+            display:                        $new-game-panel-display;
+        
+            button {
+                width:                          $new-game-panel-btn-width;
+                height:                         $new-game-panel-btn-height;
+                margin-top:                     $new-game-panel-btn-margin-top;
+                margin-bottom:                  $new-game-panel-btn-margin-bottom;
+                font-size:                      $new-game-panel-btn-font-size;
+                font-weight:                    $new-game-panel-btn-font-weight;
+                }
+
+            p {
+                margin-bottom:                  $new-game-panel-p-margin-bottom;
+                font-size:                      $new-game-panel-p-font-size;
+                text-align:                     $new-game-panel-p-text-align;
+                color:                          $new-game-panel-p-color;
+                -webkit-text-stroke:            $new-game-panel-p-stroke;
+                }
+
+            img {
+                width:                          $new-game-panel-img-widht;
+                height:                         $new-game-panel-img-height;
+                position:                       $new-game-panel-img-position;
+                left:                           $new-game-panel-img-left-align;
+                top:                            $new-game-panel-img-top-align;
+                transform:                      $new-game-panel-img-transform;
+                margin-left:                    $new-game-panel-img-margin-left;
+                margin-right:                   $new-game-panel-img-margin-right;
+                }
+            }
+        
+
+
     // Players settings
         @mixin players {
             height:                     $players-height;
@@ -142,7 +188,7 @@
                 font-size:                  $players-text-font-size;
                 font-weight:                $players-text-font-weight;
                 -webkit-text-stroke:        $content-stroke;
-            }
+                }
 
             img {
                 width:                      $players-img-size;
@@ -152,7 +198,7 @@
                 left:                       $players-img-left;
                 top:                        $players-img-top;
                 transform:                  $players-img-transform;
-            }
+                }
 
             p {
                 margin-top:                 $content-players-margin-top;
@@ -210,7 +256,7 @@
                 overflow-y:                 $log-area-overflow-y;
                 width:                      $log-area-width;
                 height:                     $log-area-height;
-            }
+                }
 
             #log_area::-webkit-scrollbar {
                 width:                      $log-area-webkit-scrollbar-width;     
@@ -263,7 +309,7 @@
 
             p {
                 color:                      $tile-hover-color;
-            }
+                }
 
             }
 
