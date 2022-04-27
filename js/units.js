@@ -708,12 +708,15 @@ class unit {
 
 
 
+                for (let i = 1; i <= columns; i++) {
+                    document.getElementById(`tile_1_${i}`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+                }
 
-            document.getElementById(`tile_3_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-            document.getElementById(`tile_6_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-            document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
-            document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+            document.getElementById(`tile_6_3`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+            document.getElementById(`tile_3_3`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
 
+
+            document.getElementById(`tile_8_8`).innerHTML = `<img src="./images/units/black_king.png"></img>`
 
 
                 create_name_bars()                 //////// change this position after init /// now only for testing
@@ -908,6 +911,10 @@ function promote_scan () {
 let checkmate_scan
 let checkmate_unit
 
+let ban_status
+let checkmate_status = []
+let checkmate_end_game = false
+
 let diagonal_scan
 let diagonal_max
 
@@ -966,6 +973,17 @@ let king_position
             if (tile_row_id +1 <= rows && tile_column_id + 1 <= columns) {
             checkmate (name_inner, tile_row_id +1, tile_column_id +1)  
             }
+
+
+            // Checkmate end-game
+                if (checkmate_status.includes(`false`)) {
+                    checkmate_end_game = false
+                } else {
+                    checkmate_end_game = true
+                }
+
+                checkmate_status = []
+            
         }
 
 
@@ -1358,6 +1376,14 @@ function checkmate (name_inner, tile_row_id, tile_column_id) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
+
+if (king_position.style.backgroundColor.includes(unit_ban_movement_color)) {
+    ban_status = "checkmate"
+    checkmate_status.push(ban_status)
+} else {
+    ban_status = "false"
+    checkmate_status.push(ban_status)
+}
 
 } // END function checkmate
 

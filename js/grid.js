@@ -497,6 +497,15 @@ let black_king_checkmate_color
                         } // END update turn count data
 
 
+                        // END GAME
+                            if (player_2_lose == true) {
+                                console.log(`black lose`)
+                            }
+
+                            if (player_1_lose == true) {
+                                console.log(`white lose`)
+                            }
+
                         // Next player
                         if (promotion_display_on == false) {
                             active_player_toggle = !active_player_toggle
@@ -670,6 +679,9 @@ let checkmate_scan_black_king
 let checkmate_scan_black_king_row_id 
 let checkmate_scan_black_king_column_id
 
+let player_1_lose
+let player_2_lose
+
 
 
 function unit_scan () {
@@ -747,8 +759,21 @@ function unit_scan () {
 
     scan_array = []
 
-    checkmate_scan_laucher(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
-    checkmate_scan_laucher(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
+
+        // Check end-game for player 1
+        checkmate_scan_laucher(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
+
+            if (checkmate_end_game == true) {
+                player_1_lose = true
+            }
+
+        // Check end-game for player 2
+        checkmate_scan_laucher(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
+
+            if (checkmate_end_game == true) {
+                player_2_lose = true
+            }
+
 
 } // END function unit_scan
 
