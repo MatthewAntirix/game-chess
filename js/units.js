@@ -697,6 +697,8 @@ function game_initialization() {
 
         unit_scan()
         scan_log()
+
+        alert(`Hi, game is still in progress :)`)
 }
 
 
