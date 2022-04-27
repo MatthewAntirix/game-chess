@@ -70,51 +70,6 @@ class unit {
 
     function select_unit(name_inner, tile_row_id, tile_column_id, unit_name, move_row, move_column) {
 
-    // All checkmate scans
-
-        // King's position
-        checkmate (name_inner, tile_row_id,    tile_column_id,    unit_name)  
-
-            // Left-up
-            if (tile_row_id -1 >= 1 && tile_column_id - 1 >= 1) {
-            checkmate (name_inner, tile_row_id -1, tile_column_id -1, unit_name)  
-            }
-
-            // Up
-            if (tile_row_id -1 >= 1) {
-            checkmate (name_inner, tile_row_id -1, tile_column_id,    unit_name)  
-            }
-
-            // Right-up
-            if (tile_row_id -1 >= 1 && tile_column_id + 1 <= columns) {
-            checkmate (name_inner, tile_row_id -1, tile_column_id +1, unit_name)  
-            }
-
-            // Left
-            if (tile_column_id - 1 >= 1) {
-            checkmate (name_inner, tile_row_id,    tile_column_id -1, unit_name)  
-            }
-
-            // Right
-            if (tile_column_id + 1 <= columns) {
-            checkmate (name_inner, tile_row_id,    tile_column_id +1, unit_name)  
-            }
-
-            // Left-down
-            if (tile_row_id +1 <= rows && tile_column_id - 1 >= 1) {
-            checkmate (name_inner, tile_row_id +1, tile_column_id -1, unit_name)  
-            }
-
-            // Down
-            if (tile_row_id +1 <= rows) {
-            checkmate (name_inner, tile_row_id +1, tile_column_id,    unit_name)  
-            }
-
-            // Right-down
-            if (tile_row_id +1 <= rows && tile_column_id + 1 <= columns) {
-            checkmate (name_inner, tile_row_id +1, tile_column_id +1, unit_name)  
-            }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Movements / attack setup
@@ -754,10 +709,10 @@ class unit {
 
 
 
-            document.getElementById(`tile_4_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-            document.getElementById(`tile_5_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-            document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/white_king.png"></img>`
-            document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+            document.getElementById(`tile_3_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+            document.getElementById(`tile_6_4`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+            document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
+            document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
 
 
 
@@ -947,7 +902,7 @@ function promote_scan () {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Checkmate scan
+// Checkmate scan setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 let checkmate_scan
@@ -962,8 +917,63 @@ let own_color
 let king_position
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Checkmate scan laucher
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
+    // All checkmate scans
+
+    function checkmate_scan_laucher (name_inner, tile_row_id, tile_column_id) {
+        // King's position
+        checkmate (name_inner, tile_row_id,    tile_column_id)  
+
+            // Left-up
+            if (tile_row_id -1 >= 1 && tile_column_id - 1 >= 1) {
+            checkmate (name_inner, tile_row_id -1, tile_column_id -1)  
+            }
+
+            // Up
+            if (tile_row_id -1 >= 1) {
+            checkmate (name_inner, tile_row_id -1, tile_column_id)  
+            }
+
+            // Right-up
+            if (tile_row_id -1 >= 1 && tile_column_id + 1 <= columns) {
+            checkmate (name_inner, tile_row_id -1, tile_column_id +1)  
+            }
+
+            // Left
+            if (tile_column_id - 1 >= 1) {
+            checkmate (name_inner, tile_row_id,    tile_column_id -1)  
+            }
+
+            // Right
+            if (tile_column_id + 1 <= columns) {
+            checkmate (name_inner, tile_row_id,    tile_column_id +1)  
+            }
+
+            // Left-down
+            if (tile_row_id +1 <= rows && tile_column_id - 1 >= 1) {
+            checkmate (name_inner, tile_row_id +1, tile_column_id -1)  
+            }
+
+            // Down
+            if (tile_row_id +1 <= rows) {
+            checkmate (name_inner, tile_row_id +1, tile_column_id)  
+            }
+
+            // Right-down
+            if (tile_row_id +1 <= rows && tile_column_id + 1 <= columns) {
+            checkmate (name_inner, tile_row_id +1, tile_column_id +1)  
+            }
+        }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Checkmate scan function 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function checkmate (name_inner, tile_row_id, tile_column_id) {
     king_position = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
     if (name_inner.includes(`white`)) {
@@ -975,7 +985,7 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
     }
 
 
-    if (unit_name == `king`) {
+    if (name_inner.includes(`king`)) {
 
     // Define diagonal scan
     if (tile_row_id <= tile_column_id) {
@@ -985,6 +995,7 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
         diagonal_scan = tile_column_id
         diagonal_max = columns
     }
+
 
 ///////// Rows ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1210,7 +1221,7 @@ function checkmate (name_inner, tile_row_id, tile_column_id, unit_name) {
         }
 
 
-        
+
         // Knight checkmate scan
          function knight_checkmate (checkmate_scan, checkmate_color, king_position) {
             if (checkmate_scan.includes(`knight`) && checkmate_scan.includes(checkmate_color)) {

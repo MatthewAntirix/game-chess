@@ -49,6 +49,7 @@ const tiles = rows * columns
 ///////////////////////////// Panels settings /////////////////////////////
 
         let turn = 1
+        let unit_scan_initialization = true
 
 
 ///////////////////////////// ID settings /////////////////////////////
@@ -277,6 +278,9 @@ const tiles = rows * columns
     // Listener setup
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+let white_king_checkmate_color
+let black_king_checkmate_color
+
 
     function set_listener(tile_row_id, tile_column_id){
 
@@ -289,9 +293,44 @@ const tiles = rows * columns
                 // END update tile hover data
 
 
+
+////////////    // Select unit
                 if(!selected_unit) {
                     clicked_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)            
                     player_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
+
+
+                    // Checkmate scan color
+                    if (!checkmate_scan_white_king || !checkmate_scan_black_king) {
+                        if (!checkmate_scan_white_king) {
+                            white_king_checkmate_color = false
+                            }
+                        if (!checkmate_scan_black_king) {
+                            black_king_checkmate_color = false
+                            }
+
+                    } else {
+                        if (checkmate_scan_white_king.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            white_king_checkmate_color = true
+                        }
+                        if (checkmate_scan_black_king.style.backgroundColor.includes(unit_ban_movement_color)) {
+                            black_king_checkmate_color = true
+                        }
+                    }
+
+                        // Reset grid color
+                        reset_color_tile()
+
+                        // Set checkmate scan color
+                        if (white_king_checkmate_color == true) {
+                            checkmate_scan_white_king.style.setProperty(`background-color`, unit_ban_movement_color)
+                        }
+
+                        if (black_king_checkmate_color == true) {
+                            checkmate_scan_black_king.style.setProperty(`background-color`, unit_ban_movement_color)
+                        }
+                    // END checkmate scan color
+
 
 
                     // Set turn count data
@@ -303,6 +342,13 @@ const tiles = rows * columns
                         clicked_tile.style.setProperty(`background-color`, unit_select_color)
                         selected_unit = (clicked_tile.innerHTML)
 
+
+                        // If selected unit == king => schow all ban movements
+                        if (clicked_tile.innerHTML.includes(`king`)) {
+                            unit_scan()
+                        }
+
+
                         unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
 
                         // Set last turn data default position
@@ -313,13 +359,18 @@ const tiles = rows * columns
 
 
                         // Set players panels content
-                        unit_scan()
-                        if(turn == 1) {
-                            scan_log()
+                        if (unit_scan_initialization == true) {
+                            unit_scan()
+                            if(turn == 1) {
+                                scan_log()
+                            } 
+                            unit_scan_initialization = false
                         } // END set players panels content
                     }
                     
 
+
+////////////    // Unselect unit
                 } else if (selected_unit) {
                     target_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
@@ -328,6 +379,19 @@ const tiles = rows * columns
                         reset_color_tile()
 
 
+                        // Set checkmate scan color
+                        if (white_king_checkmate_color == true) {
+                            checkmate_scan_white_king.style.setProperty(`background-color`, unit_ban_movement_color)
+                        }
+
+                        if (black_king_checkmate_color == true) {
+                            checkmate_scan_black_king.style.setProperty(`background-color`, unit_ban_movement_color)
+                        }
+                        // END set checkmate scan color
+
+
+
+////////////    // Unit action
                     } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color) || target_tile.style.backgroundColor.includes(unit_checkmate_color)) {
 
                         clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
@@ -371,7 +435,17 @@ const tiles = rows * columns
                             // Update players panels content
                             unit_scan()
                             scan_log()
-                            // END update players panels content         
+                            // END update players panels content      
+                            
+                                // Checkmate eliminated
+                                if (!checkmate_scan_white_king.style.backgroundColor.includes(unit_ban_movement_color)) {
+                                    white_king_checkmate_color = false
+                                }
+
+                                if (!checkmate_scan_black_king.style.backgroundColor.includes(unit_ban_movement_color)) {
+                                    black_king_checkmate_color = false
+                                }
+                                // END checkmate eliminated
 
 
                         // Update turn count data
@@ -546,6 +620,16 @@ const tiles = rows * columns
 // Scan
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+let checkmate_scan_white_king
+let checkmate_scan_white_king_row_id        
+let checkmate_scan_white_king_column_id
+
+let checkmate_scan_black_king
+let checkmate_scan_black_king_row_id 
+let checkmate_scan_black_king_column_id
+
+
+
 function unit_scan () {
     scan_white_pawn = 0, scan_white_knight = 0, scan_white_rook = 0, scan_white_bishop = 0, scan_white_queen = 0, scan_white_king = 0
     scan_black_pawn = 0, scan_black_knight = 0, scan_black_rook = 0, scan_black_bishop = 0, scan_black_queen = 0, scan_black_king = 0
@@ -555,6 +639,21 @@ function unit_scan () {
         for (let new_column = 1; new_column <= columns; new_column++) {
             scan_tile = document.getElementById(`tile_${new_row}_${new_column}`).innerHTML
             scan_array.push(scan_tile)
+
+            // Scan white king position
+            if (scan_tile.includes(`white_king`)) {
+                checkmate_scan_white_king = document.getElementById(`tile_${new_row}_${new_column}`)
+                checkmate_scan_white_king_row_id = new_row
+                checkmate_scan_white_king_column_id = new_column
+            }
+
+            // Scan black king position
+            if (scan_tile.includes(`black_king`)) {
+                checkmate_scan_black_king = document.getElementById(`tile_${new_row}_${new_column}`)
+                checkmate_scan_black_king_row_id = new_row
+                checkmate_scan_black_king_column_id = new_column
+            }
+
         } // END for
     } // END for
 
@@ -605,6 +704,9 @@ function unit_scan () {
     } // END for
 
     scan_array = []
+
+    checkmate_scan_laucher(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
+    checkmate_scan_laucher(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
 
 } // END function unit_scan
 
