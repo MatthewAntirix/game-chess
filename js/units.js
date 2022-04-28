@@ -237,7 +237,7 @@ class unit {
 
                             attack_up = move_up
 
-                            if (!attack_up.style.backgroundColor.includes(unit_ban_movement_color) && !attack_up.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_up.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_up.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -306,7 +306,7 @@ class unit {
 
                             attack_left = move_left
 
-                            if (!attack_left.style.backgroundColor.includes(unit_ban_movement_color) && !attack_left.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_left.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_left.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -334,7 +334,7 @@ class unit {
 
                             attack_right = move_right
 
-                            if (!attack_right.style.backgroundColor.includes(unit_ban_movement_color) && !attack_right.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_right.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_right.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -375,7 +375,7 @@ class unit {
 
                             attack_left_up = move_left_up
 
-                            if (!attack_left_up.style.backgroundColor.includes(unit_ban_movement_color) && !attack_left_up.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_left_up.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_left_up.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -403,7 +403,7 @@ class unit {
 
                             attack_right_down = move_right_down
 
-                            if (!attack_right_down.style.backgroundColor.includes(unit_ban_movement_color) && !attack_right_down.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_right_down.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_right_down.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -435,7 +435,7 @@ class unit {
                         
                             attack_right_up = move_right_up
 
-                            if (!attack_right_up.style.backgroundColor.includes(unit_ban_movement_color) && !attack_right_up.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_right_up.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_right_up.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -463,7 +463,7 @@ class unit {
 
                             attack_left_down = move_left_down
 
-                            if (!attack_left_down.style.backgroundColor.includes(unit_ban_movement_color) && !attack_left_down.style.backgroundColor.includes(unit_checkmate_color)) {
+                            if (!attack_left_down.style.backgroundColor.includes(unit_ban_movement_color)) {
                                 attack_left_down.style.setProperty(`background-color`, unit_attack_color)
                             }
                         }
@@ -698,7 +698,7 @@ function game_initialization() {
         unit_scan()
         scan_log()
 
-        alert(`Hi, game is still in progress :)`)
+        alert(`Hi, game is still in progress :) Final checkmate is not fully completed..`)
 }
 
 
@@ -737,6 +737,18 @@ function game_initialization() {
                 for (let i = 1; i <= columns; i++) {
                     document.getElementById(`tile_${rows-1}_${i}`).innerHTML = `<img src="./images/units/white_pawn.png"></img>`
                 }
+
+
+                // testing code for fixing bugs //////////////////////////
+
+        // document.getElementById(`tile_1_3`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+        // document.getElementById(`tile_8_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+
+        // document.getElementById(`tile_2_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+        // document.getElementById(`tile_3_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+        // document.getElementById(`tile_7_1`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+        // document.getElementById(`tile_6_1`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+
 
         } // END function set_chess_units
 

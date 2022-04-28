@@ -398,7 +398,7 @@ let black_king_checkmate_color
 
 
 ////////////    // Unit action
-                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color) || target_tile.style.backgroundColor.includes(unit_checkmate_color)) {
+                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)){
 
                         // White checkmate !!!
                         if (white_king_checkmate_color == true && active_player == player_1) {
