@@ -698,7 +698,7 @@ function game_initialization() {
         unit_scan()
         scan_log()
 
-        alert(`Hi, game is still in progress :) Final checkmate is not fully completed..`)
+        // alert(`Hi, game is still in progress :) Final checkmate is not fully completed..`)
 }
 
 
@@ -741,13 +741,19 @@ function game_initialization() {
 
                 // testing code for fixing bugs //////////////////////////
 
-        // document.getElementById(`tile_1_3`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-        // document.getElementById(`tile_8_4`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+        // document.getElementById(`tile_1_5`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+        // document.getElementById(`tile_8_2`).innerHTML = `<img src="./images/units/white_king.png"></img>`
 
+        // document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
         // document.getElementById(`tile_2_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
-        // document.getElementById(`tile_3_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
         // document.getElementById(`tile_7_1`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
-        // document.getElementById(`tile_6_1`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+        // document.getElementById(`tile_8_1`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+
+        // document.getElementById(`tile_1_3`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+        // document.getElementById(`tile_2_3`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
+        // document.getElementById(`tile_7_3`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+        // document.getElementById(`tile_8_3`).innerHTML = `<img src="./images/units/white_queen.png"></img>`
+
 
 
         } // END function set_chess_units
@@ -1011,6 +1017,7 @@ let king_position
                     checkmate_end_game = true
                 }
 
+                console.log(checkmate_status)
                 checkmate_status = []
             
         }
@@ -1406,13 +1413,59 @@ function checkmate (name_inner, tile_row_id, tile_column_id) {
 
     }
 
-if (king_position.style.backgroundColor.includes(unit_ban_movement_color)) {
-    ban_status = "checkmate"
-    checkmate_status.push(ban_status)
-} else {
-    ban_status = "false"
-    checkmate_status.push(ban_status)
-}
+    // King checkmate scan results
+    let king_check
+
+    // Set king position
+    if (active_player == player_1) {
+        king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
+        console.log(` 1 ${king_check}`)
+    } else if (active_player == player_2) {
+        king_check = document.getElementById(`tile_${checkmate_scan_white_king_row_id}_${checkmate_scan_white_king_column_id}`)
+        console.log(` 2 ${king_check}`)
+
+    // Correcting setup fot first turn
+    } else if (!active_player) {
+        king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
+        console.log(` 3 ${king_check}`)
+    }
+
+
+        // Scan ban movements
+        if (king_position.style.backgroundColor.includes(unit_ban_movement_color)) {
+            ban_status = "checkmate"
+            checkmate_status.push(ban_status)
+
+        // Scan surrounding units
+        } else if (!king_position.innerHTML.includes(`void`)) {
+
+            // King position
+            if (king_check == king_position) {
+                ban_status = "false"
+                checkmate_status.push(ban_status)
+                console.log(`pos`)
+
+            // Own units
+            } else if (king_check.innerHTML.includes(`black`) && king_position.innerHTML.includes(`black`) ||
+                    king_check.innerHTML.includes(`white`) && king_position.innerHTML.includes(`white`)) {
+
+                ban_status = "unit"
+                checkmate_status.push(ban_status)
+                console.log(`unit`)
+
+            // Enemy units
+            } else {
+                ban_status = "false"
+                checkmate_status.push(ban_status)
+            }
+                
+        // Void without ban movement
+        } else {
+            ban_status = "false"
+            checkmate_status.push(ban_status)
+        }
+
+
 
 } // END function checkmate
 

@@ -488,11 +488,12 @@ let black_king_checkmate_color
                         // END GAME
                             if (player_1_lose == true) {
                                 document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! Black WIN !!! </p>`
+                                document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
                             }
 
                             if (player_2_lose == true) {
                                 document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! White WIN !!! </p>`
-                                
+                                document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
                             }
 
 
@@ -764,17 +765,21 @@ function unit_scan () {
 
         // Check end-game for player 1
         checkmate_scan_laucher(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
-
+        console.log(`white`)
             if (checkmate_end_game == true) {
                 player_1_lose = true
             }
 
+            
+
         // Check end-game for player 2
         checkmate_scan_laucher(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
-
+        console.log(`black`)
             if (checkmate_end_game == true) {
                 player_2_lose = true
             }
+
+            
 
 
 } // END function unit_scan

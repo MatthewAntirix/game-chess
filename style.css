@@ -331,4 +331,14 @@ body {
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2))), url(./images/panels_background.jpg);
   background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(./images/panels_background.jpg);
 }
+
+#reset {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+#reset p {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

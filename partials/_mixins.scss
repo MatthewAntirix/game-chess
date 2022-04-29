@@ -342,6 +342,18 @@
                 }
             }
 
+    
+    // Reset game
+        @mixin reset_game {
+            width:                      $reset-game-width;
+            height:                     $reset-game-height;
+            padding:                    $reset-game-padding;
+
+            p {
+                color:                  $reset-game-p-color;
+                }
+            }
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
