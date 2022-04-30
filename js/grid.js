@@ -295,6 +295,7 @@ let reset_btn_toggle = false
                 // END update tile hover data
 
 
+
             // END GAME check
             if (checkmate_end_game !== true) {
                 console.log(checkmate_end_game)
@@ -376,6 +377,9 @@ let reset_btn_toggle = false
                         selected_unit = 0 
                         reset_color_tile()
 
+                        // Unselect sound
+                        unselect_sound.play()
+
 
                         // Set checkmate scan color
                         if (white_king_checkmate_color == true) {
@@ -391,6 +395,16 @@ let reset_btn_toggle = false
 
 ////////////    // Unit action
                     } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)){
+
+
+                        // Action sounds setup
+                        if (target_tile.style.backgroundColor.includes(unit_movement_color)) {
+                            move_sound.play()
+                        } else if (target_tile.style.backgroundColor.includes(unit_attack_color)) {
+                            attack_sound.play()
+                        }
+
+
 
                         // White checkmate !!!
                         if (white_king_checkmate_color == true && active_player == player_1) {
@@ -848,6 +862,7 @@ function scan_log () {
 
 function give_up() {
     checkmate_end_game = true
+    victory_sound.play()
 
     if (active_player_toggle === true) {
         player_1_lose = true

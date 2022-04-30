@@ -63,7 +63,14 @@ class unit {
             let attack_knight_1, attack_knight_2, attack_knight_3, attack_knight_4, attack_knight_5, attack_knight_6, attack_knight_7, attack_knight_8
 
 
+    // Define all sounds
+        let unselect_sound = new Audio('./sounds/unselect.wav')
+        let move_sound = new Audio('./sounds/move.wav')
+        let attack_sound = new Audio('./sounds/attack.wav')
+        let victory_sound = new Audio('./sounds/victory.wav')
 
+
+        
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     // All units setups
 ////////////////////////////////////////////////////////////////////////////////////////////////////
