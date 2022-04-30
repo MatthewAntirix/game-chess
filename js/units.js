@@ -741,8 +741,8 @@ function game_initialization() {
 
                 // testing code for fixing bugs //////////////////////////
 
-        // document.getElementById(`tile_1_5`).innerHTML = `<img src="./images/units/black_king.png"></img>`
-        // document.getElementById(`tile_8_2`).innerHTML = `<img src="./images/units/white_king.png"></img>`
+        // document.getElementById(`tile_1_2`).innerHTML = `<img src="./images/units/black_king.png"></img>`
+        // document.getElementById(`tile_8_5`).innerHTML = `<img src="./images/units/white_king.png"></img>`
 
         // document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
         // document.getElementById(`tile_2_1`).innerHTML = `<img src="./images/units/black_queen.png"></img>`
@@ -1017,7 +1017,6 @@ let king_position
                     checkmate_end_game = true
                 }
 
-                console.log(checkmate_status)
                 checkmate_status = []
             
         }
@@ -1419,15 +1418,13 @@ function checkmate (name_inner, tile_row_id, tile_column_id) {
     // Set king position
     if (active_player == player_1) {
         king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
-        console.log(` 1 ${king_check}`)
+
     } else if (active_player == player_2) {
         king_check = document.getElementById(`tile_${checkmate_scan_white_king_row_id}_${checkmate_scan_white_king_column_id}`)
-        console.log(` 2 ${king_check}`)
 
     // Correcting setup fot first turn
     } else if (!active_player) {
         king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
-        console.log(` 3 ${king_check}`)
     }
 
 
@@ -1443,7 +1440,6 @@ function checkmate (name_inner, tile_row_id, tile_column_id) {
             if (king_check == king_position) {
                 ban_status = "false"
                 checkmate_status.push(ban_status)
-                console.log(`pos`)
 
             // Own units
             } else if (king_check.innerHTML.includes(`black`) && king_position.innerHTML.includes(`black`) ||
@@ -1451,7 +1447,6 @@ function checkmate (name_inner, tile_row_id, tile_column_id) {
 
                 ban_status = "unit"
                 checkmate_status.push(ban_status)
-                console.log(`unit`)
 
             // Enemy units
             } else {

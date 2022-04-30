@@ -277,6 +277,9 @@ const tiles = rows * columns
 
 let white_king_checkmate_color
 let black_king_checkmate_color
+let invalid_action = false
+let invalid_action_unit
+let reset_btn_toggle = false
 
 
     function set_listener(tile_row_id, tile_column_id){
@@ -336,22 +339,8 @@ let black_king_checkmate_color
                     } // END set turn count data
 
 
-
-                    // White checkmate !!!
-                    if (white_king_checkmate_color == true && active_player == player_1) {
-                        selected_unit = (checkmate_scan_white_king.innerHTML)
-                        unit_identify(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
-                        unit_scan()
-
-                    // Black checkmate !!!
-                    } else if (black_king_checkmate_color == true && active_player == player_2) {
-                        selected_unit = (checkmate_scan_black_king.innerHTML)
-                        unit_identify(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
-                        unit_scan()
-                        
-                    // No checkmate
-                    } else {
-                        if(clicked_tile.innerHTML.includes(active_player)) {
+                        // Select unit / checkmate check
+                        if (clicked_tile.innerHTML.includes(active_player)) {
                             clicked_tile.style.setProperty(`background-color`, unit_select_color)
                             selected_unit = (clicked_tile.innerHTML)
 
@@ -362,7 +351,7 @@ let black_king_checkmate_color
                         
                                 unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
 
-                    } // END checkmate check
+                        } // END select unit / checkmate check
 
 
 
@@ -372,7 +361,7 @@ let black_king_checkmate_color
                             tile_column_id_log = tile_column_id
                         } // END set last turn data default position
 
-                    }
+                    // }
                     
 
 
@@ -380,7 +369,7 @@ let black_king_checkmate_color
                 } else if (selected_unit) {
                     target_tile = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
 
-                    if (target_tile.style.backgroundColor.includes(unit_select_color)) {
+                    if (target_tile.style.backgroundColor.includes(unit_select_color) || target_tile.style.backgroundColor.includes(unit_ban_movement_color)) {
                         selected_unit = 0 
                         reset_color_tile()
 
@@ -402,26 +391,49 @@ let black_king_checkmate_color
 
                         // White checkmate !!!
                         if (white_king_checkmate_color == true && active_player == player_1) {
-                            checkmate_scan_white_king.innerHTML = `<img src="./images/void.png"></img>`
+                            clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
                             moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                            invalid_action_unit = moved_unit.innerHTML
                             moved_unit.innerHTML = selected_unit
+                        
+                            reset_color_tile()
+                            unit_scan()     
 
-                            tile_row_id_log = checkmate_scan_white_king_row_id
-                            tile_column_id_log = checkmate_scan_white_king_column_id
+                            if (!checkmate_scan_white_king.style.backgroundColor.includes(unit_ban_movement_color)) {
+                                white_king_checkmate_color = false
+                                invalid_action = false
+
+                            } else {
+                                clicked_tile.innerHTML = selected_unit
+                                moved_unit.innerHTML = invalid_action_unit
+                                invalid_action = true
+                            }
+
 
                         // Black checkmate !!!
                         } else if (black_king_checkmate_color == true && active_player == player_2) {
-                            checkmate_scan_black_king.innerHTML = `<img src="./images/void.png"></img>`
+                            clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
                             moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
+                            invalid_action_unit = moved_unit.innerHTML
                             moved_unit.innerHTML = selected_unit
+                        
+                            reset_color_tile()
+                            unit_scan()     
 
-                            tile_row_id_log = checkmate_scan_black_king_row_id
-                            tile_column_id_log = checkmate_scan_black_king_column_id
+                            if (!checkmate_scan_black_king.style.backgroundColor.includes(unit_ban_movement_color)) {
+                                black_king_checkmate_color = false
+                                invalid_action = false
+
+                            } else {
+                                clicked_tile.innerHTML = selected_unit
+                                moved_unit.innerHTML = invalid_action_unit
+                                invalid_action = true
+                            }
+
 
                         // No checkmate
                         } else {
                             clicked_tile.innerHTML = `<img src="./images/void.png"></img>`
-
                             moved_unit = document.getElementById(`tile_${tile_row_id}_${tile_column_id}`)
                             moved_unit.innerHTML = selected_unit
                         } 
@@ -479,9 +491,11 @@ let black_king_checkmate_color
 
 
                         // Update turn count data
-                        if(active_player == player_2) {
-                            turn++
-                            document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
+                        if (reset_btn_toggle == false) {
+                            if(active_player == player_2) {
+                                turn++
+                                document.getElementById(`turn_count`).innerHTML = `<h3>Turn</h3><p>${turn}</p>`
+                            }
                         } // END update turn count data
 
 
@@ -489,14 +503,17 @@ let black_king_checkmate_color
                             if (player_1_lose == true) {
                                 document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! Black WIN !!! </p>`
                                 document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
+                                reset_btn_toggle = true
                             }
 
                             if (player_2_lose == true) {
                                 document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! White WIN !!! </p>`
                                 document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
+                                reset_btn_toggle = true
                             }
 
-
+                        
+                        // Active player hover
                             if (active_player == player_1) {
                                 document.getElementById('player2').style.setProperty("background-image", `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/panels_background.jpg)`)
                                 document.getElementById('player1').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg)`)
@@ -508,10 +525,12 @@ let black_king_checkmate_color
                             }
                             
 
-
                         // Next player
-                        if (promotion_display_on == false) {
+                        if (promotion_display_on == false && invalid_action != true) {
                             active_player_toggle = !active_player_toggle
+                            selected_unit = 0
+                            
+                        } else {
                             selected_unit = 0
                         }
                     }
@@ -765,7 +784,6 @@ function unit_scan () {
 
         // Check end-game for player 1
         checkmate_scan_laucher(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
-        console.log(`white`)
             if (checkmate_end_game == true) {
                 player_1_lose = true
             }
@@ -774,7 +792,6 @@ function unit_scan () {
 
         // Check end-game for player 2
         checkmate_scan_laucher(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
-        console.log(`black`)
             if (checkmate_end_game == true) {
                 player_2_lose = true
             }
