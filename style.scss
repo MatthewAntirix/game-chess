@@ -111,6 +111,12 @@
             @include reset_game
             }
 
+    
+    // Give up button
+        #give_up_WHITE, #give_up_BLACK {
+            @include give_up
+            }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // 

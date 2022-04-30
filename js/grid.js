@@ -284,6 +284,8 @@ let reset_btn_toggle = false
 
     function set_listener(tile_row_id, tile_column_id){
 
+    
+        
         // Mouse-click listener
 
             document.getElementById(`tile_${tile_row_id}_${tile_column_id}`).addEventListener('click',function (){
@@ -293,6 +295,9 @@ let reset_btn_toggle = false
                 // END update tile hover data
 
 
+            // END GAME check
+            if (checkmate_end_game !== true) {
+                console.log(checkmate_end_game)
 
 ////////////    // Select unit
                 if (!selected_unit) {
@@ -361,9 +366,7 @@ let reset_btn_toggle = false
                             tile_column_id_log = tile_column_id
                         } // END set last turn data default position
 
-                    // }
                     
-
 
 ////////////    // Unselect unit
                 } else if (selected_unit) {
@@ -498,30 +501,20 @@ let reset_btn_toggle = false
                             }
                         } // END update turn count data
 
-
-                        // END GAME
-                            if (player_1_lose == true) {
-                                document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! Black WIN !!! </p>`
-                                document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
-                                reset_btn_toggle = true
-                            }
-
-                            if (player_2_lose == true) {
-                                document.getElementById(`turn_action`).innerHTML = `<p> Checkmate !!! White WIN !!! </p>`
-                                document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
-                                reset_btn_toggle = true
-                            }
-
                         
                         // Active player hover
                             if (active_player == player_1) {
                                 document.getElementById('player2').style.setProperty("background-image", `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/panels_background.jpg)`)
                                 document.getElementById('player1').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg)`)
+                                document.getElementById(`give_up_WHITE`).style.setProperty("display", "none")
+                                document.getElementById(`give_up_BLACK`).style.setProperty("display", "inline-block")
                             }
         
                             if (active_player == player_2) {
                                 document.getElementById('player1').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(./images/panels_background.jpg)`)
                                 document.getElementById('player2').style.setProperty("background-image", `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(./images/panels_background.jpg)`)
+                                document.getElementById(`give_up_WHITE`).style.setProperty("display", "inline-block")
+                                document.getElementById(`give_up_BLACK`).style.setProperty("display", "none")
                             }
                             
 
@@ -535,6 +528,8 @@ let reset_btn_toggle = false
                         }
                     }
                 }
+
+            }  // END GAME check
             }) // END mouse-click listener
 
     } // END function set_listener
@@ -784,17 +779,21 @@ function unit_scan () {
 
         // Check end-game for player 1
         checkmate_scan_laucher(checkmate_scan_white_king.innerHTML, checkmate_scan_white_king_row_id, checkmate_scan_white_king_column_id)
-            if (checkmate_end_game == true) {
-                player_1_lose = true
-            }
+
+        // In this version deactivated for END GAME use give up button
+            // if (checkmate_end_game == true) {
+            //     player_1_lose = true
+            // }
 
             
 
         // Check end-game for player 2
         checkmate_scan_laucher(checkmate_scan_black_king.innerHTML, checkmate_scan_black_king_row_id, checkmate_scan_black_king_column_id)
-            if (checkmate_end_game == true) {
-                player_2_lose = true
-            }
+
+        // In this version deactivated for END GAME use give up button
+            // if (checkmate_end_game == true) {
+            //     player_2_lose = true
+            // }
 
             
 
@@ -832,7 +831,10 @@ function scan_log () {
             <p>
             <div><img src="./images/units/${player}_knight.png"></img> <br> ${scan_knight} </div>
             <div><img src="./images/units/${player}_pawn.png"></img> <br> ${scan_pawn} </div>
-            </p>`
+            </p>
+
+            <p><button id="give_up_${player}" onclick="give_up()"><p>Give up</p></button></p>
+            `
 
     } // END for
 
@@ -841,5 +843,37 @@ function scan_log () {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
+// Give up setup
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function give_up() {
+    checkmate_end_game = true
+
+    if (active_player_toggle === true) {
+        player_1_lose = true
+    } else if (active_player_toggle === false) {
+        player_2_lose = true
+    }
+
+
+        // END GAME
+        if (player_1_lose == true) {
+            document.getElementById(`turn_action`).innerHTML = `<p id="end_p"> White gave up the game !!! Black WIN !!! </p>`
+            document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
+            document.getElementById('end_p').style.setProperty("font-size", `20px`)
+            reset_btn_toggle = true
+        }
+
+        if (player_2_lose == true) {
+            document.getElementById(`turn_action`).innerHTML = `<p id="end_p"> Black gave up the game !!! White WIN !!! </p>`
+            document.getElementById(`turn_count`).innerHTML = `<button id="reset" onclick="history.go(0);"> <p> RESET GAME </p> </button>`
+            document.getElementById('end_p').style.setProperty("font-size", `20px`)
+            reset_btn_toggle = true
+        }
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////

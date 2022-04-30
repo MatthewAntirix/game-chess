@@ -341,4 +341,14 @@ body {
 #reset p {
   color: red;
 }
+
+#give_up_WHITE, #give_up_BLACK {
+  width: 150px;
+  padding: 5px;
+  display: none;
+}
+
+#give_up_WHITE p, #give_up_BLACK p {
+  font-size: 20px;
+}
 /*# sourceMappingURL=style.css.map */
