@@ -21,6 +21,8 @@ const tiles = rows * columns
         const unit_movement_color = "rgb(0, 255, 0)"            // only RGB format
         const unit_attack_color = "rgb(255, 0, 0)"              // only RGB format
         const unit_ban_movement_color = "rgb(255, 255, 0)"      // only RGB format
+        const unit_castling_target = "rgb(255, 0, 255)"         // only RGB format
+        const unit_castling_rook = "rgb(0, 255, 255)"           // only RGB format
 
 
 
@@ -298,7 +300,7 @@ let reset_btn_toggle = false
 
             // END GAME check
             if (checkmate_end_game !== true) {
-                console.log(checkmate_end_game)
+
 
 ////////////    // Select unit
                 if (!selected_unit) {
@@ -353,7 +355,56 @@ let reset_btn_toggle = false
                             // If selected unit == king => schow all ban movements
                             if (clicked_tile.innerHTML.includes(`king`)) {
                                 unit_scan()
-                            }
+
+
+
+                                // Castling options
+
+                                    // White right rook
+                                    if(!clicked_tile.style.backgroundColor.includes(unit_ban_movement_color) && active_player == player_1 && castling_white_king == true && castling_white_rook_right == true && document.getElementById(`tile_8_6`).innerHTML.includes(`void`) && document.getElementById(`tile_8_7`).innerHTML.includes(`void`)) {
+
+                                        let castling_king = document.getElementById(`tile_${tile_row_id}_${tile_column_id+2}`)    
+                                        castling_king.style.setProperty(`background-color`, unit_castling_target)
+
+                                        let castling_rook = document.getElementById(`tile_${tile_row_id}_${tile_column_id+3}`)   
+                                        castling_rook.style.setProperty(`background-color`, unit_castling_rook)                               
+                                    }
+
+                                    // White left rook
+                                    if(!clicked_tile.style.backgroundColor.includes(unit_ban_movement_color) && active_player == player_1 && castling_white_king == true && castling_white_rook_left == true && document.getElementById(`tile_8_2`).innerHTML.includes(`void`) && document.getElementById(`tile_8_3`).innerHTML.includes(`void`) && document.getElementById(`tile_8_4`).innerHTML.includes(`void`)) {
+
+                                        let castling_king = document.getElementById(`tile_${tile_row_id}_${tile_column_id-2}`)    
+                                        castling_king.style.setProperty(`background-color`, unit_castling_target)
+
+                                        let castling_rook = document.getElementById(`tile_${tile_row_id}_${tile_column_id-4}`)   
+                                        castling_rook.style.setProperty(`background-color`, unit_castling_rook)                               
+                                    }
+
+
+
+                                    // Black right rook
+                                    if(!clicked_tile.style.backgroundColor.includes(unit_ban_movement_color) && active_player == player_2 && castling_black_king == true && castling_black_rook_right == true && document.getElementById(`tile_1_6`).innerHTML.includes(`void`) && document.getElementById(`tile_1_7`).innerHTML.includes(`void`)) {
+
+                                        let castling_king = document.getElementById(`tile_${tile_row_id}_${tile_column_id+2}`)    
+                                        castling_king.style.setProperty(`background-color`, unit_castling_target)
+
+                                        let castling_rook = document.getElementById(`tile_${tile_row_id}_${tile_column_id+3}`)   
+                                        castling_rook.style.setProperty(`background-color`, unit_castling_rook)                               
+                                    }
+
+                                    // Black left rook
+                                    if(!clicked_tile.style.backgroundColor.includes(unit_ban_movement_color) && active_player == player_2 && castling_black_king == true && castling_black_rook_left == true && document.getElementById(`tile_1_2`).innerHTML.includes(`void`) && document.getElementById(`tile_1_3`).innerHTML.includes(`void`) && document.getElementById(`tile_1_4`).innerHTML.includes(`void`)) {
+
+                                        let castling_king = document.getElementById(`tile_${tile_row_id}_${tile_column_id-2}`)    
+                                        castling_king.style.setProperty(`background-color`, unit_castling_target)
+
+                                        let castling_rook = document.getElementById(`tile_${tile_row_id}_${tile_column_id-4}`)   
+                                        castling_rook.style.setProperty(`background-color`, unit_castling_rook)                               
+                                    }
+
+                            } // END castling options
+
+
                         
                                 unit_identify(clicked_tile.innerHTML, tile_row_id, tile_column_id)
 
@@ -394,7 +445,7 @@ let reset_btn_toggle = false
 
 
 ////////////    // Unit action
-                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color)){
+                    } else if (target_tile.style.backgroundColor.includes(unit_movement_color) || target_tile.style.backgroundColor.includes(unit_attack_color) || target_tile.style.backgroundColor.includes(unit_castling_target)){
 
 
                         // Action sounds setup
@@ -403,7 +454,6 @@ let reset_btn_toggle = false
                         } else if (target_tile.style.backgroundColor.includes(unit_attack_color)) {
                             attack_sound.play()
                         }
-
 
 
                         // White checkmate !!!
@@ -424,6 +474,9 @@ let reset_btn_toggle = false
                                 clicked_tile.innerHTML = selected_unit
                                 moved_unit.innerHTML = invalid_action_unit
                                 invalid_action = true
+
+                                // Unselect sound
+                                unselect_sound.play()
                             }
 
 
@@ -455,6 +508,80 @@ let reset_btn_toggle = false
                             moved_unit.innerHTML = selected_unit
                         } 
                     // END checkmate check
+
+
+
+                    // Castling options
+                    if (target_tile.style.backgroundColor.includes(unit_castling_target)) {
+
+                        // White right rook
+                        if (document.getElementById(`tile_8_7`).innerHTML.includes(`white_king`)) {
+                            document.getElementById(`tile_8_8`).innerHTML = `<img src="./images/void.png"></img>`
+                            document.getElementById(`tile_8_6`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
+                            castling_white_king = false
+                            castling_white_rook_right = false
+                            move_sound.play()
+                        }
+
+                        // White left rook
+                        if (document.getElementById(`tile_8_3`).innerHTML.includes(`white_king`)) {
+                            document.getElementById(`tile_8_1`).innerHTML = `<img src="./images/void.png"></img>`
+                            document.getElementById(`tile_8_4`).innerHTML = `<img src="./images/units/white_rook.png"></img>`
+                            castling_white_king = false
+                            castling_white_rook_left = false
+                            move_sound.play()
+                        }
+
+
+
+
+                        // Black right rook
+                        if (document.getElementById(`tile_1_7`).innerHTML.includes(`black_king`)) {
+                            document.getElementById(`tile_1_8`).innerHTML = `<img src="./images/void.png"></img>`
+                            document.getElementById(`tile_1_6`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+                            castling_black_king = false
+                            castling_black_rook_right = false
+                            move_sound.play()
+                        }
+
+                        // Black left rook
+                        if (document.getElementById(`tile_1_3`).innerHTML.includes(`black_king`)) {
+                            document.getElementById(`tile_1_1`).innerHTML = `<img src="./images/void.png"></img>`
+                            document.getElementById(`tile_1_4`).innerHTML = `<img src="./images/units/black_rook.png"></img>`
+                            castling_black_king = false
+                            castling_black_rook_left = false
+                            move_sound.play()
+                        }
+
+                    } // END castling options
+
+
+
+                    // Castling storno
+
+                        // White
+                        if (!document.getElementById(`tile_8_1`).innerHTML.includes(`white_rook`)) {
+                            castling_white_rook_left = false
+                        }
+                        if (!document.getElementById(`tile_8_8`).innerHTML.includes(`white_rook`)) {
+                            castling_white_rook_right = false
+                        }
+                        if (!document.getElementById(`tile_8_5`).innerHTML.includes(`white_king`)) {
+                            castling_whitek_king = false
+                        }
+
+                        // Black
+                        if (!document.getElementById(`tile_1_1`).innerHTML.includes(`black_rook`)) {
+                            castling_black_rook_left = false
+                        }
+                        if (!document.getElementById(`tile_1_8`).innerHTML.includes(`black_rook`)) {
+                            castling_black_rook_right = false
+                        }
+                        if (!document.getElementById(`tile_1_5`).innerHTML.includes(`black_king`)) {
+                            castling_black_king = false
+                        }
+                    
+                    // END castling storno
 
 
                         
