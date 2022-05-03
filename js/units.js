@@ -676,7 +676,7 @@ class unit {
         select_unit(name, tile_row_id, tile_column_id, `king`, king.movement, king.movement)
     }
 
-
+    
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Game initialization
