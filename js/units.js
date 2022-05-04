@@ -999,14 +999,16 @@ let king_position
             }
 
 
-            // Checkmate end-game
-                if (checkmate_status.includes(`false`)) {
-                    checkmate_end_game = false
-                } else {
-                    checkmate_end_game = true
-                }
+        // In this version deactivated for END GAME use give up button
 
-                checkmate_status = []
+            // // Checkmate end-game
+            //     if (checkmate_status.includes(`false`)) {
+            //         checkmate_end_game = false
+            //     } else {
+            //         checkmate_end_game = true
+            //     }
+
+            //     checkmate_status = []
             
         }
 
@@ -1401,53 +1403,58 @@ function checkmate (name_inner, tile_row_id, tile_column_id) {
 
     }
 
-    // King checkmate scan results
-    let king_check
-
-    // Set king position
-    if (active_player == player_1) {
-        king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
-
-    } else if (active_player == player_2) {
-        king_check = document.getElementById(`tile_${checkmate_scan_white_king_row_id}_${checkmate_scan_white_king_column_id}`)
-
-    // Correcting setup fot first turn
-    } else if (!active_player) {
-        king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
-    }
+    
+// In this version deactivated for END GAME use give up button
 
 
-        // Scan ban movements
-        if (king_position.style.backgroundColor.includes(unit_ban_movement_color)) {
-            ban_status = "checkmate"
-            checkmate_status.push(ban_status)
+    // // King checkmate scan results
+    // let king_check
 
-        // Scan surrounding units
-        } else if (!king_position.innerHTML.includes(`void`)) {
+    // // Set king position
+    // if (active_player == player_1) {
+    //     king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
 
-            // King position
-            if (king_check == king_position) {
-                ban_status = "false"
-                checkmate_status.push(ban_status)
+    // } else if (active_player == player_2) {
+    //     king_check = document.getElementById(`tile_${checkmate_scan_white_king_row_id}_${checkmate_scan_white_king_column_id}`)
 
-            // Own units
-            } else if (king_check.innerHTML.includes(`black`) && king_position.innerHTML.includes(`black`) ||
-                    king_check.innerHTML.includes(`white`) && king_position.innerHTML.includes(`white`)) {
+    // // Correcting setup fot first turn
+    // } else if (!active_player) {
+    //     king_check = document.getElementById(`tile_${checkmate_scan_black_king_row_id}_${checkmate_scan_black_king_column_id}`)
+    // }
 
-                ban_status = "unit"
-                checkmate_status.push(ban_status)
 
-            // Enemy units
-            } else {
-                ban_status = "false"
-                checkmate_status.push(ban_status)
-            }
+
+        // // Scan ban movements
+        // if (king_position.style.backgroundColor.includes(unit_ban_movement_color)) {
+        //     ban_status = "checkmate"
+        //     checkmate_status.push(ban_status)
+
+        // // Scan surrounding units
+        // } else if (!king_position.innerHTML.includes(`void`)) {
+
+        //     // King position
+        //     if (king_check == king_position) {
+        //         ban_status = "false"
+        //         checkmate_status.push(ban_status)
+
+        //     // Own units
+        //     } else if (king_check.innerHTML.includes(`black`) && king_position.innerHTML.includes(`black`) ||
+        //             king_check.innerHTML.includes(`white`) && king_position.innerHTML.includes(`white`)) {
+
+        //         ban_status = "unit"
+        //         checkmate_status.push(ban_status)
+
+        //     // Enemy units
+        //     } else {
+        //         ban_status = "false"
+        //         checkmate_status.push(ban_status)
+        //     }
                 
-        // Void without ban movement
-        } else {
-            ban_status = "false"
-            checkmate_status.push(ban_status)
-        }
+        // // Void without ban movement
+        // } else {
+        //     ban_status = "false"
+        //     checkmate_status.push(ban_status)
+        // }
 
 
 
